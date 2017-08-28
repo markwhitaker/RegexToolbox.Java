@@ -7,7 +7,7 @@ public class RegexQuantifier
 {
     private String regexString;
 
-    protected RegexQuantifier(String regexString)
+    RegexQuantifier(String regexString)
     {
         this.regexString = regexString;
     }
@@ -53,7 +53,7 @@ public class RegexQuantifier
         return regexString;
     }
 
-    protected void makeNonGreedy()
+    void makeNonGreedy()
     {
         regexString += "?";
     }

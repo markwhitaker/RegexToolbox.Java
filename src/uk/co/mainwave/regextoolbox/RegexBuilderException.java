@@ -1,5 +1,6 @@
 package uk.co.mainwave.regextoolbox;
 
+@SuppressWarnings("WeakerAccess")
 public class RegexBuilderException extends Exception
 {
     /**

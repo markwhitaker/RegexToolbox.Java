@@ -1,6 +1,6 @@
 package uk.co.mainwave.regextoolbox;
 
-final class RegexGreedyQuantifier extends RegexQuantifier
+public final class RegexGreedyQuantifier extends RegexQuantifier
 {
     RegexGreedyQuantifier(String regexString)
     {

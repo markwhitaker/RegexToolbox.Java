@@ -41,13 +41,23 @@ public class RegexBuilder
         }
 
         final Pattern pattern = Pattern.compile(stringBuilder.toString(), flags);
-        stringBuilder.delete(0, stringBuilder.length() - 1);
+        stringBuilder.setLength(0);
         return pattern;
+    }
+
+    public RegexBuilder text(String text) throws RegexBuilderException
+    {
+        return text(text, null);
     }
 
     public RegexBuilder text(String text, RegexQuantifier quantifier) throws RegexBuilderException
     {
         return regexText(makeSafeForRegex(text), quantifier);
+    }
+
+    public RegexBuilder regexText(final String text) throws RegexBuilderException
+    {
+        return regexText(text, null);
     }
 
     public RegexBuilder regexText(final String text, final RegexQuantifier quantifier) throws RegexBuilderException
@@ -63,11 +73,21 @@ public class RegexBuilder
                 .endGroup(quantifier);
     }
 
+    public RegexBuilder anyCharacter()
+    {
+        return anyCharacter(null);
+    }
+
     public RegexBuilder anyCharacter(final RegexQuantifier quantifier)
     {
         stringBuilder.append(".");
         addQuantifier(quantifier);
         return this;
+    }
+
+    public RegexBuilder whitespace()
+    {
+        return whitespace(null);
     }
 
     public RegexBuilder whitespace(final RegexQuantifier quantifier)
@@ -77,11 +97,21 @@ public class RegexBuilder
         return this;
     }
 
+    public RegexBuilder nonWhitespace()
+    {
+        return nonWhitespace(null);
+    }
+
     public RegexBuilder nonWhitespace(final RegexQuantifier quantifier)
     {
         stringBuilder.append("\\S");
         addQuantifier(quantifier);
         return this;
+    }
+
+    public RegexBuilder digit()
+    {
+        return digit(null);
     }
 
     public RegexBuilder digit(final RegexQuantifier quantifier)
@@ -91,11 +121,21 @@ public class RegexBuilder
         return this;
     }
 
+    public RegexBuilder nonDigit()
+    {
+        return nonDigit(null);
+    }
+
     public RegexBuilder nonDigit(final RegexQuantifier quantifier)
     {
         stringBuilder.append("\\D");
         addQuantifier(quantifier);
         return this;
+    }
+
+    public RegexBuilder letter()
+    {
+        return letter(null);
     }
 
     public RegexBuilder letter(final RegexQuantifier quantifier)
@@ -105,11 +145,21 @@ public class RegexBuilder
         return this;
     }
 
+    public RegexBuilder nonLetter()
+    {
+        return nonLetter(null);
+    }
+
     public RegexBuilder nonLetter(final RegexQuantifier quantifier)
     {
         stringBuilder.append("[^a-zA-Z]");
         addQuantifier(quantifier);
         return this;
+    }
+
+    public RegexBuilder uppercaseLetter()
+    {
+        return uppercaseLetter(null);
     }
 
     public RegexBuilder uppercaseLetter(final RegexQuantifier quantifier)
@@ -119,11 +169,21 @@ public class RegexBuilder
         return this;
     }
 
+    public RegexBuilder lowercaseLetter()
+    {
+        return lowercaseLetter(null);
+    }
+
     public RegexBuilder lowercaseLetter(final RegexQuantifier quantifier)
     {
         stringBuilder.append("[a-z]");
         addQuantifier(quantifier);
         return this;
+    }
+
+    public RegexBuilder letterOrDigit()
+    {
+        return letterOrDigit(null);
     }
 
     public RegexBuilder letterOrDigit(final RegexQuantifier quantifier)
@@ -133,11 +193,21 @@ public class RegexBuilder
         return this;
     }
 
+    public RegexBuilder nonLetterOrDigit()
+    {
+        return nonLetterOrDigit(null);
+    }
+
     public RegexBuilder nonLetterOrDigit(final RegexQuantifier quantifier)
     {
         stringBuilder.append("[^a-zA-Z0-9]");
         addQuantifier(quantifier);
         return this;
+    }
+
+    public RegexBuilder hexDigit()
+    {
+        return hexDigit(null);
     }
 
     public RegexBuilder hexDigit(final RegexQuantifier quantifier)
@@ -147,11 +217,21 @@ public class RegexBuilder
         return this;
     }
 
+    public RegexBuilder uppercaseHexDigit()
+    {
+        return uppercaseHexDigit(null);
+    }
+
     public RegexBuilder uppercaseHexDigit(final RegexQuantifier quantifier)
     {
         stringBuilder.append("[0-9A-F]");
         addQuantifier(quantifier);
         return this;
+    }
+
+    public RegexBuilder lowercaseHexDigit()
+    {
+        return lowercaseHexDigit(null);
     }
 
     public RegexBuilder lowercaseHexDigit(final RegexQuantifier quantifier)
@@ -161,11 +241,21 @@ public class RegexBuilder
         return this;
     }
 
+    public RegexBuilder nonHexDigit()
+    {
+        return nonHexDigit(null);
+    }
+
     public RegexBuilder nonHexDigit(final RegexQuantifier quantifier)
     {
         stringBuilder.append("[^0-9A-Fa-f]");
         addQuantifier(quantifier);
         return this;
+    }
+
+    public RegexBuilder wordCharacter()
+    {
+        return wordCharacter(null);
     }
 
     public RegexBuilder wordCharacter(final RegexQuantifier quantifier)
@@ -175,11 +265,21 @@ public class RegexBuilder
         return this;
     }
 
+    public RegexBuilder nonWordCharacter()
+    {
+        return nonWordCharacter(null);
+    }
+
     public RegexBuilder nonWordCharacter(final RegexQuantifier quantifier)
     {
         stringBuilder.append("\\W");
         addQuantifier(quantifier);
         return this;
+    }
+
+    public RegexBuilder anyCharacterFrom(final String characters)
+    {
+        return anyCharacterFrom(characters, null);
     }
 
     public RegexBuilder anyCharacterFrom(final String characters, final RegexQuantifier quantifier)
@@ -193,6 +293,11 @@ public class RegexBuilder
         return this;
     }
 
+    public RegexBuilder anyCharacterExcept(final String characters)
+    {
+        return anyCharacterExcept(characters, null);
+    }
+
     public RegexBuilder anyCharacterExcept(final String characters, RegexQuantifier quantifier)
     {
         // Build a character class, remembering to escape any ] character if passed in
@@ -202,6 +307,11 @@ public class RegexBuilder
                 .append("]");
         addQuantifier(quantifier);
         return this;
+    }
+
+    public RegexBuilder anyOf(String[] strings) throws RegexBuilderException
+    {
+        return anyOf(strings, null);
     }
 
     public RegexBuilder anyOf(String[] strings, RegexQuantifier quantifier) throws RegexBuilderException
@@ -272,6 +382,11 @@ public class RegexBuilder
                 .append(name)
                 .append(">");
         return new RegexGroupBuilder(this);
+    }
+
+    public RegexBuilder endGroup() throws RegexBuilderException
+    {
+        return endGroup(null);
     }
 
     public RegexBuilder endGroup(final RegexQuantifier quantifier) throws RegexBuilderException
