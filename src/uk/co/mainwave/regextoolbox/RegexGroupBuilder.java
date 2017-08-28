@@ -2,7 +2,7 @@ package uk.co.mainwave.regextoolbox;
 
 import java.util.regex.Pattern;
 
-public class RegexGroupBuilder extends RegexBuilder
+final class RegexGroupBuilder extends RegexBuilder
 {
     RegexGroupBuilder(RegexBuilder parent)
     {
