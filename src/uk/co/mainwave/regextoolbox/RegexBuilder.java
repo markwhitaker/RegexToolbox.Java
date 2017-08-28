@@ -1,10 +1,13 @@
-package uk.co.mainwave.RegexToolbox;
+package uk.co.mainwave.regextoolbox;
 
 import java.util.regex.Pattern;
 
 public class RegexBuilder
 {
+    @SuppressWarnings("WeakerAccess")
     protected final StringBuilder stringBuilder;
+
+    @SuppressWarnings("WeakerAccess")
     protected final RegexBuilder parent;
 
     public RegexBuilder()
@@ -13,7 +16,8 @@ public class RegexBuilder
         stringBuilder = new StringBuilder();
     }
 
-    public RegexBuilder(RegexBuilder parent)
+    @SuppressWarnings("WeakerAccess")
+    protected RegexBuilder(final RegexBuilder parent)
     {
         this.parent = parent;
         stringBuilder = parent.stringBuilder;
@@ -23,7 +27,7 @@ public class RegexBuilder
     {
         int flags = 0;
 
-        for (RegexOptions option : options)
+        for (final RegexOptions option : options)
         {
             switch (option)
             {

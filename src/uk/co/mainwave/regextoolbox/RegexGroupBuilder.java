@@ -1,4 +1,4 @@
-package uk.co.mainwave.RegexToolbox;
+package uk.co.mainwave.regextoolbox;
 
 import java.util.regex.Pattern;
 

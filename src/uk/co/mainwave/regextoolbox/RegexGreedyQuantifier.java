@@ -1,4 +1,4 @@
-package uk.co.mainwave.RegexToolbox;
+package uk.co.mainwave.regextoolbox;
 
 final class RegexGreedyQuantifier extends RegexQuantifier
 {
@@ -9,7 +9,7 @@ final class RegexGreedyQuantifier extends RegexQuantifier
 
     public RegexGreedyQuantifier butAsFewAsPossible()
     {
-        addToRegexString("?");
+        makeNonGreedy();
         return this;
     }
 }

@@ -1,10 +1,10 @@
-package uk.co.mainwave.RegexBuilderTests;
+package uk.co.mainwave.regexbuildertests;
 
 
 import org.junit.Assert;
 import org.junit.Test;
-import uk.co.mainwave.RegexToolbox.RegexBuilder;
-import uk.co.mainwave.RegexToolbox.RegexBuilderException;
+import uk.co.mainwave.regextoolbox.RegexBuilder;
+import uk.co.mainwave.regextoolbox.RegexBuilderException;
 
 import java.util.regex.Pattern;
 

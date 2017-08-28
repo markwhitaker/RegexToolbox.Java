@@ -1,4 +1,4 @@
-package uk.co.mainwave.RegexToolbox;
+package uk.co.mainwave.regextoolbox;
 
 /**
  * Quantifiers that can be applied to regex elements or groups
@@ -53,8 +53,8 @@ public class RegexQuantifier
         return regexString;
     }
 
-    protected void addToRegexString(final String regexStringPart)
+    protected void makeNonGreedy()
     {
-        regexString += regexStringPart;
+        regexString += "?";
     }
 }
