@@ -1,4 +1,4 @@
-package uk.co.mainwave.regexbuildertests;
+package uk.co.mainwave.regextoolboxtests;
 
 final class Strings
 {
