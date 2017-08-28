@@ -1,4 +1,6 @@
-# Regex Toolbox
+![icon](artwork/RegexToolbox-icon-100.png)
+
+# RegexToolbox.Java
 
 Regular expression tools for Java developers.
 
@@ -12,6 +14,11 @@ Regular expression tools for Java developers.
  - Code is safer and far less prone to regular expression syntax errors and programmer errors.
 
 It is fully documented in the [project wiki](https://github.com/markwhitaker/RegexToolbox.Java/wiki).
+
+---
+![icon](https://raw.githubusercontent.com/markwhitaker/RegexToolbox.CSharp/master/Artwork/RegexToolbox-icon-32.png) **.NET developer?** Check out the C# version of this library, [RegexToolbox.CSharp](https://github.com/markwhitaker/RegexToolbox.CSharp).
+
+![icon](https://raw.githubusercontent.com/markwhitaker/RegexToolbox.JS/master/artwork/RegexToolbox-icon-32.png) **Web developer?** Check out the web version of this library, [RegexToolbox.JS](https://github.com/markwhitaker/RegexToolbox.JS).
 
 ---
 *RegexToolbox: Now you can be a [hero](https://xkcd.com/208/) without even knowing regular expressions.*
