@@ -2,6 +2,9 @@ package uk.co.mainwave.regextoolbox;
 
 import java.util.regex.Pattern;
 
+/**
+ * Derived class to represent a group within a regex
+ */
 final class RegexGroupBuilder extends RegexBuilder
 {
     RegexGroupBuilder(RegexBuilder parent)

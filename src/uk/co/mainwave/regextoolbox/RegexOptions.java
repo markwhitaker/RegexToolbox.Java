@@ -1,7 +1,7 @@
 package uk.co.mainwave.regextoolbox;
 
 /**
- * Options that can be passed to RegexBuilder.buildRegex().
+ * Options that can be passed to {@link RegexBuilder#buildRegex(RegexOptions...)}.
  */
 public enum RegexOptions
 {
@@ -11,7 +11,8 @@ public enum RegexOptions
     IGNORE_CASE,
 
     /**
-     * Cause startOfString() and endOfString() to also match line breaks within a multi-line string
+     * Cause {@link RegexBuilder#startOfString()} and {@link RegexBuilder#endOfString()} to also match line breaks
+     * within a multi-line string
      */
     MULTILINE
 }
