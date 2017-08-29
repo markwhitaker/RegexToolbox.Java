@@ -8,6 +8,8 @@ import uk.co.mainwave.regextoolbox.RegexBuilderException;
 import uk.co.mainwave.regextoolbox.RegexOptions;
 import uk.co.mainwave.regextoolbox.RegexQuantifier;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -1190,7 +1192,6 @@ public class RegexBuilderTests
         Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
-/*
     @Test
     public void testRepeatGroup() throws RegexBuilderException
     {
@@ -1201,13 +1202,18 @@ public class RegexBuilderTests
                 .endGroup()
                 .buildRegex();
 
-        Assert.assertEquals("([a-zA-Z]\d)", regex.toString());
+        Assert.assertEquals("([a-zA-Z]\\d)", regex.toString());
 
-        MatchCollection matches = regex.Matches("Class A1 f2 ZZ88");
-        Assert.assertEquals(3, matches.Count);
-        Assert.assertEquals("A1", matches[0].Value);
-        Assert.assertEquals("f2", matches[1].Value);
-        Assert.assertEquals("Z8", matches[2].Value);
+        final Matcher matcher = regex.matcher("Class A1 f2 ZZ88");
+        final List<String> matches = new ArrayList<>();
+        while (matcher.find())
+        {
+            matches.add(matcher.group());
+        }
+        Assert.assertEquals(3, matches.size());
+        Assert.assertEquals("A1", matches.get(0));
+        Assert.assertEquals("f2", matches.get(1));
+        Assert.assertEquals("Z8", matches.get(2));
 
         Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
@@ -1228,7 +1234,6 @@ public class RegexBuilderTests
         Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
         Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
     }
-*/
 
     @Test
     public void testNamedGroup() throws RegexBuilderException
