@@ -1,6 +1,6 @@
 ![icon](artwork/RegexToolbox-icon-100.png)
 
-# RegexToolbox.Java
+# RegexToolbox.Java [ ![Download](https://api.bintray.com/packages/markwhitaker/Maven/RegexToolbox/images/download.svg) ](https://bintray.com/markwhitaker/Maven/RegexToolbox/_latestVersion)
 
 Regular expression tools for Java developers.
 

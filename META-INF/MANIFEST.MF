@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Name: uk/co/mainwave/regextoolbox/
+Sealed: true
+Specification-Title: "RegexToolbox"
+Specification-Version: "1.0.3"
+Specification-Vendor: "Mainwave"
