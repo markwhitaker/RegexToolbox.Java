@@ -78,7 +78,7 @@ public class RegexBuilder
      * 
      * @param text Text to add
      */
-    public RegexBuilder text(String text) throws RegexBuilderException
+    public RegexBuilder text(final String text) throws RegexBuilderException
     {
         return text(text, null);
     }
@@ -97,7 +97,7 @@ public class RegexBuilder
      * @param text Text to add
      * @param quantifier Quantifier to apply to this element
      */
-    public RegexBuilder text(String text, RegexQuantifier quantifier) throws RegexBuilderException
+    public RegexBuilder text(final String text, final RegexQuantifier quantifier) throws RegexBuilderException
     {
         return regexText(makeSafeForRegex(text), quantifier);
     }
@@ -511,7 +511,7 @@ public class RegexBuilder
      * @param characters String containing all characters to exclude from the character class
      * @param quantifier Quantifier to apply to this element
      */
-    public RegexBuilder anyCharacterExcept(final String characters, RegexQuantifier quantifier)
+    public RegexBuilder anyCharacterExcept(final String characters, final RegexQuantifier quantifier)
     {
         // Build a character class, remembering to escape any ] character if passed in
         stringBuilder
@@ -526,7 +526,7 @@ public class RegexBuilder
      * Add a group of alternatives, to match any of the strings provided
      * @param strings A number of strings, any one of which will be matched
      */
-    public RegexBuilder anyOf(String[] strings) throws RegexBuilderException
+    public RegexBuilder anyOf(final String[] strings) throws RegexBuilderException
     {
         return anyOf(strings, null);
     }
@@ -536,7 +536,7 @@ public class RegexBuilder
      * @param strings A number of strings, any one of which will be matched
      * @param quantifier Quantifier to apply to this element
      */
-    public RegexBuilder anyOf(String[] strings, RegexQuantifier quantifier) throws RegexBuilderException
+    public RegexBuilder anyOf(final String[] strings, final RegexQuantifier quantifier) throws RegexBuilderException
     {
         if (strings == null || strings.length == 0)
         {
