@@ -14,8 +14,10 @@ public final class RegexGreedyQuantifier extends RegexQuantifier
     /**
      * Get a non-greedy version of this quantifier: in other words, if used
      * to match a variable number of elements it will match as few as possible.
+     *
+     * @return A non-greedy quantifier
      */
-    public RegexGreedyQuantifier butAsFewAsPossible()
+    public RegexQuantifier butAsFewAsPossible()
     {
         makeNonGreedy();
         return this;

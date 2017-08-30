@@ -39,6 +39,7 @@ public class RegexBuilder
     /**
      * Build and return a {@link Pattern} object from the current builder state.
      * After calling this the builder is cleared and ready to re-use.
+     *
      * @param options Any number of regex options to apply to the regex
      * @return {@link Pattern} as built
      * @throws RegexBuilderException An error occurred when building the regex
@@ -77,8 +78,9 @@ public class RegexBuilder
      * It WILL NOT match the string literal "Hello world".
      * 
      * @param text Text to add
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
-    public RegexBuilder text(final String text) throws RegexBuilderException
+    public RegexBuilder text(final String text)
     {
         return text(text, null);
     }
@@ -96,8 +98,9 @@ public class RegexBuilder
      *
      * @param text Text to add
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
-    public RegexBuilder text(final String text, final RegexQuantifier quantifier) throws RegexBuilderException
+    public RegexBuilder text(final String text, final RegexQuantifier quantifier)
     {
         return regexText(makeSafeForRegex(text), quantifier);
     }
@@ -115,8 +118,9 @@ public class RegexBuilder
      * It WILL NOT match the string literal "Hello (world)".
      *
      * @param text regex text to add
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
-    public RegexBuilder regexText(final String text) throws RegexBuilderException
+    public RegexBuilder regexText(final String text)
     {
         return regexText(text, null);
     }
@@ -135,8 +139,9 @@ public class RegexBuilder
      *
      * @param text regex text to add
      * @param quantifier Quantifier to apply to the whole string
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
-    public RegexBuilder regexText(final String text, final RegexQuantifier quantifier) throws RegexBuilderException
+    public RegexBuilder regexText(final String text, final RegexQuantifier quantifier)
     {
         if (quantifier == null)
         {
@@ -144,13 +149,25 @@ public class RegexBuilder
             return this;
         }
 
-        return startNonCapturingGroup()
-                .regexText(text, null)
-                .endGroup(quantifier);
+        RegexBuilder builder = null;
+        try
+        {
+            builder = startNonCapturingGroup()
+                    .regexText(text, null)
+                    .endGroup(quantifier);
+        }
+        catch (RegexBuilderException ignored)
+        {
+            // We won't get an exception from endGroup() as we know we started the group properly
+        }
+
+        return builder;
     }
 
     /**
      * Add an element to match any character.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder anyCharacter()
     {
@@ -159,7 +176,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any character.
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder anyCharacter(final RegexQuantifier quantifier)
     {
@@ -170,6 +189,8 @@ public class RegexBuilder
 
     /**
      * Add an element to match any single whitespace character.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder whitespace()
     {
@@ -178,7 +199,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any single whitespace character.
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder whitespace(final RegexQuantifier quantifier)
     {
@@ -189,6 +212,8 @@ public class RegexBuilder
 
     /**
      * Add an element to match any single non-whitespace character.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonWhitespace()
     {
@@ -197,7 +222,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any single non-whitespace character.
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonWhitespace(final RegexQuantifier quantifier)
     {
@@ -208,6 +235,8 @@ public class RegexBuilder
 
     /**
      * Add an element to match any single decimal digit (0-9).
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder digit()
     {
@@ -216,7 +245,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any single decimal digit (0-9).
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder digit(final RegexQuantifier quantifier)
     {
@@ -227,6 +258,8 @@ public class RegexBuilder
 
     /**
      * Add an element to match any character that is not a decimal digit (0-9).
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonDigit()
     {
@@ -235,7 +268,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any character that is not a decimal digit (0-9).
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonDigit(final RegexQuantifier quantifier)
     {
@@ -246,6 +281,8 @@ public class RegexBuilder
 
     /**
      * Add an element to match any letter in the Roman alphabet (a-z, A-Z)
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder letter()
     {
@@ -254,7 +291,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any letter in the Roman alphabet (a-z, A-Z)
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder letter(final RegexQuantifier quantifier)
     {
@@ -265,6 +304,8 @@ public class RegexBuilder
 
     /**
      * Add an element to match any character that is not a letter in the Roman alphabet (a-z, A-Z)
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonLetter()
     {
@@ -273,7 +314,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any character that is not a letter in the Roman alphabet (a-z, A-Z)
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonLetter(final RegexQuantifier quantifier)
     {
@@ -284,6 +327,8 @@ public class RegexBuilder
 
     /**
      * Add an element to match any upper-case letter in the Roman alphabet (A-Z).
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder uppercaseLetter()
     {
@@ -292,7 +337,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any upper-case letter in the Roman alphabet (A-Z).
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder uppercaseLetter(final RegexQuantifier quantifier)
     {
@@ -303,6 +350,8 @@ public class RegexBuilder
 
     /**
      * Add an element to match any lowercase letter in the Roman alphabet (a-z)
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder lowercaseLetter()
     {
@@ -311,7 +360,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any lowercase letter in the Roman alphabet (a-z)
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder lowercaseLetter(final RegexQuantifier quantifier)
     {
@@ -322,6 +373,8 @@ public class RegexBuilder
 
     /**
      * Add an element to match any letter in the Roman alphabet or decimal digit (a-z, A-Z, 0-9)
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder letterOrDigit()
     {
@@ -330,7 +383,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any letter in the Roman alphabet or decimal digit (a-z, A-Z, 0-9)
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder letterOrDigit(final RegexQuantifier quantifier)
     {
@@ -341,6 +396,8 @@ public class RegexBuilder
 
     /**
      * Add an element to match any character that is not letter in the Roman alphabet or a decimal digit (a-z, A-Z, 0-9)
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonLetterOrDigit()
     {
@@ -349,7 +406,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any character that is not letter in the Roman alphabet or a decimal digit (a-z, A-Z, 0-9)
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonLetterOrDigit(final RegexQuantifier quantifier)
     {
@@ -360,6 +419,8 @@ public class RegexBuilder
 
     /**
      * Add an element to match any hexadecimal digit (a-f, A-F, 0-9)
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder hexDigit()
     {
@@ -368,7 +429,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any hexadecimal digit (a-f, A-F, 0-9)
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder hexDigit(final RegexQuantifier quantifier)
     {
@@ -379,6 +442,8 @@ public class RegexBuilder
 
     /**
      * Add an element to match any uppercase hexadecimal digit (A-F, 0-9)
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder uppercaseHexDigit()
     {
@@ -387,7 +452,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any uppercase hexadecimal digit (A-F, 0-9)
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder uppercaseHexDigit(final RegexQuantifier quantifier)
     {
@@ -398,6 +465,8 @@ public class RegexBuilder
 
     /**
      * Add an element to match any lowercase hexadecimal digit (a-f, 0-9)
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder lowercaseHexDigit()
     {
@@ -406,7 +475,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any lowercase hexadecimal digit (a-f, 0-9)
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder lowercaseHexDigit(final RegexQuantifier quantifier)
     {
@@ -417,6 +488,8 @@ public class RegexBuilder
 
     /**
      * Add an element to match any character that is not a hexadecimal digit (a-f, A-F, 0-9)
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonHexDigit()
     {
@@ -425,7 +498,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any character that is not a hexadecimal digit (a-f, A-F, 0-9)
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonHexDigit(final RegexQuantifier quantifier)
     {
@@ -436,6 +511,8 @@ public class RegexBuilder
 
     /**
      * Add an element to match any Roman alphabet letter, decimal digit, or underscore (a-z, A-Z, 0-9, _)
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder wordCharacter()
     {
@@ -444,7 +521,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any Roman alphabet letter, decimal digit, or underscore (a-z, A-Z, 0-9, _)
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder wordCharacter(final RegexQuantifier quantifier)
     {
@@ -455,6 +534,8 @@ public class RegexBuilder
 
     /**
      * Add an element to match any character that is not a Roman alphabet letter, decimal digit, or underscore (a-z, A-Z, 0-9, _)
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonWordCharacter()
     {
@@ -463,7 +544,9 @@ public class RegexBuilder
 
     /**
      * Add an element to match any character that is not a Roman alphabet letter, decimal digit, or underscore (a-z, A-Z, 0-9, _)
+     *
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonWordCharacter(final RegexQuantifier quantifier)
     {
@@ -474,7 +557,9 @@ public class RegexBuilder
 
     /**
      * Add an element (a character class) to match any of the characters provided.
+     *
      * @param characters String containing all characters to include in the character class
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder anyCharacterFrom(final String characters)
     {
@@ -483,8 +568,10 @@ public class RegexBuilder
 
     /**
      * Add an element (a character class) to match any of the characters provided.
+     *
      * @param characters String containing all characters to include in the character class
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder anyCharacterFrom(final String characters, final RegexQuantifier quantifier)
     {
@@ -499,7 +586,9 @@ public class RegexBuilder
 
     /**
      * Add an element (a character class) to match any character except those provided.
+     *
      * @param characters String containing all characters to exclude from the character class
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder anyCharacterExcept(final String characters)
     {
@@ -508,8 +597,10 @@ public class RegexBuilder
 
     /**
      * Add an element (a character class) to match any character except those provided.
+     *
      * @param characters String containing all characters to exclude from the character class
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder anyCharacterExcept(final String characters, final RegexQuantifier quantifier)
     {
@@ -524,19 +615,23 @@ public class RegexBuilder
 
     /**
      * Add a group of alternatives, to match any of the strings provided
+     *
      * @param strings A number of strings, any one of which will be matched
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
-    public RegexBuilder anyOf(final String[] strings) throws RegexBuilderException
+    public RegexBuilder anyOf(final String[] strings)
     {
         return anyOf(strings, null);
     }
 
     /**
      * Add a group of alternatives, to match any of the strings provided
+     *
      * @param strings A number of strings, any one of which will be matched
      * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
-    public RegexBuilder anyOf(final String[] strings, final RegexQuantifier quantifier) throws RegexBuilderException
+    public RegexBuilder anyOf(final String[] strings, final RegexQuantifier quantifier)
     {
         if (strings == null || strings.length == 0)
         {
@@ -555,9 +650,20 @@ public class RegexBuilder
         {
             safeStrings[i] = makeSafeForRegex(strings[i]);
         }
-        return startNonCapturingGroup()
-                .regexText(String.join("|", safeStrings), quantifier)
-                .endGroup(quantifier);
+
+        RegexBuilder builder = null;
+        try
+        {
+            builder = startNonCapturingGroup()
+                    .regexText(String.join("|", safeStrings), quantifier)
+                    .endGroup(quantifier);
+        }
+        catch (RegexBuilderException ignored)
+        {
+            // We won't get an exception from endGroup() as we know we started the group properly
+        }
+
+        return builder;
     }
 
 
@@ -566,6 +672,8 @@ public class RegexBuilder
 
     /**
      * Add a zero-width anchor element to match the start of the string
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder startOfString()
     {
@@ -575,6 +683,8 @@ public class RegexBuilder
 
     /**
      * Add a zero-width anchor element to match the end of the string
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder endOfString()
     {
@@ -585,6 +695,8 @@ public class RegexBuilder
     /**
      * Add a zero-width anchor element to match the boundary between an alphanumeric/underscore character
      * and either a non-alphanumeric, non-underscore character or the start/end of the string.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder wordBoundary()
     {
@@ -603,6 +715,8 @@ public class RegexBuilder
      * If you don't want to capture the group match, use {@link #startNonCapturingGroup()}.
      * 
      * Note: all groups must be ended with {@link #endGroup()} before calling {@link #buildRegex(RegexOptions...)}.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder startGroup()
     {
@@ -618,6 +732,8 @@ public class RegexBuilder
      * If you want to capture group results, use {@link #startGroup()} or {@link #startNamedGroup(String)}.
      *
      * Note: all groups must be ended with {@link #endGroup()} before calling {@link #buildRegex(RegexOptions...)}.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder startNonCapturingGroup()
     {
@@ -634,6 +750,9 @@ public class RegexBuilder
      * If you don't want to capture the group match, use {@link #startNonCapturingGroup()}.
      *
      * Note: all groups must be ended with {@link #endGroup()} before calling {@link #buildRegex(RegexOptions...)}.
+     *
+     * @param name Name used to identify the group
+     * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder startNamedGroup(final String name)
     {
@@ -647,6 +766,9 @@ public class RegexBuilder
     /**
      * End the innermost group previously started with {@link #startGroup()}, {@link #startNonCapturingGroup()} or
      * {@link #startNamedGroup(String)}.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
+     * @throws RegexBuilderException A group has not been started
      */
     public RegexBuilder endGroup() throws RegexBuilderException
     {
@@ -656,7 +778,10 @@ public class RegexBuilder
     /**
      * End the innermost group previously started with {@link #startGroup()}, {@link #startNonCapturingGroup()} or
      * {@link #startNamedGroup(String)}.
+     *
      * @param quantifier Quantifier to apply to this group
+     * @return The current {@link RegexBuilder} object, for method chaining
+     * @throws RegexBuilderException A group has not been started
      */
     public RegexBuilder endGroup(final RegexQuantifier quantifier) throws RegexBuilderException
     {
@@ -691,7 +816,8 @@ public class RegexBuilder
 
     private static String makeSafeForRegex(final String s)
     {
-        final String result = s
+
+        return s
                 // Make sure this always comes first!
                 .replace("\\", "\\\\")
                 .replace("?", "\\?")
@@ -707,8 +833,5 @@ public class RegexBuilder
                 .replace("{", "\\{")
                 .replace("}", "\\}")
                 .replace("|", "\\|");
-
-        return result;
     }
-
 }
