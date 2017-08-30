@@ -87,4 +87,11 @@
             </plugin>
         </plugins>
     </build>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray-repo-regextoobox</id>
+            <url>https://api.bintray.com/maven/markwhitaker/Maven/RegexToolbox/;publish=1</url>
+        </repository>
+    </distributionManagement>
 </project>
