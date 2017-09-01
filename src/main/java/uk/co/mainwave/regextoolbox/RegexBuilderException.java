@@ -11,12 +11,22 @@ public final class RegexBuilderException extends Exception
      */
     private String regexString;
 
-    public RegexBuilderException(String message, StringBuilder stringBuilder)
+    /**
+     * Constructor
+     *
+     * @param message Message describing the error
+     * @param stringBuilder The current regex string being built by {@link RegexBuilder}
+     */
+    public RegexBuilderException(final String message, final StringBuilder stringBuilder)
     {
         super(message);
         regexString = stringBuilder.toString();
     }
 
+    /**
+     * Get the regex string built so far by the {@link RegexBuilder}
+     * @return Regex string
+     */
     public String getRegexString()
     {
         return regexString;

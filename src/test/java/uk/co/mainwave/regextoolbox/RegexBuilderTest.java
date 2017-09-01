@@ -1,19 +1,15 @@
-package uk.co.mainwave.regextoolboxtests;
+package uk.co.mainwave.regextoolbox;
 
 
 import org.junit.Assert;
 import org.junit.Test;
-import uk.co.mainwave.regextoolbox.RegexBuilder;
-import uk.co.mainwave.regextoolbox.RegexBuilderException;
-import uk.co.mainwave.regextoolbox.RegexOptions;
-import uk.co.mainwave.regextoolbox.RegexQuantifier;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegexBuilderTests
+public class RegexBuilderTest
 {
     @Test
     public void testSimpleText() throws RegexBuilderException

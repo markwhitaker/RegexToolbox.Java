@@ -11,29 +11,23 @@ import java.util.regex.Pattern;
  * Example:
  *
  *     Pattern regex = new RegexBuilder()
- *                        .text("cat")
- *                        .endOfString()
+ *                         .text("cat")
+ *                         .endOfString()
  *                     .buildRegex();
  */
-public class RegexBuilder
+@SuppressWarnings("WeakerAccess")
+public final class RegexBuilder
 {
-    @SuppressWarnings("WeakerAccess")
-    protected final StringBuilder stringBuilder;
+    private final StringBuilder stringBuilder;
 
-    @SuppressWarnings("WeakerAccess")
-    protected final RegexBuilder parent;
+    private int openGroupCount;
 
+    /**
+     * Default constructor
+     */
     public RegexBuilder()
     {
-        parent = null;
         stringBuilder = new StringBuilder();
-    }
-
-    @SuppressWarnings("WeakerAccess")
-    protected RegexBuilder(final RegexBuilder parent)
-    {
-        this.parent = parent;
-        stringBuilder = parent.stringBuilder;
     }
 
     /**
@@ -46,6 +40,15 @@ public class RegexBuilder
      */
     public Pattern buildRegex(final RegexOptions... options) throws RegexBuilderException
     {
+        if (openGroupCount == 1)
+        {
+            throw new RegexBuilderException("A group has been started but not ended", stringBuilder);
+        }
+        if (openGroupCount > 1)
+        {
+            throw new RegexBuilderException(openGroupCount + " groups have been started but not ended", stringBuilder);
+        }
+
         int flags = 0;
 
         for (final RegexOptions option : options)
@@ -57,6 +60,8 @@ public class RegexBuilder
                     break;
                 case MULTILINE:
                     flags |= Pattern.MULTILINE;
+                    break;
+                default:
                     break;
             }
         }
@@ -533,7 +538,8 @@ public class RegexBuilder
     }
 
     /**
-     * Add an element to match any character that is not a Roman alphabet letter, decimal digit, or underscore (a-z, A-Z, 0-9, _)
+     * Add an element to match any character that is not a Roman alphabet letter, decimal digit, or underscore
+     * (a-z, A-Z, 0-9, _)
      *
      * @return The current {@link RegexBuilder} object, for method chaining
      */
@@ -543,7 +549,8 @@ public class RegexBuilder
     }
 
     /**
-     * Add an element to match any character that is not a Roman alphabet letter, decimal digit, or underscore (a-z, A-Z, 0-9, _)
+     * Add an element to match any character that is not a Roman alphabet letter, decimal digit, or underscore
+     * (a-z, A-Z, 0-9, _)
      *
      * @param quantifier Quantifier to apply to this element
      * @return The current {@link RegexBuilder} object, for method chaining
@@ -645,7 +652,7 @@ public class RegexBuilder
             return this;
         }
 
-        String[] safeStrings = new String[strings.length];
+        final String[] safeStrings = new String[strings.length];
         for (int i = 0; i < strings.length; i++)
         {
             safeStrings[i] = makeSafeForRegex(strings[i]);
@@ -721,7 +728,8 @@ public class RegexBuilder
     public RegexBuilder startGroup()
     {
         stringBuilder.append("(");
-        return new RegexGroupBuilder(this);
+        openGroupCount++;
+        return this;
     }
 
     /**
@@ -738,7 +746,8 @@ public class RegexBuilder
     public RegexBuilder startNonCapturingGroup()
     {
         stringBuilder.append("(?:");
-        return new RegexGroupBuilder(this);
+        openGroupCount++;
+        return this;
     }
 
     /**
@@ -760,7 +769,8 @@ public class RegexBuilder
                 .append("(?<")
                 .append(name)
                 .append(">");
-        return new RegexGroupBuilder(this);
+        openGroupCount++;
+        return this;
     }
 
     /**
@@ -785,14 +795,22 @@ public class RegexBuilder
      */
     public RegexBuilder endGroup(final RegexQuantifier quantifier) throws RegexBuilderException
     {
-        throw new RegexBuilderException("Cannot call endGroup() until a group has been started with startGroup()", stringBuilder);
+        if (openGroupCount == 0)
+        {
+            throw new RegexBuilderException("Cannot call endGroup() until a group has been started with startGroup()",
+                    stringBuilder);
+        }
+
+        stringBuilder.append(")");
+        addQuantifier(quantifier);
+        openGroupCount--;
+        return this;
     }
-    
-    
-    
+
+
     // PRIVATE
 
-    protected void addQuantifier(final RegexQuantifier quantifier)
+    private void addQuantifier(final RegexQuantifier quantifier)
     {
         if (quantifier != null)
         {
