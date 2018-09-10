@@ -37,9 +37,9 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
         Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
         Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
 
