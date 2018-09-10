@@ -9,7 +9,6 @@ import java.util.regex.Pattern;
  * {@link #buildRegex(RegexOptions...)} to build the {@link Pattern}.
  * <p>
  * Example:
- * <p>
  * <pre>
  * final Pattern regex = new RegexBuilder()
  *     .text("cat")
