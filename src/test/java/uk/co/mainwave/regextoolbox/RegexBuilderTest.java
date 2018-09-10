@@ -9,11 +9,9 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegexBuilderTest
-{
+public class RegexBuilderTest {
     @Test
-    public void testSimpleText() throws RegexBuilderException
-    {
+    public void testSimpleText() throws RegexBuilderException {
         Pattern regex = new RegexBuilder()
                 .text("cat")
                 .buildRegex();
@@ -44,10 +42,9 @@ public class RegexBuilderTest
         Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
-    
+
     @Test
-    public void testSimpleTextWithQuantifier() throws RegexBuilderException
-    {
+    public void testSimpleTextWithQuantifier() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .text("cat", RegexQuantifier.exactly(2))
                 .buildRegex();
@@ -81,8 +78,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testSimpleTextCaseInsensitive() throws RegexBuilderException
-    {
+    public void testSimpleTextCaseInsensitive() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .text("cat")
                 .buildRegex(RegexOptions.IGNORE_CASE);
@@ -114,8 +110,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testSimpleTextWithRegexCharacters() throws RegexBuilderException
-    {
+    public void testSimpleTextWithRegexCharacters() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .text("\\.+*?[]{}()|^$")
                 .buildRegex();
@@ -144,8 +139,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testRegexText() throws RegexBuilderException
-        {
+    public void testRegexText() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .regexText("^\\scat\\b")
                 .buildRegex();
@@ -180,8 +174,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testAnyCharacter() throws RegexBuilderException
-        {
+    public void testAnyCharacter() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .anyCharacter()
                 .buildRegex();
@@ -215,8 +208,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testWhitespace() throws RegexBuilderException
-    {
+    public void testWhitespace() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .whitespace()
                 .buildRegex();
@@ -252,8 +244,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testNonWhitespace() throws RegexBuilderException
-    {
+    public void testNonWhitespace() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .nonWhitespace()
                 .buildRegex();
@@ -292,8 +283,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testDigit() throws RegexBuilderException
-    {
+    public void testDigit() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .digit()
                 .buildRegex();
@@ -328,8 +318,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testNonDigit() throws RegexBuilderException
-    {
+    public void testNonDigit() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .nonDigit()
                 .buildRegex();
@@ -365,8 +354,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testLetter() throws RegexBuilderException
-    {
+    public void testLetter() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .letter()
                 .buildRegex();
@@ -402,8 +390,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testNonLetter() throws RegexBuilderException
-    {
+    public void testNonLetter() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .nonLetter()
                 .buildRegex();
@@ -439,8 +426,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testUppercaseLetter() throws RegexBuilderException
-    {
+    public void testUppercaseLetter() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .uppercaseLetter()
                 .buildRegex();
@@ -476,8 +462,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testLowercaseLetter() throws RegexBuilderException
-    {
+    public void testLowercaseLetter() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .lowercaseLetter()
                 .buildRegex();
@@ -513,8 +498,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testLetterOrDigit() throws RegexBuilderException
-    {
+    public void testLetterOrDigit() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .letterOrDigit()
                 .buildRegex();
@@ -551,8 +535,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testNonLetterOrDigit() throws RegexBuilderException
-    {
+    public void testNonLetterOrDigit() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .nonLetterOrDigit()
                 .buildRegex();
@@ -589,8 +572,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testHexDigit() throws RegexBuilderException
-    {
+    public void testHexDigit() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .hexDigit()
                 .buildRegex();
@@ -627,8 +609,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testUppercaseHexDigit() throws RegexBuilderException
-    {
+    public void testUppercaseHexDigit() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .uppercaseHexDigit()
                 .buildRegex();
@@ -665,8 +646,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testLowercaseHexDigit() throws RegexBuilderException
-    {
+    public void testLowercaseHexDigit() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .lowercaseHexDigit()
                 .buildRegex();
@@ -703,8 +683,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testNonHexDigit() throws RegexBuilderException
-    {
+    public void testNonHexDigit() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .nonHexDigit()
                 .buildRegex();
@@ -741,8 +720,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testWordCharacter() throws RegexBuilderException
-    {
+    public void testWordCharacter() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .wordCharacter()
                 .buildRegex();
@@ -779,8 +757,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testNonWordCharacter() throws RegexBuilderException
-    {
+    public void testNonWordCharacter() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .nonWordCharacter()
                 .buildRegex();
@@ -817,8 +794,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testAnyCharacterFrom() throws RegexBuilderException
-    {
+    public void testAnyCharacterFrom() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .anyCharacterFrom("cat")
                 .buildRegex();
@@ -854,8 +830,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testAnyCharacterFromWithCaretAtStart() throws RegexBuilderException
-    {
+    public void testAnyCharacterFromWithCaretAtStart() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .anyCharacterFrom("^abc")
                 .buildRegex();
@@ -891,8 +866,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testAnyCharacterFromWithCaretNotAtStart() throws RegexBuilderException
-    {
+    public void testAnyCharacterFromWithCaretNotAtStart() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .anyCharacterFrom("a^bc")
                 .buildRegex();
@@ -928,8 +902,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testAnyCharacterExcept() throws RegexBuilderException
-    {
+    public void testAnyCharacterExcept() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .anyCharacterExcept("cat")
                 .buildRegex();
@@ -966,10 +939,9 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testAnyOf() throws RegexBuilderException
-    {
+    public void testAnyOf() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
-                .anyOf(new String[] { "cat", "dog", "|" })
+                .anyOf(new String[]{"cat", "dog", "|"})
                 .buildRegex();
 
         Assert.assertEquals("(?:cat|dog|\\|)", regex.toString());
@@ -999,8 +971,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testAnyOfNullEmptyOrSingle() throws RegexBuilderException
-    {
+    public void testAnyOfNullEmptyOrSingle() throws RegexBuilderException {
         final Pattern anyOfNullRegex = new RegexBuilder()
                 .anyOf(null)
                 .buildRegex();
@@ -1010,7 +981,7 @@ public class RegexBuilderTest
                 .buildRegex();
 
         final Pattern anyOfSingleRegex = new RegexBuilder()
-                .anyOf(new String[] { "cat" })
+                .anyOf(new String[]{"cat"})
                 .buildRegex();
 
         Assert.assertEquals("", anyOfNullRegex.toString());
@@ -1019,8 +990,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testStartOfString() throws RegexBuilderException
-    {
+    public void testStartOfString() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .startOfString()
                 .text("a")
@@ -1058,8 +1028,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testEndOfString() throws RegexBuilderException
-    {
+    public void testEndOfString() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .text("z")
                 .endOfString()
@@ -1097,8 +1066,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testWordBoundary() throws RegexBuilderException
-    {
+    public void testWordBoundary() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .text("a")
                 .wordBoundary()
@@ -1138,8 +1106,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testSingleGroup() throws RegexBuilderException
-    {
+    public void testSingleGroup() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .anyCharacter(RegexQuantifier.zeroOrMore())
                 .startGroup()
@@ -1189,8 +1156,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testRepeatGroup() throws RegexBuilderException
-    {
+    public void testRepeatGroup() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .startGroup()
                 .letter()
@@ -1202,8 +1168,7 @@ public class RegexBuilderTest
 
         final Matcher matcher = regex.matcher("Class A1 f2 ZZ88");
         final List<String> matches = new ArrayList<>();
-        while (matcher.find())
-        {
+        while (matcher.find()) {
             matches.add(matcher.group());
         }
         Assert.assertEquals(3, matches.size());
@@ -1232,8 +1197,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testNamedGroup() throws RegexBuilderException
-    {
+    public void testNamedGroup() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .lowercaseLetter(RegexQuantifier.oneOrMore())
                 .startNamedGroup("test123")
@@ -1271,8 +1235,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testNonCapturingGroup() throws RegexBuilderException
-    {
+    public void testNonCapturingGroup() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .lowercaseLetter(RegexQuantifier.oneOrMore())
                 .startNonCapturingGroup()
@@ -1309,8 +1272,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testMultipleGroups() throws RegexBuilderException
-    {
+    public void testMultipleGroups() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .startGroup()
                 .anyCharacter(RegexQuantifier.zeroOrMore())
@@ -1365,8 +1327,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testNestedGroups() throws RegexBuilderException
-    {
+    public void testNestedGroups() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .anyCharacter() // Omit first character from groups
                 .startGroup()
@@ -1422,8 +1383,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testZeroOrMore() throws RegexBuilderException
-    {
+    public void testZeroOrMore() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .letter()
                 .digit(RegexQuantifier.zeroOrMore())
@@ -1460,8 +1420,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testOneOrMore() throws RegexBuilderException
-    {
+    public void testOneOrMore() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .letter()
                 .digit(RegexQuantifier.oneOrMore())
@@ -1498,8 +1457,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testOneOrNone() throws RegexBuilderException
-    {
+    public void testOneOrNone() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .letter()
                 .digit(RegexQuantifier.noneOrOne())
@@ -1536,8 +1494,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testExactlyNTimes() throws RegexBuilderException
-    {
+    public void testExactlyNTimes() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .letter()
                 .digit(RegexQuantifier.exactly(3))
@@ -1577,8 +1534,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testAtLeastQuantifier() throws RegexBuilderException
-    {
+    public void testAtLeastQuantifier() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .letter()
                 .digit(RegexQuantifier.atLeast(3))
@@ -1618,8 +1574,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testNoMoreThanQuantifier() throws RegexBuilderException
-    {
+    public void testNoMoreThanQuantifier() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .letter()
                 .digit(RegexQuantifier.noMoreThan(3))
@@ -1659,8 +1614,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testBetweenMinMaxTimes() throws RegexBuilderException
-    {
+    public void testBetweenMinMaxTimes() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .letter()
                 .digit(RegexQuantifier.between(2, 4))
@@ -1700,8 +1654,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testOptionMultiLine() throws RegexBuilderException
-    {
+    public void testOptionMultiLine() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .startOfString()
                 .text("find me!")
@@ -1709,7 +1662,7 @@ public class RegexBuilderTest
                 .buildRegex(RegexOptions.MULTILINE);
 
         Assert.assertEquals("^find me!$", regex.toString());
-        Assert.assertTrue((regex.flags() & Pattern.MULTILINE) == Pattern.MULTILINE);
+        Assert.assertEquals(Pattern.MULTILINE, (regex.flags() & Pattern.MULTILINE));
         Assert.assertTrue(regex.matcher("find me!").find());
         Assert.assertTrue(regex.matcher("find me!\nline 2").find());
         Assert.assertTrue(regex.matcher("line 1\nfind me!").find());
@@ -1740,14 +1693,13 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testOptionIGNORE_CASE() throws RegexBuilderException
-    {
+    public void testOptionIGNORE_CASE() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .anyCharacterFrom("cat")
                 .buildRegex(RegexOptions.IGNORE_CASE);
 
         Assert.assertEquals("[cat]", regex.toString());
-        Assert.assertTrue((regex.flags() & Pattern.CASE_INSENSITIVE) == Pattern.CASE_INSENSITIVE);
+        Assert.assertEquals(Pattern.CASE_INSENSITIVE, (regex.flags() & Pattern.CASE_INSENSITIVE));
         Assert.assertTrue(regex.matcher("cat").find());
         Assert.assertTrue(regex.matcher("tiger").find());
         Assert.assertTrue(regex.matcher("Ant").find());
@@ -1778,8 +1730,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testEmailAddress() throws RegexBuilderException
-    {
+    public void testEmailAddress() throws RegexBuilderException {
         // Very basic e-mail address checker!
         final Pattern regex = new RegexBuilder()
                 .startOfString()
@@ -1823,8 +1774,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testUrl() throws RegexBuilderException
-    {
+    public void testUrl() throws RegexBuilderException {
         // Very basic URL checker!
         final Pattern regex = new RegexBuilder()
                 .text("http")
@@ -1877,8 +1827,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testIp4Address() throws RegexBuilderException
-    {
+    public void testIp4Address() throws RegexBuilderException {
         // Very basic IPv4 address checker!
         // (doesn't check values are in range, for example)
         final Pattern regex = new RegexBuilder()
@@ -1924,18 +1873,14 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testExceptionGroupMismatch1() throws RegexBuilderException
-    {
+    public void testExceptionGroupMismatch1() {
         RegexBuilderException exception = null;
 
-        try
-        {
+        try {
             new RegexBuilder()
                     .endGroup()
                     .buildRegex();
-        }
-        catch (RegexBuilderException e)
-        {
+        } catch (RegexBuilderException e) {
             exception = e;
         }
         Assert.assertNotNull(exception);
@@ -1943,18 +1888,14 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testExceptionGroupMismatch2() throws RegexBuilderException
-    {
+    public void testExceptionGroupMismatch2() {
         RegexBuilderException exception = null;
 
-        try
-        {
+        try {
             new RegexBuilder()
                     .startGroup()
                     .buildRegex();
-        }
-        catch (RegexBuilderException e)
-        {
+        } catch (RegexBuilderException e) {
             exception = e;
         }
         Assert.assertNotNull(exception);
@@ -1962,20 +1903,16 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testExceptionGroupMismatch3() throws RegexBuilderException
-    {
+    public void testExceptionGroupMismatch3() {
         RegexBuilderException exception = null;
 
-        try
-        {
+        try {
             new RegexBuilder()
                     .startGroup()
                     .startGroup()
                     .endGroup()
                     .buildRegex();
-        }
-        catch (RegexBuilderException e)
-        {
+        } catch (RegexBuilderException e) {
             exception = e;
         }
         Assert.assertNotNull(exception);
@@ -1983,8 +1920,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testZeroOrMoreButAsFewAsPossible() throws RegexBuilderException
-    {
+    public void testZeroOrMoreButAsFewAsPossible() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .digit(RegexQuantifier.zeroOrMore().butAsFewAsPossible())
                 .buildRegex();
@@ -2015,8 +1951,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testOneOrMoreButAsFewAsPossible() throws RegexBuilderException
-    {
+    public void testOneOrMoreButAsFewAsPossible() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .digit(RegexQuantifier.oneOrMore().butAsFewAsPossible())
                 .buildRegex();
@@ -2047,8 +1982,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testAtLeastButAsFewAsPossible() throws RegexBuilderException
-    {
+    public void testAtLeastButAsFewAsPossible() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .digit(RegexQuantifier.atLeast(1).butAsFewAsPossible())
                 .buildRegex();
@@ -2079,8 +2013,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testBetweenButAsFewAsPossible() throws RegexBuilderException
-    {
+    public void testBetweenButAsFewAsPossible() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .digit(RegexQuantifier.between(2, 100).butAsFewAsPossible())
                 .buildRegex();
@@ -2111,8 +2044,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testNoMoreThanButAsFewAsPossible() throws RegexBuilderException
-    {
+    public void testNoMoreThanButAsFewAsPossible() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .digit(RegexQuantifier.noMoreThan(2).butAsFewAsPossible())
                 .buildRegex();
@@ -2143,8 +2075,7 @@ public class RegexBuilderTest
     }
 
     @Test
-    public void testNoneOrOneButAsFewAsPossible() throws RegexBuilderException
-    {
+    public void testNoneOrOneButAsFewAsPossible() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .digit(RegexQuantifier.noneOrOne().butAsFewAsPossible())
                 .buildRegex();

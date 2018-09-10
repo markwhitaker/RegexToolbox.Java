@@ -3,8 +3,7 @@ package uk.co.mainwave.regextoolbox;
 /**
  * Options that can be passed to {@link RegexBuilder#buildRegex(RegexOptions...)}.
  */
-public enum RegexOptions
-{
+public enum RegexOptions {
     /**
      * Make the regex case-insensitive
      */

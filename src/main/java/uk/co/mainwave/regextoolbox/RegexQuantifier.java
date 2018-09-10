@@ -4,12 +4,10 @@ package uk.co.mainwave.regextoolbox;
  * Quantifiers that can be applied to regex elements or groups
  */
 @SuppressWarnings("WeakerAccess")
-public class RegexQuantifier
-{
+public class RegexQuantifier {
     private String regexString;
 
-    RegexQuantifier(final String regexString)
-    {
+    RegexQuantifier(final String regexString) {
         this.regexString = regexString;
     }
 
@@ -18,8 +16,7 @@ public class RegexQuantifier
      *
      * @return A greedy quantifier: use {@link RegexGreedyQuantifier#butAsFewAsPossible()} to make it non-greedy
      */
-    public static RegexGreedyQuantifier zeroOrMore()
-    {
+    public static RegexGreedyQuantifier zeroOrMore() {
         return new RegexGreedyQuantifier("*");
     }
 
@@ -28,8 +25,7 @@ public class RegexQuantifier
      *
      * @return A greedy quantifier: use {@link RegexGreedyQuantifier#butAsFewAsPossible()} to make it non-greedy
      */
-    public static RegexGreedyQuantifier oneOrMore()
-    {
+    public static RegexGreedyQuantifier oneOrMore() {
         return new RegexGreedyQuantifier("+");
     }
 
@@ -38,8 +34,7 @@ public class RegexQuantifier
      *
      * @return A greedy quantifier: use {@link RegexGreedyQuantifier#butAsFewAsPossible()} to make it non-greedy
      */
-    public static RegexGreedyQuantifier noneOrOne()
-    {
+    public static RegexGreedyQuantifier noneOrOne() {
         return new RegexGreedyQuantifier("?");
     }
 
@@ -49,8 +44,7 @@ public class RegexQuantifier
      * @param times The exact number of occurrences to match
      * @return A non-greedy quantifier
      */
-    public static RegexQuantifier exactly(final int times)
-    {
+    public static RegexQuantifier exactly(final int times) {
         return new RegexQuantifier("{" + times + "}");
     }
 
@@ -60,8 +54,7 @@ public class RegexQuantifier
      * @param minimum The minimum number of occurrences to match
      * @return A greedy quantifier: use {@link RegexGreedyQuantifier#butAsFewAsPossible()} to make it non-greedy
      */
-    public static RegexGreedyQuantifier atLeast(final int minimum)
-    {
+    public static RegexGreedyQuantifier atLeast(final int minimum) {
         return new RegexGreedyQuantifier("{" + minimum + ",}");
     }
 
@@ -71,8 +64,7 @@ public class RegexQuantifier
      * @param maximum The maximum number of occurrences to match
      * @return A greedy quantifier: use {@link RegexGreedyQuantifier#butAsFewAsPossible()} to make it non-greedy
      */
-    public static RegexGreedyQuantifier noMoreThan(final int maximum)
-    {
+    public static RegexGreedyQuantifier noMoreThan(final int maximum) {
         return new RegexGreedyQuantifier("{0," + maximum + "}");
     }
 
@@ -83,19 +75,16 @@ public class RegexQuantifier
      * @param maximum The maximum number of occurrences to match
      * @return A greedy quantifier: use {@link RegexGreedyQuantifier#butAsFewAsPossible()} to make it non-greedy
      */
-    public static RegexGreedyQuantifier between(final int minimum, final int maximum)
-    {
+    public static RegexGreedyQuantifier between(final int minimum, final int maximum) {
         return new RegexGreedyQuantifier("{" + minimum + "," + maximum + "}");
     }
 
     @Override
-    public final String toString()
-    {
+    public final String toString() {
         return regexString;
     }
 
-    final void makeNonGreedy()
-    {
+    final void makeNonGreedy() {
         regexString += "?";
     }
 }

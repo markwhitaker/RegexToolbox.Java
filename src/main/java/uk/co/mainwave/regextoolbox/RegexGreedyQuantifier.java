@@ -5,10 +5,8 @@ package uk.co.mainwave.regextoolbox;
  * to match a variable number of elements it will match as many as possible.
  */
 @SuppressWarnings("WeakerAccess")
-public final class RegexGreedyQuantifier extends RegexQuantifier
-{
-    RegexGreedyQuantifier(final String regexString)
-    {
+public final class RegexGreedyQuantifier extends RegexQuantifier {
+    RegexGreedyQuantifier(final String regexString) {
         super(regexString);
     }
 
@@ -18,8 +16,7 @@ public final class RegexGreedyQuantifier extends RegexQuantifier
      *
      * @return A non-greedy quantifier
      */
-    public RegexQuantifier butAsFewAsPossible()
-    {
+    public RegexQuantifier butAsFewAsPossible() {
         makeNonGreedy();
         return this;
     }

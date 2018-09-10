@@ -1,7 +1,6 @@
 package uk.co.mainwave.regextoolbox;
 
-final class Strings
-{
+final class Strings {
     // Character classes
     static final String BothCaseAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     static final String UpperCaseAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -24,7 +23,6 @@ final class Strings
     static final String Ipv6Address = "2001:0db8:85a3:0000:0000:8a2e:0370:7334";
     static final String MacAddress = "00:3e:e1:c4:5d:df";
 
-    private Strings()
-    {
+    private Strings() {
     }
 }
