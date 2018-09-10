@@ -1,6 +1,6 @@
 ![icon](artwork/RegexToolbox-icon-100.png)
 
-# RegexToolbox.Java [ ![Download](https://api.bintray.com/packages/markwhitaker/Maven/RegexToolbox/images/download.svg) ](https://bintray.com/markwhitaker/Maven/RegexToolbox/_latestVersion)
+# RegexToolbox.Java [![Build Status](https://travis-ci.com/markwhitaker/RegexToolbox.Java.svg?branch=master)](https://travis-ci.com/markwhitaker/RegexToolbox.Java) [ ![Download](https://api.bintray.com/packages/markwhitaker/Maven/RegexToolbox/images/download.svg) ](https://bintray.com/markwhitaker/Maven/RegexToolbox/_latestVersion)
 
 Regular expression tools for Java developers.
 
