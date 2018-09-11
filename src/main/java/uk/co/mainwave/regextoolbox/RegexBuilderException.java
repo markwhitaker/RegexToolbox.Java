@@ -8,7 +8,7 @@ public final class RegexBuilderException extends Exception {
     /**
      * The regex string as it currently stands
      */
-    private String regexString;
+    private final String regexString;
 
     /**
      * Constructor
