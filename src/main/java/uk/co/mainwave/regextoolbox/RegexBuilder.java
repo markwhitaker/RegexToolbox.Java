@@ -1,6 +1,5 @@
 package uk.co.mainwave.regextoolbox;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
@@ -654,7 +653,7 @@ public final class RegexBuilder {
     /**
      * Start a capture group. Capture groups have two purposes: they group part of the expression so
      * it can have quantifiers applied to it, and they capture the results of each group match and
-     * allow you to access them afterwards using {@link Matcher#group()}.
+     * allow you to access them afterwards using {@link java.util.regex.Matcher#group()}.
      * <p>
      * If you don't want to capture the group match, use {@link #startNonCapturingGroup()}.
      * <p>
@@ -671,7 +670,7 @@ public final class RegexBuilder {
     /**
      * Start a non-capturing group. Non-capturing groups group part of the expression so
      * it can have quantifiers applied to it, but do not capture the results of each group match, meaning
-     * you can't access them afterwards using {@link Matcher#group()}.
+     * you can't access them afterwards using {@link java.util.regex.Matcher#group()}.
      * <p>
      * If you want to capture group results, use {@link #startGroup()} or {@link #startNamedGroup(String)}.
      * <p>
@@ -688,8 +687,9 @@ public final class RegexBuilder {
     /**
      * Start a named capture group. Capture groups have two purposes: they group part of the expression so
      * it can have quantifiers applied to it, and they capture the results of each group match and
-     * allow you to access them afterwards using {@link Matcher#group()}. Named capture groups can be accessed by
-     * indexing into {@link Matcher#group()} with the assigned name as well as a numerical index.
+     * allow you to access them afterwards using {@link java.util.regex.Matcher#group()}. Named capture groups can be
+     * accessed by indexing into {@link java.util.regex.Matcher#group()} with the assigned name as well as a numerical
+     * index.
      * <p>
      * If you don't want to capture the group match, use {@link #startNonCapturingGroup()}.
      * <p>
