@@ -15,6 +15,12 @@ Regular expression tools for Java developers.
 
 It is fully documented in the [project wiki](https://github.com/markwhitaker/RegexToolbox.Java/wiki).
 
+## Usage (Gradle)
+
+Replace `x.y.z` with the latest version.
+
+```implementation 'uk.co.mainwave.regextoolbox:RegexToolbox:x.y.z'```
+
 ---
 ![icon](https://raw.githubusercontent.com/markwhitaker/RegexToolbox.CSharp/master/Artwork/RegexToolbox-icon-32.png) **.NET developer?** Check out the C# version of this library, [RegexToolbox.CSharp](https://github.com/markwhitaker/RegexToolbox.CSharp).
 
