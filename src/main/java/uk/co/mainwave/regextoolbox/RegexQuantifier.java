@@ -3,7 +3,6 @@ package uk.co.mainwave.regextoolbox;
 /**
  * Quantifiers that can be applied to regex elements or groups
  */
-@SuppressWarnings("WeakerAccess")
 public class RegexQuantifier {
     private String regexString;
 
