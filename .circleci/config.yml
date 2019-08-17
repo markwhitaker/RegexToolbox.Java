@@ -58,10 +58,9 @@ workflows:
           filters:
             tags:
               only: /.*/
-
       - deploy-to-bintray:
           requires:
-            build
+            - build
           filters:
             branches:
               ignore: /.*/
