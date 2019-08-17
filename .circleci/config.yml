@@ -52,15 +52,16 @@ jobs:
 
 workflows:
   version: 2
-  commit-build:
+  build-and-deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            tags:
+              only: /.*/
 
-  tagged-release:
-    jobs:
       - deploy-to-bintray:
           requires:
-            - build
+            build
           filters:
             branches:
               ignore: /.*/
