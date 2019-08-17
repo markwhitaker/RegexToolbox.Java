@@ -63,5 +63,5 @@ workflows:
       - deploy_to_bintray:
           filters:
             tags:
-              # Only tags beginning with a digit
-              only: /^\d.*/
+              # Only x.y.z(-alpha/beta...) tags
+              only: /^\d+\.\d+\.\d+(-(alpha|beta).+)?$/
