@@ -27,9 +27,7 @@ jobs:
       # Build the library and run tests
       - run: gradle build
 
-  deploy_to_bintray:
-    requires:
-      - build
+  deploy-to-bintray:
     docker:
       - image: circleci/openjdk:8-jdk
     working_directory: ~/repo
@@ -58,10 +56,14 @@ workflows:
     jobs:
       - build
 
-  tagged-build:
+  tagged-release:
     jobs:
-      - deploy_to_bintray:
+      - deploy-to-bintray:
+          requires:
+            - build
           filters:
+            branches:
+              ignore: /.*/
             tags:
-              # Only x.y.z(-alpha/beta...) tags
-              only: /^\d+\.\d+\.\d+(-(alpha|beta).+)?$/
+              # Only x.y.z tags
+              only: /^\d+\.\d+\.\d+/
