@@ -67,4 +67,4 @@ workflows:
               ignore: /.*/
             tags:
               # Only x.y.z tags
-              only: /^\d+\.\d+\.\d+/
+              only: /^\d+\.\d+\.\d+.*$/
