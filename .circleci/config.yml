@@ -2,38 +2,52 @@
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
-setup-environment: &setup-environment
-  docker:
-    - image: circleci/openjdk:8-jdk
-  working_directory: ~/repo
-  environment: # Customize the JVM maximum heap limit
-    JVM_OPTS: -Xmx3200m
-    TERM: dumb
-  steps:
-    - checkout
-    # Download and cache dependencies
-    - restore_cache:
-        keys:
-          - v1-dependencies-{{ checksum "build.gradle" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-    - run: gradle dependencies
-    - save_cache:
-        paths:
-          - ~/.gradle
-        key: v1-dependencies-{{ checksum "build.gradle" }}
 
 version: 2
 jobs:
   build:
-    <<: *setup-environment
+    docker:
+      - image: circleci/openjdk:8-jdk
+    working_directory: ~/repo
+    environment: # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
     steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: gradle dependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
       # Build the library and run tests
       - run: gradle build
 
   deploy-to-bintray:
-    <<: *setup-environment
+    docker:
+      - image: circleci/openjdk:8-jdk
+    working_directory: ~/repo
+    environment: # Customize the JVM maximum heap limit
+      JVM_OPTS: -Xmx3200m
+      TERM: dumb
     steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "build.gradle" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: gradle dependencies
+      - save_cache:
+          paths:
+            - ~/.gradle
+          key: v1-dependencies-{{ checksum "build.gradle" }}
       # Deploy to bintray
       - run: gradle bintrayUpload
 
