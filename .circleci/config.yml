@@ -9,7 +9,6 @@ setup-environment: &setup-environment
   environment: # Customize the JVM maximum heap limit
     JVM_OPTS: -Xmx3200m
     TERM: dumb
-  steps:
 
 cache-dependencies: &cache-dependencies
   - checkout
