@@ -219,6 +219,16 @@ public final class RegexBuilder {
     }
 
     /**
+     * Add an element to represent any amount of white space, including none. This is just a convenient alias for
+     * {@code whitespace(RegexQuantifier.zeroOrMore())}.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder possibleWhitespace() {
+        return whitespace(RegexQuantifier.zeroOrMore());
+    }
+
+    /**
      * Add an element to match a single space character. If you want to match any kind of white space, use
      * {@link #whitespace()}.
      *

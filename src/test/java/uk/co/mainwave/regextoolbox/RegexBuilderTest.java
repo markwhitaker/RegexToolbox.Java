@@ -283,6 +283,43 @@ public class RegexBuilderTest {
     }
 
     @Test
+    public void testPossibleWhitespace() throws RegexBuilderException {
+        final Pattern regex = new RegexBuilder()
+                .nonWhitespace()
+                .possibleWhitespace()
+                .nonWhitespace()
+                .buildRegex();
+
+        Assert.assertEquals("\\S\\s*\\S", regex.toString());
+        Assert.assertFalse(regex.matcher("1").find());
+        Assert.assertFalse(regex.matcher("0").find());
+        Assert.assertTrue(regex.matcher("999").find());
+        Assert.assertTrue(regex.matcher("there's a digit in here s0mewhere").find());
+        Assert.assertFalse(regex.matcher(" ").find());
+        Assert.assertTrue(regex.matcher("abc").find());
+        Assert.assertTrue(regex.matcher("xFFF").find());
+
+        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
+        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        Assert.assertFalse(regex.matcher(Strings.Empty).find());
+        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
+        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+    }
+
+    @Test
     public void testSpace() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .space()
