@@ -219,6 +219,102 @@ public final class RegexBuilder {
     }
 
     /**
+     * Add an element to represent any amount of white space, including none. This is just a convenient alias for
+     * {@code whitespace(RegexQuantifier.zeroOrMore())}.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder possibleWhitespace() {
+        return whitespace(RegexQuantifier.zeroOrMore());
+    }
+
+    /**
+     * Add an element to match a single space character. If you want to match any kind of white space, use
+     * {@link #whitespace()}.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder space() {
+        return space(null);
+    }
+
+    /**
+     * Add an element to match a single space character. If you want to match any kind of white space, use
+     * {@link #whitespace()}.
+     *
+     * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder space(final RegexQuantifier quantifier) {
+        stringBuilder.append(" ");
+        addQuantifier(quantifier);
+        return this;
+    }
+
+    /**
+     * Add an element to match a single tab character.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder tab() {
+        return tab(null);
+    }
+
+    /**
+     * Add an element to match a single tab character.
+     *
+     * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder tab(final RegexQuantifier quantifier) {
+        stringBuilder.append("\\t");
+        addQuantifier(quantifier);
+        return this;
+    }
+
+    /**
+     * Add an element to match a single line feed character.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder lineFeed() {
+        return lineFeed(null);
+    }
+
+    /**
+     * Add an element to match a single line feed character.
+     *
+     * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder lineFeed(final RegexQuantifier quantifier) {
+        stringBuilder.append("\\n");
+        addQuantifier(quantifier);
+        return this;
+    }
+
+    /**
+     * Add an element to match a single carriage return character.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder carriageReturn() {
+        return carriageReturn(null);
+    }
+
+    /**
+     * Add an element to match a single carriage return character.
+     *
+     * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder carriageReturn(final RegexQuantifier quantifier) {
+        stringBuilder.append("\\r");
+        addQuantifier(quantifier);
+        return this;
+    }
+
+    /**
      * Add an element to match any single decimal digit (0-9).
      *
      * @return The current {@link RegexBuilder} object, for method chaining
@@ -574,7 +670,7 @@ public final class RegexBuilder {
      * @param strings A number of strings, any one of which will be matched
      * @return The current {@link RegexBuilder} object, for method chaining
      */
-    public RegexBuilder anyOf(final String[] strings) {
+    public RegexBuilder anyOf(final String... strings) {
         return anyOf(strings, null);
     }
 
@@ -604,7 +700,7 @@ public final class RegexBuilder {
         RegexBuilder builder = null;
         try {
             builder = startNonCapturingGroup()
-                    .regexText(String.join("|", safeStrings), quantifier)
+                    .regexText(String.join("|", safeStrings))
                     .endGroup(quantifier);
         } catch (RegexBuilderException ignored) {
             // We won't get an exception from endGroup() as we know we started the group properly
@@ -760,8 +856,7 @@ public final class RegexBuilder {
     }
 
     private static String makeSafeForRegex(final String s) {
-
-        return s
+        return (s == null) ? "" : s
                 // Make sure this always comes first!
                 .replace("\\", "\\\\")
                 .replace("?", "\\?")
