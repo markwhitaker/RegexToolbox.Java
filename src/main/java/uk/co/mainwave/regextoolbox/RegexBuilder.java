@@ -219,6 +219,92 @@ public final class RegexBuilder {
     }
 
     /**
+     * Add an element to match a single space character. If you want to match any kind of white space, use
+     * {@link #whitespace()}.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder space() {
+        return space(null);
+    }
+
+    /**
+     * Add an element to match a single space character. If you want to match any kind of white space, use
+     * {@link #whitespace()}.
+     *
+     * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder space(final RegexQuantifier quantifier) {
+        stringBuilder.append(" ");
+        addQuantifier(quantifier);
+        return this;
+    }
+
+    /**
+     * Add an element to match a single tab character.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder tab() {
+        return tab(null);
+    }
+
+    /**
+     * Add an element to match a single tab character.
+     *
+     * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder tab(final RegexQuantifier quantifier) {
+        stringBuilder.append("\\t");
+        addQuantifier(quantifier);
+        return this;
+    }
+
+    /**
+     * Add an element to match a single line feed character.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder lineFeed() {
+        return lineFeed(null);
+    }
+
+    /**
+     * Add an element to match a single line feed character.
+     *
+     * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder lineFeed(final RegexQuantifier quantifier) {
+        stringBuilder.append("\\n");
+        addQuantifier(quantifier);
+        return this;
+    }
+
+    /**
+     * Add an element to match a single carriage return character.
+     *
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder carriageReturn() {
+        return carriageReturn(null);
+    }
+
+    /**
+     * Add an element to match a single carriage return character.
+     *
+     * @param quantifier Quantifier to apply to this element
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder carriageReturn(final RegexQuantifier quantifier) {
+        stringBuilder.append("\\r");
+        addQuantifier(quantifier);
+        return this;
+    }
+
+    /**
      * Add an element to match any single decimal digit (0-9).
      *
      * @return The current {@link RegexBuilder} object, for method chaining
