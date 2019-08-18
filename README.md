@@ -19,7 +19,7 @@ It is fully documented in the [project wiki](https://github.com/markwhitaker/Reg
 
 Replace `x.y.z` with the latest version.
 
-```implementation 'uk.co.mainwave.regextoolbox:RegexToolbox:x.y.z'```
+```implementation 'uk.co.mainwave.regextoolbox:regextoolbox:x.y.z'```
 
 ---
 ![icon](https://raw.githubusercontent.com/markwhitaker/RegexToolbox.kt/master/artwork/RegexToolbox-icon-32.png) **Kotlin developer?** Check out the Kotlin version of this library, [RegexToolbox.kt](https://github.com/markwhitaker/RegexToolbox.kt).
