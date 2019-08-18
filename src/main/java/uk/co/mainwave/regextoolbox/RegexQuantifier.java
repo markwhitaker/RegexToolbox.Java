@@ -30,10 +30,21 @@ public class RegexQuantifier {
 
     /**
      * Quantifier to match the preceding element once or not at all
+     * @deprecated Use {@link #zeroOrOne()} instead
      *
      * @return A greedy quantifier: use {@link RegexGreedyQuantifier#butAsFewAsPossible()} to make it non-greedy
      */
+    @Deprecated
     public static RegexGreedyQuantifier noneOrOne() {
+        return new RegexGreedyQuantifier("?");
+    }
+
+    /**
+     * Quantifier to match the preceding element once or not at all
+     *
+     * @return A greedy quantifier: use {@link RegexGreedyQuantifier#butAsFewAsPossible()} to make it non-greedy
+     */
+    public static RegexGreedyQuantifier zeroOrOne() {
         return new RegexGreedyQuantifier("?");
     }
 

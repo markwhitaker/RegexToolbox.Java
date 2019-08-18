@@ -1641,7 +1641,7 @@ public class RegexBuilderTest {
     public void testOneOrNone() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .letter()
-                .digit(RegexQuantifier.noneOrOne())
+                .digit(RegexQuantifier.zeroOrOne())
                 .letter()
                 .buildRegex();
 
@@ -1959,7 +1959,7 @@ public class RegexBuilderTest {
         // Very basic URL checker!
         final Pattern regex = new RegexBuilder()
                 .text("http")
-                .text("s", RegexQuantifier.noneOrOne())
+                .text("s", RegexQuantifier.zeroOrOne())
                 .text("://")
                 .nonWhitespace(RegexQuantifier.oneOrMore())
                 .anyCharacterFrom("a-zA-Z0-9_/") // Valid last characters
@@ -2258,7 +2258,7 @@ public class RegexBuilderTest {
     @Test
     public void testNoneOrOneButAsFewAsPossible() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
-                .digit(RegexQuantifier.noneOrOne().butAsFewAsPossible())
+                .digit(RegexQuantifier.zeroOrOne().butAsFewAsPossible())
                 .buildRegex();
 
         Assert.assertEquals("\\d??", regex.toString());
