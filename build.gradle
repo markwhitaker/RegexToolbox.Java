@@ -31,7 +31,7 @@ bintray {
     publish = true
     pkg {
         repo = 'Maven'
-        name = 'regextoolbox'
+        name = project.name
         version {
             name = gitVersion()
             desc = 'Regular expression tools for Java developers'
