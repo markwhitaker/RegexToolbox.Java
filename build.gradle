@@ -31,10 +31,10 @@ bintray {
     publish = true
     pkg {
         repo = 'Maven'
-        name = 'RegexToolbox'
+        name = 'regextoolbox'
         version {
             name = gitVersion()
-            desc = 'RegexToolbox for Java'
+            desc = 'Regular expression tools for Java developers'
             vcsTag = gitVersion()
         }
     }
