@@ -1121,8 +1121,9 @@ public class RegexBuilderTest {
 
     @Test
     public void testAnyOf() throws RegexBuilderException {
+        final String[] strings = new String[]{"cat", "dog", "|"};
         final Pattern regex = new RegexBuilder()
-                .anyOf(new String[]{"cat", "dog", "|"})
+                .anyOf(strings)
                 .buildRegex();
 
         Assert.assertEquals("(?:cat|dog|\\|)", regex.toString());
@@ -1152,20 +1153,101 @@ public class RegexBuilderTest {
     }
 
     @Test
+    public void testVarargAnyOf() throws RegexBuilderException {
+        final Pattern regex = new RegexBuilder()
+                .anyOf("cat", "dog", "|")
+                .buildRegex();
+
+        Assert.assertEquals("(?:cat|dog|\\|)", regex.toString());
+        Assert.assertFalse(regex.matcher("ca do").find());
+        Assert.assertTrue(regex.matcher("cat").find());
+        Assert.assertTrue(regex.matcher("dog").find());
+        Assert.assertTrue(regex.matcher("|").find());
+
+        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
+        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        Assert.assertFalse(regex.matcher(Strings.Empty).find());
+        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
+        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+    }
+
+    @Test
+    public void testAnyOfWithQuantifier() throws RegexBuilderException {
+        final String[] strings = new String[]{"cat", "dog", "|"};
+        final Pattern regex = new RegexBuilder()
+                .anyOf(strings, RegexQuantifier.exactly(2))
+                .buildRegex();
+
+        Assert.assertEquals("(?:cat|dog|\\|){2}", regex.toString());
+        Assert.assertTrue(regex.matcher("catdog").find());
+        Assert.assertTrue(regex.matcher("cat|dog").find());
+        Assert.assertFalse(regex.matcher("cat").find());
+        Assert.assertTrue(regex.matcher("catcat").find());
+        Assert.assertTrue(regex.matcher("catcatcat").find());
+        Assert.assertFalse(regex.matcher("dog").find());
+        Assert.assertTrue(regex.matcher("dogdog").find());
+        Assert.assertTrue(regex.matcher("dogdogdog").find());
+        Assert.assertFalse(regex.matcher("|").find());
+        Assert.assertTrue(regex.matcher("||").find());
+        Assert.assertTrue(regex.matcher("|||").find());
+
+        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
+        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        Assert.assertFalse(regex.matcher(Strings.Empty).find());
+        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
+        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+    }
+
+    @Test
     public void testAnyOfNullEmptyOrSingle() throws RegexBuilderException {
+        final String nullString = null;
         final Pattern anyOfNullRegex = new RegexBuilder()
-                .anyOf(null)
+                .anyOf(nullString)
                 .buildRegex();
 
+        final String[] nullStringArray = null;
+        final Pattern anyOfNullArrayRegex = new RegexBuilder()
+                .anyOf(nullStringArray)
+                .buildRegex();
+
+        final String[] emptyStringArray = new String[0];
         final Pattern anyOfEmptyRegex = new RegexBuilder()
-                .anyOf(new String[0])
+                .anyOf(emptyStringArray)
                 .buildRegex();
 
+        final String[] singleItemStringArray = new String[]{ "cat" };
         final Pattern anyOfSingleRegex = new RegexBuilder()
-                .anyOf(new String[]{"cat"})
+                .anyOf(singleItemStringArray)
                 .buildRegex();
 
         Assert.assertEquals("", anyOfNullRegex.toString());
+        Assert.assertEquals("", anyOfNullArrayRegex.toString());
         Assert.assertEquals("", anyOfEmptyRegex.toString());
         Assert.assertEquals("cat", anyOfSingleRegex.toString());
     }

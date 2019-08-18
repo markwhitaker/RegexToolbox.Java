@@ -670,7 +670,7 @@ public final class RegexBuilder {
      * @param strings A number of strings, any one of which will be matched
      * @return The current {@link RegexBuilder} object, for method chaining
      */
-    public RegexBuilder anyOf(final String[] strings) {
+    public RegexBuilder anyOf(final String... strings) {
         return anyOf(strings, null);
     }
 
@@ -700,7 +700,7 @@ public final class RegexBuilder {
         RegexBuilder builder = null;
         try {
             builder = startNonCapturingGroup()
-                    .regexText(String.join("|", safeStrings), quantifier)
+                    .regexText(String.join("|", safeStrings))
                     .endGroup(quantifier);
         } catch (RegexBuilderException ignored) {
             // We won't get an exception from endGroup() as we know we started the group properly
