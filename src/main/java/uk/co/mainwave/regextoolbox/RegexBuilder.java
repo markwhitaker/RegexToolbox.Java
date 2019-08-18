@@ -856,8 +856,7 @@ public final class RegexBuilder {
     }
 
     private static String makeSafeForRegex(final String s) {
-
-        return s
+        return (s == null) ? "" : s
                 // Make sure this always comes first!
                 .replace("\\", "\\\\")
                 .replace("?", "\\?")
