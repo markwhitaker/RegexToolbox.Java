@@ -357,7 +357,7 @@ public final class RegexBuilder {
     }
 
     /**
-     * Add an element to match any letter in the Roman alphabet (a-z, A-Z)
+     * Add an element to match any Unicode letter
      *
      * @return The current {@link RegexBuilder} object, for method chaining
      */
@@ -366,19 +366,19 @@ public final class RegexBuilder {
     }
 
     /**
-     * Add an element to match any letter in the Roman alphabet (a-z, A-Z)
+     * Add an element to match any Unicode letter
      *
      * @param quantifier Quantifier to apply to this element
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder letter(final RegexQuantifier quantifier) {
-        stringBuilder.append("[a-zA-Z]");
+        stringBuilder.append("\\p{L}");
         addQuantifier(quantifier);
         return this;
     }
 
     /**
-     * Add an element to match any character that is not a letter in the Roman alphabet (a-z, A-Z)
+     * Add an element to match any character that is not a Unicode letter
      *
      * @return The current {@link RegexBuilder} object, for method chaining
      */
@@ -387,19 +387,19 @@ public final class RegexBuilder {
     }
 
     /**
-     * Add an element to match any character that is not a letter in the Roman alphabet (a-z, A-Z)
+     * Add an element to match any character that is not a Unicode letter
      *
      * @param quantifier Quantifier to apply to this element
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonLetter(final RegexQuantifier quantifier) {
-        stringBuilder.append("[^a-zA-Z]");
+        stringBuilder.append("\\P{L}");
         addQuantifier(quantifier);
         return this;
     }
 
     /**
-     * Add an element to match any upper-case letter in the Roman alphabet (A-Z).
+     * Add an element to match any upper-case Unicode letter
      *
      * @return The current {@link RegexBuilder} object, for method chaining
      */
@@ -408,19 +408,19 @@ public final class RegexBuilder {
     }
 
     /**
-     * Add an element to match any upper-case letter in the Roman alphabet (A-Z).
+     * Add an element to match any upper-case Unicode letter
      *
      * @param quantifier Quantifier to apply to this element
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder uppercaseLetter(final RegexQuantifier quantifier) {
-        stringBuilder.append("[A-Z]");
+        stringBuilder.append("\\p{Lu}");
         addQuantifier(quantifier);
         return this;
     }
 
     /**
-     * Add an element to match any lowercase letter in the Roman alphabet (a-z)
+     * Add an element to match any lowercase Unicode letter
      *
      * @return The current {@link RegexBuilder} object, for method chaining
      */
@@ -429,19 +429,19 @@ public final class RegexBuilder {
     }
 
     /**
-     * Add an element to match any lowercase letter in the Roman alphabet (a-z)
+     * Add an element to match any lowercase Unicode letter
      *
      * @param quantifier Quantifier to apply to this element
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder lowercaseLetter(final RegexQuantifier quantifier) {
-        stringBuilder.append("[a-z]");
+        stringBuilder.append("\\p{Ll}");
         addQuantifier(quantifier);
         return this;
     }
 
     /**
-     * Add an element to match any letter in the Roman alphabet or decimal digit (a-z, A-Z, 0-9)
+     * Add an element to match any Unicode letter or decimal digit
      *
      * @return The current {@link RegexBuilder} object, for method chaining
      */
@@ -450,19 +450,19 @@ public final class RegexBuilder {
     }
 
     /**
-     * Add an element to match any letter in the Roman alphabet or decimal digit (a-z, A-Z, 0-9)
+     * Add an element to match any Unicode letter or decimal digit
      *
      * @param quantifier Quantifier to apply to this element
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder letterOrDigit(final RegexQuantifier quantifier) {
-        stringBuilder.append("[a-zA-Z0-9]");
+        stringBuilder.append("[\\p{L}0-9]");
         addQuantifier(quantifier);
         return this;
     }
 
     /**
-     * Add an element to match any character that is not letter in the Roman alphabet or a decimal digit (a-z, A-Z, 0-9)
+     * Add an element to match any character that is not a Unicode letter or a decimal digit
      *
      * @return The current {@link RegexBuilder} object, for method chaining
      */
@@ -471,13 +471,13 @@ public final class RegexBuilder {
     }
 
     /**
-     * Add an element to match any character that is not letter in the Roman alphabet or a decimal digit (a-z, A-Z, 0-9)
+     * Add an element to match any character that is not a Unicode letter or a decimal digit
      *
      * @param quantifier Quantifier to apply to this element
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonLetterOrDigit(final RegexQuantifier quantifier) {
-        stringBuilder.append("[^a-zA-Z0-9]");
+        stringBuilder.append("[^\\p{L}0-9]");
         addQuantifier(quantifier);
         return this;
     }
@@ -567,7 +567,7 @@ public final class RegexBuilder {
     }
 
     /**
-     * Add an element to match any Roman alphabet letter, decimal digit, or underscore (a-z, A-Z, 0-9, _)
+     * Add an element to match any Unicode letter, decimal digit, or underscore
      *
      * @return The current {@link RegexBuilder} object, for method chaining
      */
@@ -576,20 +576,19 @@ public final class RegexBuilder {
     }
 
     /**
-     * Add an element to match any Roman alphabet letter, decimal digit, or underscore (a-z, A-Z, 0-9, _)
+     * Add an element to match any Unicode letter, decimal digit, or underscore
      *
      * @param quantifier Quantifier to apply to this element
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder wordCharacter(final RegexQuantifier quantifier) {
-        stringBuilder.append("\\w");
+        stringBuilder.append("[\\p{L}0-9_]");
         addQuantifier(quantifier);
         return this;
     }
 
     /**
-     * Add an element to match any character that is not a Roman alphabet letter, decimal digit, or underscore
-     * (a-z, A-Z, 0-9, _)
+     * Add an element to match any character that is not a Unicode letter, decimal digit, or underscore
      *
      * @return The current {@link RegexBuilder} object, for method chaining
      */
@@ -598,14 +597,13 @@ public final class RegexBuilder {
     }
 
     /**
-     * Add an element to match any character that is not a Roman alphabet letter, decimal digit, or underscore
-     * (a-z, A-Z, 0-9, _)
+     * Add an element to match any character that is not a Unicode letter, decimal digit, or underscore
      *
      * @param quantifier Quantifier to apply to this element
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonWordCharacter(final RegexQuantifier quantifier) {
-        stringBuilder.append("\\W");
+        stringBuilder.append("[^\\p{L}0-9_]");
         addQuantifier(quantifier);
         return this;
     }

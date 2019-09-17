@@ -540,7 +540,7 @@ public class RegexBuilderTest {
                 .letter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z]", regex.toString());
+        Assert.assertEquals("\\p{L}", regex.toString());
         Assert.assertTrue(regex.matcher("a").find());
         Assert.assertTrue(regex.matcher("A").find());
         Assert.assertTrue(regex.matcher("        z").find());
@@ -576,7 +576,7 @@ public class RegexBuilderTest {
                 .nonLetter()
                 .buildRegex();
 
-        Assert.assertEquals("[^a-zA-Z]", regex.toString());
+        Assert.assertEquals("\\P{L}", regex.toString());
         Assert.assertTrue(regex.matcher(" 1").find());
         Assert.assertTrue(regex.matcher("0").find());
         Assert.assertTrue(regex.matcher("999_").find());
@@ -612,7 +612,7 @@ public class RegexBuilderTest {
                 .uppercaseLetter()
                 .buildRegex();
 
-        Assert.assertEquals("[A-Z]", regex.toString());
+        Assert.assertEquals("\\p{Lu}", regex.toString());
         Assert.assertTrue(regex.matcher("A").find());
         Assert.assertTrue(regex.matcher("        Z").find());
         Assert.assertTrue(regex.matcher("text with Spaces").find());
@@ -648,7 +648,7 @@ public class RegexBuilderTest {
                 .lowercaseLetter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-z]", regex.toString());
+        Assert.assertEquals("\\p{Ll}", regex.toString());
         Assert.assertTrue(regex.matcher("a").find());
         Assert.assertTrue(regex.matcher("        z").find());
         Assert.assertTrue(regex.matcher("text with Spaces").find());
@@ -684,7 +684,7 @@ public class RegexBuilderTest {
                 .letterOrDigit()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z0-9]", regex.toString());
+        Assert.assertEquals("[\\p{L}0-9]", regex.toString());
         Assert.assertTrue(regex.matcher("A").find());
         Assert.assertTrue(regex.matcher("        Z").find());
         Assert.assertTrue(regex.matcher("text with Spaces").find());
@@ -721,7 +721,7 @@ public class RegexBuilderTest {
                 .nonLetterOrDigit()
                 .buildRegex();
 
-        Assert.assertEquals("[^a-zA-Z0-9]", regex.toString());
+        Assert.assertEquals("[^\\p{L}0-9]", regex.toString());
         Assert.assertFalse(regex.matcher("A").find());
         Assert.assertTrue(regex.matcher("        Z").find());
         Assert.assertTrue(regex.matcher("text with Spaces").find());
@@ -906,7 +906,7 @@ public class RegexBuilderTest {
                 .wordCharacter()
                 .buildRegex();
 
-        Assert.assertEquals("\\w", regex.toString());
+        Assert.assertEquals("[\\p{L}0-9_]", regex.toString());
         Assert.assertTrue(regex.matcher("A").find());
         Assert.assertTrue(regex.matcher("        Z").find());
         Assert.assertTrue(regex.matcher("text with Spaces").find());
@@ -943,7 +943,7 @@ public class RegexBuilderTest {
                 .nonWordCharacter()
                 .buildRegex();
 
-        Assert.assertEquals("\\W", regex.toString());
+        Assert.assertEquals("[^\\p{L}0-9_]", regex.toString());
         Assert.assertFalse(regex.matcher("A").find());
         Assert.assertTrue(regex.matcher("        Z").find());
         Assert.assertTrue(regex.matcher("text with Spaces").find());
@@ -1378,7 +1378,7 @@ public class RegexBuilderTest {
                 .endGroup()
                 .buildRegex();
 
-        Assert.assertEquals(".*([a-zA-Z]\\d)", regex.toString());
+        Assert.assertEquals(".*(\\p{L}\\d)", regex.toString());
 
         Matcher match = regex.matcher("Class A1");
         Assert.assertTrue(match.find());
@@ -1427,7 +1427,7 @@ public class RegexBuilderTest {
                 .endGroup()
                 .buildRegex();
 
-        Assert.assertEquals("([a-zA-Z]\\d)", regex.toString());
+        Assert.assertEquals("(\\p{L}\\d)", regex.toString());
 
         final Matcher matcher = regex.matcher("Class A1 f2 ZZ88");
         final List<String> matches = new ArrayList<>();
@@ -1469,7 +1469,7 @@ public class RegexBuilderTest {
                 .lowercaseLetter(RegexQuantifier.oneOrMore())
                 .buildRegex();
 
-        Assert.assertEquals("[a-z]+(?<test123>\\d+)[a-z]+", regex.toString());
+        Assert.assertEquals("\\p{Ll}+(?<test123>\\d+)\\p{Ll}+", regex.toString());
 
         Matcher match = regex.matcher("a99z");
         Assert.assertTrue(match.find());
@@ -1507,7 +1507,7 @@ public class RegexBuilderTest {
                 .lowercaseLetter(RegexQuantifier.oneOrMore())
                 .buildRegex();
 
-        Assert.assertEquals("[a-z]+(?:\\d+)[a-z]+", regex.toString());
+        Assert.assertEquals("\\p{Ll}+(?:\\d+)\\p{Ll}+", regex.toString());
 
         Matcher match = regex.matcher("a99z");
         Assert.assertTrue(match.find());
@@ -1546,7 +1546,7 @@ public class RegexBuilderTest {
                 .endGroup()
                 .buildRegex();
 
-        Assert.assertEquals("(.*)([a-zA-Z]\\d)", regex.toString());
+        Assert.assertEquals("(.*)(\\p{L}\\d)", regex.toString());
 
         Matcher match = regex.matcher("Class A1");
         Assert.assertTrue(match.find());
@@ -1602,7 +1602,7 @@ public class RegexBuilderTest {
                 .endGroup()
                 .buildRegex();
 
-        Assert.assertEquals(".(.*([a-zA-Z]\\d))", regex.toString());
+        Assert.assertEquals(".(.*(\\p{L}\\d))", regex.toString());
 
         Matcher match = regex.matcher("Class A1");
         Assert.assertTrue(match.find());
@@ -1653,7 +1653,7 @@ public class RegexBuilderTest {
                 .letter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z]\\d*[a-zA-Z]", regex.toString());
+        Assert.assertEquals("\\p{L}\\d*\\p{L}", regex.toString());
         Assert.assertTrue(regex.matcher("ab").find());
         Assert.assertTrue(regex.matcher("a1b").find());
         Assert.assertTrue(regex.matcher("a123b").find());
@@ -1690,7 +1690,7 @@ public class RegexBuilderTest {
                 .letter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z]\\d+[a-zA-Z]", regex.toString());
+        Assert.assertEquals("\\p{L}\\d+\\p{L}", regex.toString());
         Assert.assertFalse(regex.matcher("ab").find());
         Assert.assertTrue(regex.matcher("a1b").find());
         Assert.assertTrue(regex.matcher("a123b").find());
@@ -1727,7 +1727,7 @@ public class RegexBuilderTest {
                 .letter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z]\\d?[a-zA-Z]", regex.toString());
+        Assert.assertEquals("\\p{L}\\d?\\p{L}", regex.toString());
         Assert.assertTrue(regex.matcher("ab").find());
         Assert.assertTrue(regex.matcher("a1b").find());
         Assert.assertFalse(regex.matcher("a123b").find());
@@ -1764,7 +1764,7 @@ public class RegexBuilderTest {
                 .letter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z]\\d{3}[a-zA-Z]", regex.toString());
+        Assert.assertEquals("\\p{L}\\d{3}\\p{L}", regex.toString());
         Assert.assertFalse(regex.matcher("ab").find());
         Assert.assertFalse(regex.matcher("a1b").find());
         Assert.assertFalse(regex.matcher("a12b").find());
@@ -1804,7 +1804,7 @@ public class RegexBuilderTest {
                 .letter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z]\\d{3,}[a-zA-Z]", regex.toString());
+        Assert.assertEquals("\\p{L}\\d{3,}\\p{L}", regex.toString());
         Assert.assertFalse(regex.matcher("ab").find());
         Assert.assertFalse(regex.matcher("a1b").find());
         Assert.assertFalse(regex.matcher("a12b").find());
@@ -1844,7 +1844,7 @@ public class RegexBuilderTest {
                 .letter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z]\\d{0,3}[a-zA-Z]", regex.toString());
+        Assert.assertEquals("\\p{L}\\d{0,3}\\p{L}", regex.toString());
         Assert.assertTrue(regex.matcher("ab").find());
         Assert.assertTrue(regex.matcher("a1b").find());
         Assert.assertTrue(regex.matcher("a12b").find());
@@ -1884,7 +1884,7 @@ public class RegexBuilderTest {
                 .letter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z]\\d{2,4}[a-zA-Z]", regex.toString());
+        Assert.assertEquals("\\p{L}\\d{2,4}\\p{L}", regex.toString());
         Assert.assertFalse(regex.matcher("ab").find());
         Assert.assertFalse(regex.matcher("a1b").find());
         Assert.assertTrue(regex.matcher("a12b").find());
