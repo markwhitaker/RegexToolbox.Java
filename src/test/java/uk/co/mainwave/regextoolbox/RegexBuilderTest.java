@@ -1,13 +1,16 @@
 package uk.co.mainwave.regextoolbox;
 
-
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 public class RegexBuilderTest {
     @Test
@@ -16,30 +19,33 @@ public class RegexBuilderTest {
                 .text("cat")
                 .buildRegex();
 
-        Assert.assertEquals("cat", regex.toString());
-        Assert.assertTrue(regex.matcher("cat").matches());
-        Assert.assertTrue(regex.matcher("scatter").find());
-        Assert.assertFalse(regex.matcher("Cat").find());
-        Assert.assertFalse(regex.matcher("dog").find());
+        assertEquals("cat", regex.toString());
+        assertTrue(regex.matcher("cat").matches());
+        assertTrue(regex.matcher("scatter").find());
+        assertFalse(regex.matcher("Cat").find());
+        assertFalse(regex.matcher("dog").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
 
@@ -49,32 +55,35 @@ public class RegexBuilderTest {
                 .text("cat", RegexQuantifier.exactly(2))
                 .buildRegex();
 
-        Assert.assertEquals("(?:cat){2}", regex.toString());
-        Assert.assertFalse(regex.matcher("cat").find());
-        Assert.assertTrue(regex.matcher("catcat").matches());
-        Assert.assertTrue(regex.matcher("catcatcat").find());
-        Assert.assertFalse(regex.matcher("scatter").find());
-        Assert.assertFalse(regex.matcher("Cat").find());
-        Assert.assertFalse(regex.matcher("dog").find());
+        assertEquals("(?:cat){2}", regex.toString());
+        assertFalse(regex.matcher("cat").find());
+        assertTrue(regex.matcher("catcat").matches());
+        assertTrue(regex.matcher("catcatcat").find());
+        assertFalse(regex.matcher("scatter").find());
+        assertFalse(regex.matcher("Cat").find());
+        assertFalse(regex.matcher("dog").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -83,30 +92,33 @@ public class RegexBuilderTest {
                 .text("cat")
                 .buildRegex(RegexOptions.IGNORE_CASE);
 
-        Assert.assertEquals("cat", regex.toString());
-        Assert.assertTrue(regex.matcher("cat").matches());
-        Assert.assertTrue(regex.matcher("scatter").find());
-        Assert.assertTrue(regex.matcher("Cat").matches());
-        Assert.assertFalse(regex.matcher("dog").find());
+        assertEquals("cat", regex.toString());
+        assertTrue(regex.matcher("cat").matches());
+        assertTrue(regex.matcher("scatter").find());
+        assertTrue(regex.matcher("Cat").matches());
+        assertFalse(regex.matcher("dog").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -115,27 +127,30 @@ public class RegexBuilderTest {
                 .text("\\.+*?[]{}()|^$")
                 .buildRegex();
 
-        Assert.assertEquals("\\\\\\.\\+\\*\\?\\[\\]\\{\\}\\(\\)\\|\\^\\$", regex.toString());
-        Assert.assertTrue(regex.matcher("\\.+*?[]{}()|^$").find());
+        assertEquals("\\\\\\.\\+\\*\\?\\[\\]\\{\\}\\(\\)\\|\\^\\$", regex.toString());
+        assertTrue(regex.matcher("\\.+*?[]{}()|^$").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -144,33 +159,36 @@ public class RegexBuilderTest {
                 .regexText("^\\scat\\b")
                 .buildRegex();
 
-        Assert.assertEquals("^\\scat\\b", regex.toString());
-        Assert.assertTrue(regex.matcher(" cat").find());
-        Assert.assertTrue(regex.matcher(" cat.").find());
-        Assert.assertTrue(regex.matcher("\tcat ").find());
-        Assert.assertTrue(regex.matcher(" cat-").find());
-        Assert.assertTrue(regex.matcher(" cat ").find());
-        Assert.assertFalse(regex.matcher("cat").find());
-        Assert.assertFalse(regex.matcher(" catheter").find());
+        assertEquals("^\\scat\\b", regex.toString());
+        assertTrue(regex.matcher(" cat").find());
+        assertTrue(regex.matcher(" cat.").find());
+        assertTrue(regex.matcher("\tcat ").find());
+        assertTrue(regex.matcher(" cat-").find());
+        assertTrue(regex.matcher(" cat ").find());
+        assertFalse(regex.matcher("cat").find());
+        assertFalse(regex.matcher(" catheter").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -179,32 +197,35 @@ public class RegexBuilderTest {
                 .anyCharacter()
                 .buildRegex();
 
-        Assert.assertEquals(".", regex.toString());
-        Assert.assertTrue(regex.matcher(" ").find());
-        Assert.assertTrue(regex.matcher("a").find());
-        Assert.assertTrue(regex.matcher("1").find());
-        Assert.assertTrue(regex.matcher("\\").find());
-        Assert.assertFalse(regex.matcher("").find());
-        Assert.assertFalse(regex.matcher("\n").find());
+        assertEquals(".", regex.toString());
+        assertTrue(regex.matcher(" ").find());
+        assertTrue(regex.matcher("a").find());
+        assertTrue(regex.matcher("1").find());
+        assertTrue(regex.matcher("\\").find());
+        assertFalse(regex.matcher("").find());
+        assertFalse(regex.matcher("\n").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertTrue(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertTrue(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertTrue(regex.matcher(Strings.WhiteSpace).find());
+        assertTrue(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -213,34 +234,37 @@ public class RegexBuilderTest {
                 .whitespace()
                 .buildRegex();
 
-        Assert.assertEquals("\\s", regex.toString());
-        Assert.assertTrue(regex.matcher(" ").find());
-        Assert.assertTrue(regex.matcher("\t").find());
-        Assert.assertTrue(regex.matcher("\r").find());
-        Assert.assertTrue(regex.matcher("\n").find());
-        Assert.assertTrue(regex.matcher("\r\n").find());
-        Assert.assertTrue(regex.matcher("\t \t").find());
-        Assert.assertTrue(regex.matcher("                hi!").find());
-        Assert.assertFalse(regex.matcher("cat").find());
+        assertEquals("\\s", regex.toString());
+        assertTrue(regex.matcher(" ").find());
+        assertTrue(regex.matcher("\t").find());
+        assertTrue(regex.matcher("\r").find());
+        assertTrue(regex.matcher("\n").find());
+        assertTrue(regex.matcher("\r\n").find());
+        assertTrue(regex.matcher("\t \t").find());
+        assertTrue(regex.matcher("                hi!").find());
+        assertFalse(regex.matcher("cat").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertTrue(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertTrue(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -249,37 +273,40 @@ public class RegexBuilderTest {
                 .nonWhitespace()
                 .buildRegex();
 
-        Assert.assertEquals("\\S", regex.toString());
-        Assert.assertTrue(regex.matcher("a").find());
-        Assert.assertTrue(regex.matcher("1").find());
-        Assert.assertTrue(regex.matcher("-").find());
-        Assert.assertTrue(regex.matcher("*").find());
-        Assert.assertTrue(regex.matcher("abc").find());
-        Assert.assertTrue(regex.matcher("                hi!").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("\t").find());
-        Assert.assertFalse(regex.matcher("\r").find());
-        Assert.assertFalse(regex.matcher("\n").find());
-        Assert.assertFalse(regex.matcher("\t\t\r\n   ").find());
+        assertEquals("\\S", regex.toString());
+        assertTrue(regex.matcher("a").find());
+        assertTrue(regex.matcher("1").find());
+        assertTrue(regex.matcher("-").find());
+        assertTrue(regex.matcher("*").find());
+        assertTrue(regex.matcher("abc").find());
+        assertTrue(regex.matcher("                hi!").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("\t").find());
+        assertFalse(regex.matcher("\r").find());
+        assertFalse(regex.matcher("\n").find());
+        assertFalse(regex.matcher("\t\t\r\n   ").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertTrue(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertTrue(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -290,33 +317,36 @@ public class RegexBuilderTest {
                 .nonWhitespace()
                 .buildRegex();
 
-        Assert.assertEquals("\\S\\s*\\S", regex.toString());
-        Assert.assertFalse(regex.matcher("1").find());
-        Assert.assertFalse(regex.matcher("0").find());
-        Assert.assertTrue(regex.matcher("999").find());
-        Assert.assertTrue(regex.matcher("there's a digit in here s0mewhere").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertTrue(regex.matcher("abc").find());
-        Assert.assertTrue(regex.matcher("xFFF").find());
+        assertEquals("\\S\\s*\\S", regex.toString());
+        assertFalse(regex.matcher("1").find());
+        assertFalse(regex.matcher("0").find());
+        assertTrue(regex.matcher("999").find());
+        assertTrue(regex.matcher("there's a digit in here s0mewhere").find());
+        assertFalse(regex.matcher(" ").find());
+        assertTrue(regex.matcher("abc").find());
+        assertTrue(regex.matcher("xFFF").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -325,34 +355,37 @@ public class RegexBuilderTest {
                 .space()
                 .buildRegex();
 
-        Assert.assertEquals(" ", regex.toString());
-        Assert.assertTrue(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("\t").find());
-        Assert.assertFalse(regex.matcher("\r").find());
-        Assert.assertFalse(regex.matcher("\n").find());
-        Assert.assertFalse(regex.matcher("\r\n").find());
-        Assert.assertTrue(regex.matcher("\t \t").find());
-        Assert.assertTrue(regex.matcher("                hi!").find());
-        Assert.assertFalse(regex.matcher("cat").find());
+        assertEquals(" ", regex.toString());
+        assertTrue(regex.matcher(" ").find());
+        assertFalse(regex.matcher("\t").find());
+        assertFalse(regex.matcher("\r").find());
+        assertFalse(regex.matcher("\n").find());
+        assertFalse(regex.matcher("\r\n").find());
+        assertTrue(regex.matcher("\t \t").find());
+        assertTrue(regex.matcher("                hi!").find());
+        assertFalse(regex.matcher("cat").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertTrue(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertTrue(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -361,34 +394,37 @@ public class RegexBuilderTest {
                 .tab()
                 .buildRegex();
 
-        Assert.assertEquals("\\t", regex.toString());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertTrue(regex.matcher("\t").find());
-        Assert.assertFalse(regex.matcher("\r").find());
-        Assert.assertFalse(regex.matcher("\n").find());
-        Assert.assertFalse(regex.matcher("\r\n").find());
-        Assert.assertTrue(regex.matcher("\t \t").find());
-        Assert.assertFalse(regex.matcher("                hi!").find());
-        Assert.assertFalse(regex.matcher("cat").find());
+        assertEquals("\\t", regex.toString());
+        assertFalse(regex.matcher(" ").find());
+        assertTrue(regex.matcher("\t").find());
+        assertFalse(regex.matcher("\r").find());
+        assertFalse(regex.matcher("\n").find());
+        assertFalse(regex.matcher("\r\n").find());
+        assertTrue(regex.matcher("\t \t").find());
+        assertFalse(regex.matcher("                hi!").find());
+        assertFalse(regex.matcher("cat").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertTrue(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertTrue(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -397,34 +433,37 @@ public class RegexBuilderTest {
                 .lineFeed()
                 .buildRegex();
 
-        Assert.assertEquals("\\n", regex.toString());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("\t").find());
-        Assert.assertFalse(regex.matcher("\r").find());
-        Assert.assertTrue(regex.matcher("\n").find());
-        Assert.assertTrue(regex.matcher("\r\n").find());
-        Assert.assertFalse(regex.matcher("\t \t").find());
-        Assert.assertFalse(regex.matcher("                hi!").find());
-        Assert.assertFalse(regex.matcher("cat").find());
+        assertEquals("\\n", regex.toString());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("\t").find());
+        assertFalse(regex.matcher("\r").find());
+        assertTrue(regex.matcher("\n").find());
+        assertTrue(regex.matcher("\r\n").find());
+        assertFalse(regex.matcher("\t \t").find());
+        assertFalse(regex.matcher("                hi!").find());
+        assertFalse(regex.matcher("cat").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertTrue(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertTrue(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -433,34 +472,37 @@ public class RegexBuilderTest {
                 .carriageReturn()
                 .buildRegex();
 
-        Assert.assertEquals("\\r", regex.toString());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("\t").find());
-        Assert.assertTrue(regex.matcher("\r").find());
-        Assert.assertFalse(regex.matcher("\n").find());
-        Assert.assertTrue(regex.matcher("\r\n").find());
-        Assert.assertFalse(regex.matcher("\t \t").find());
-        Assert.assertFalse(regex.matcher("                hi!").find());
-        Assert.assertFalse(regex.matcher("cat").find());
+        assertEquals("\\r", regex.toString());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("\t").find());
+        assertTrue(regex.matcher("\r").find());
+        assertFalse(regex.matcher("\n").find());
+        assertTrue(regex.matcher("\r\n").find());
+        assertFalse(regex.matcher("\t \t").find());
+        assertFalse(regex.matcher("                hi!").find());
+        assertFalse(regex.matcher("cat").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertTrue(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertTrue(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -469,33 +511,36 @@ public class RegexBuilderTest {
                 .digit()
                 .buildRegex();
 
-        Assert.assertEquals("\\d", regex.toString());
-        Assert.assertTrue(regex.matcher("1").find());
-        Assert.assertTrue(regex.matcher("0").find());
-        Assert.assertTrue(regex.matcher("999").find());
-        Assert.assertTrue(regex.matcher("there's a digit in here s0mewhere").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("abc").find());
-        Assert.assertFalse(regex.matcher("xFFF").find());
+        assertEquals("\\d", regex.toString());
+        assertTrue(regex.matcher("1").find());
+        assertTrue(regex.matcher("0").find());
+        assertTrue(regex.matcher("999").find());
+        assertTrue(regex.matcher("there's a digit in here s0mewhere").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("abc").find());
+        assertFalse(regex.matcher("xFFF").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -504,34 +549,37 @@ public class RegexBuilderTest {
                 .nonDigit()
                 .buildRegex();
 
-        Assert.assertEquals("\\D", regex.toString());
-        Assert.assertTrue(regex.matcher(" 1").find());
-        Assert.assertTrue(regex.matcher("a0").find());
-        Assert.assertTrue(regex.matcher("999_").find());
-        Assert.assertTrue(regex.matcher("1,000").find());
-        Assert.assertTrue(regex.matcher("there's a digit in here s0mewhere").find());
-        Assert.assertFalse(regex.matcher("1").find());
-        Assert.assertFalse(regex.matcher("0").find());
-        Assert.assertFalse(regex.matcher("999").find());
+        assertEquals("\\D", regex.toString());
+        assertTrue(regex.matcher(" 1").find());
+        assertTrue(regex.matcher("a0").find());
+        assertTrue(regex.matcher("999_").find());
+        assertTrue(regex.matcher("1,000").find());
+        assertTrue(regex.matcher("there's a digit in here s0mewhere").find());
+        assertFalse(regex.matcher("1").find());
+        assertFalse(regex.matcher("0").find());
+        assertFalse(regex.matcher("999").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertTrue(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertTrue(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertTrue(regex.matcher(Strings.WhiteSpace).find());
+        assertTrue(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -540,34 +588,37 @@ public class RegexBuilderTest {
                 .letter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z]", regex.toString());
-        Assert.assertTrue(regex.matcher("a").find());
-        Assert.assertTrue(regex.matcher("A").find());
-        Assert.assertTrue(regex.matcher("        z").find());
-        Assert.assertTrue(regex.matcher("text with spaces").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("1").find());
-        Assert.assertFalse(regex.matcher("%").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("\\p{L}", regex.toString());
+        assertTrue(regex.matcher("a").find());
+        assertTrue(regex.matcher("A").find());
+        assertTrue(regex.matcher("        z").find());
+        assertTrue(regex.matcher("text with spaces").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("1").find());
+        assertFalse(regex.matcher("%").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -576,34 +627,37 @@ public class RegexBuilderTest {
                 .nonLetter()
                 .buildRegex();
 
-        Assert.assertEquals("[^a-zA-Z]", regex.toString());
-        Assert.assertTrue(regex.matcher(" 1").find());
-        Assert.assertTrue(regex.matcher("0").find());
-        Assert.assertTrue(regex.matcher("999_").find());
-        Assert.assertTrue(regex.matcher("1,000").find());
-        Assert.assertTrue(regex.matcher("text with spaces").find());
-        Assert.assertFalse(regex.matcher("a").find());
-        Assert.assertFalse(regex.matcher("ZZZ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("\\P{L}", regex.toString());
+        assertTrue(regex.matcher(" 1").find());
+        assertTrue(regex.matcher("0").find());
+        assertTrue(regex.matcher("999_").find());
+        assertTrue(regex.matcher("1,000").find());
+        assertTrue(regex.matcher("text with spaces").find());
+        assertFalse(regex.matcher("a").find());
+        assertFalse(regex.matcher("ZZZ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertTrue(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertTrue(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertTrue(regex.matcher(Strings.WhiteSpace).find());
+        assertTrue(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -612,34 +666,37 @@ public class RegexBuilderTest {
                 .uppercaseLetter()
                 .buildRegex();
 
-        Assert.assertEquals("[A-Z]", regex.toString());
-        Assert.assertTrue(regex.matcher("A").find());
-        Assert.assertTrue(regex.matcher("        Z").find());
-        Assert.assertTrue(regex.matcher("text with Spaces").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("1").find());
-        Assert.assertFalse(regex.matcher("%").find());
-        Assert.assertFalse(regex.matcher("s").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("\\p{Lu}", regex.toString());
+        assertTrue(regex.matcher("A").find());
+        assertTrue(regex.matcher("        Z").find());
+        assertTrue(regex.matcher("text with Spaces").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("1").find());
+        assertFalse(regex.matcher("%").find());
+        assertFalse(regex.matcher("s").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -648,34 +705,37 @@ public class RegexBuilderTest {
                 .lowercaseLetter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-z]", regex.toString());
-        Assert.assertTrue(regex.matcher("a").find());
-        Assert.assertTrue(regex.matcher("        z").find());
-        Assert.assertTrue(regex.matcher("text with Spaces").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("1").find());
-        Assert.assertFalse(regex.matcher("%").find());
-        Assert.assertFalse(regex.matcher("S").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("\\p{Ll}", regex.toString());
+        assertTrue(regex.matcher("a").find());
+        assertTrue(regex.matcher("        z").find());
+        assertTrue(regex.matcher("text with Spaces").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("1").find());
+        assertFalse(regex.matcher("%").find());
+        assertFalse(regex.matcher("S").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -684,35 +744,38 @@ public class RegexBuilderTest {
                 .letterOrDigit()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z0-9]", regex.toString());
-        Assert.assertTrue(regex.matcher("A").find());
-        Assert.assertTrue(regex.matcher("        Z").find());
-        Assert.assertTrue(regex.matcher("text with Spaces").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertTrue(regex.matcher("1").find());
-        Assert.assertFalse(regex.matcher("%").find());
-        Assert.assertFalse(regex.matcher("_").find());
-        Assert.assertTrue(regex.matcher("s").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("[\\p{L}0-9]", regex.toString());
+        assertTrue(regex.matcher("A").find());
+        assertTrue(regex.matcher("        Z").find());
+        assertTrue(regex.matcher("text with Spaces").find());
+        assertFalse(regex.matcher(" ").find());
+        assertTrue(regex.matcher("1").find());
+        assertFalse(regex.matcher("%").find());
+        assertFalse(regex.matcher("_").find());
+        assertTrue(regex.matcher("s").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -721,35 +784,38 @@ public class RegexBuilderTest {
                 .nonLetterOrDigit()
                 .buildRegex();
 
-        Assert.assertEquals("[^a-zA-Z0-9]", regex.toString());
-        Assert.assertFalse(regex.matcher("A").find());
-        Assert.assertTrue(regex.matcher("        Z").find());
-        Assert.assertTrue(regex.matcher("text with Spaces").find());
-        Assert.assertTrue(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("1").find());
-        Assert.assertTrue(regex.matcher("%").find());
-        Assert.assertTrue(regex.matcher("_").find());
-        Assert.assertFalse(regex.matcher("s").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("[^\\p{L}0-9]", regex.toString());
+        assertFalse(regex.matcher("A").find());
+        assertTrue(regex.matcher("        Z").find());
+        assertTrue(regex.matcher("text with Spaces").find());
+        assertTrue(regex.matcher(" ").find());
+        assertFalse(regex.matcher("1").find());
+        assertTrue(regex.matcher("%").find());
+        assertTrue(regex.matcher("_").find());
+        assertFalse(regex.matcher("s").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertTrue(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertTrue(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertTrue(regex.matcher(Strings.WhiteSpace).find());
+        assertTrue(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -758,35 +824,38 @@ public class RegexBuilderTest {
                 .hexDigit()
                 .buildRegex();
 
-        Assert.assertEquals("[0-9A-Fa-f]", regex.toString());
-        Assert.assertTrue(regex.matcher("A").find());
-        Assert.assertTrue(regex.matcher("        f").find());
-        Assert.assertTrue(regex.matcher("text with Spaces").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertTrue(regex.matcher("1").find());
-        Assert.assertFalse(regex.matcher("%").find());
-        Assert.assertFalse(regex.matcher("_").find());
-        Assert.assertFalse(regex.matcher("s").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("[0-9A-Fa-f]", regex.toString());
+        assertTrue(regex.matcher("A").find());
+        assertTrue(regex.matcher("        f").find());
+        assertTrue(regex.matcher("text with Spaces").find());
+        assertFalse(regex.matcher(" ").find());
+        assertTrue(regex.matcher("1").find());
+        assertFalse(regex.matcher("%").find());
+        assertFalse(regex.matcher("_").find());
+        assertFalse(regex.matcher("s").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -795,35 +864,38 @@ public class RegexBuilderTest {
                 .uppercaseHexDigit()
                 .buildRegex();
 
-        Assert.assertEquals("[0-9A-F]", regex.toString());
-        Assert.assertTrue(regex.matcher("A").find());
-        Assert.assertFalse(regex.matcher("        f").find());
-        Assert.assertFalse(regex.matcher("text with Spaces").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertTrue(regex.matcher("1").find());
-        Assert.assertFalse(regex.matcher("%").find());
-        Assert.assertFalse(regex.matcher("_").find());
-        Assert.assertFalse(regex.matcher("s").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("[0-9A-F]", regex.toString());
+        assertTrue(regex.matcher("A").find());
+        assertFalse(regex.matcher("        f").find());
+        assertFalse(regex.matcher("text with Spaces").find());
+        assertFalse(regex.matcher(" ").find());
+        assertTrue(regex.matcher("1").find());
+        assertFalse(regex.matcher("%").find());
+        assertFalse(regex.matcher("_").find());
+        assertFalse(regex.matcher("s").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -832,35 +904,38 @@ public class RegexBuilderTest {
                 .lowercaseHexDigit()
                 .buildRegex();
 
-        Assert.assertEquals("[0-9a-f]", regex.toString());
-        Assert.assertFalse(regex.matcher("A").find());
-        Assert.assertTrue(regex.matcher("        f").find());
-        Assert.assertTrue(regex.matcher("text with Spaces").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertTrue(regex.matcher("1").find());
-        Assert.assertFalse(regex.matcher("%").find());
-        Assert.assertFalse(regex.matcher("_").find());
-        Assert.assertFalse(regex.matcher("s").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("[0-9a-f]", regex.toString());
+        assertFalse(regex.matcher("A").find());
+        assertTrue(regex.matcher("        f").find());
+        assertTrue(regex.matcher("text with Spaces").find());
+        assertFalse(regex.matcher(" ").find());
+        assertTrue(regex.matcher("1").find());
+        assertFalse(regex.matcher("%").find());
+        assertFalse(regex.matcher("_").find());
+        assertFalse(regex.matcher("s").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -869,35 +944,38 @@ public class RegexBuilderTest {
                 .nonHexDigit()
                 .buildRegex();
 
-        Assert.assertEquals("[^0-9A-Fa-f]", regex.toString());
-        Assert.assertFalse(regex.matcher("A").find());
-        Assert.assertTrue(regex.matcher("        f").find());
-        Assert.assertTrue(regex.matcher("text with Spaces").find());
-        Assert.assertTrue(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("1").find());
-        Assert.assertTrue(regex.matcher("%").find());
-        Assert.assertTrue(regex.matcher("_").find());
-        Assert.assertTrue(regex.matcher("s").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("[^0-9A-Fa-f]", regex.toString());
+        assertFalse(regex.matcher("A").find());
+        assertTrue(regex.matcher("        f").find());
+        assertTrue(regex.matcher("text with Spaces").find());
+        assertTrue(regex.matcher(" ").find());
+        assertFalse(regex.matcher("1").find());
+        assertTrue(regex.matcher("%").find());
+        assertTrue(regex.matcher("_").find());
+        assertTrue(regex.matcher("s").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertTrue(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertTrue(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertTrue(regex.matcher(Strings.WhiteSpace).find());
+        assertTrue(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -906,35 +984,38 @@ public class RegexBuilderTest {
                 .wordCharacter()
                 .buildRegex();
 
-        Assert.assertEquals("\\w", regex.toString());
-        Assert.assertTrue(regex.matcher("A").find());
-        Assert.assertTrue(regex.matcher("        Z").find());
-        Assert.assertTrue(regex.matcher("text with Spaces").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertTrue(regex.matcher("1").find());
-        Assert.assertFalse(regex.matcher("%").find());
-        Assert.assertTrue(regex.matcher("_").find());
-        Assert.assertTrue(regex.matcher("s").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("[\\p{L}0-9_]", regex.toString());
+        assertTrue(regex.matcher("A").find());
+        assertTrue(regex.matcher("        Z").find());
+        assertTrue(regex.matcher("text with Spaces").find());
+        assertFalse(regex.matcher(" ").find());
+        assertTrue(regex.matcher("1").find());
+        assertFalse(regex.matcher("%").find());
+        assertTrue(regex.matcher("_").find());
+        assertTrue(regex.matcher("s").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -943,35 +1024,38 @@ public class RegexBuilderTest {
                 .nonWordCharacter()
                 .buildRegex();
 
-        Assert.assertEquals("\\W", regex.toString());
-        Assert.assertFalse(regex.matcher("A").find());
-        Assert.assertTrue(regex.matcher("        Z").find());
-        Assert.assertTrue(regex.matcher("text with Spaces").find());
-        Assert.assertTrue(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("1").find());
-        Assert.assertTrue(regex.matcher("%").find());
-        Assert.assertFalse(regex.matcher("_").find());
-        Assert.assertFalse(regex.matcher("s").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("[^\\p{L}0-9_]", regex.toString());
+        assertFalse(regex.matcher("A").find());
+        assertTrue(regex.matcher("        Z").find());
+        assertTrue(regex.matcher("text with Spaces").find());
+        assertTrue(regex.matcher(" ").find());
+        assertFalse(regex.matcher("1").find());
+        assertTrue(regex.matcher("%").find());
+        assertFalse(regex.matcher("_").find());
+        assertFalse(regex.matcher("s").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertTrue(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertTrue(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertTrue(regex.matcher(Strings.WhiteSpace).find());
+        assertTrue(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -980,34 +1064,37 @@ public class RegexBuilderTest {
                 .anyCharacterFrom("cat")
                 .buildRegex();
 
-        Assert.assertEquals("[cat]", regex.toString());
-        Assert.assertTrue(regex.matcher("cat").find());
-        Assert.assertTrue(regex.matcher("parrot").find());
-        Assert.assertTrue(regex.matcher("tiger").find());
-        Assert.assertTrue(regex.matcher("cow").find());
-        Assert.assertFalse(regex.matcher("CAT").find());
-        Assert.assertFalse(regex.matcher("dog").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("[cat]", regex.toString());
+        assertTrue(regex.matcher("cat").find());
+        assertTrue(regex.matcher("parrot").find());
+        assertTrue(regex.matcher("tiger").find());
+        assertTrue(regex.matcher("cow").find());
+        assertFalse(regex.matcher("CAT").find());
+        assertFalse(regex.matcher("dog").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1016,34 +1103,37 @@ public class RegexBuilderTest {
                 .anyCharacterFrom("^abc")
                 .buildRegex();
 
-        Assert.assertEquals("[\\^abc]", regex.toString());
-        Assert.assertTrue(regex.matcher("jazz").find());
-        Assert.assertTrue(regex.matcher("_^_").find());
-        Assert.assertTrue(regex.matcher("oboe").find());
-        Assert.assertTrue(regex.matcher("cue").find());
-        Assert.assertFalse(regex.matcher("CAT").find());
-        Assert.assertFalse(regex.matcher("dog").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("[\\^abc]", regex.toString());
+        assertTrue(regex.matcher("jazz").find());
+        assertTrue(regex.matcher("_^_").find());
+        assertTrue(regex.matcher("oboe").find());
+        assertTrue(regex.matcher("cue").find());
+        assertFalse(regex.matcher("CAT").find());
+        assertFalse(regex.matcher("dog").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1052,34 +1142,37 @@ public class RegexBuilderTest {
                 .anyCharacterFrom("a^bc")
                 .buildRegex();
 
-        Assert.assertEquals("[a^bc]", regex.toString());
-        Assert.assertTrue(regex.matcher("jazz").find());
-        Assert.assertTrue(regex.matcher("_^_").find());
-        Assert.assertTrue(regex.matcher("oboe").find());
-        Assert.assertTrue(regex.matcher("cue").find());
-        Assert.assertFalse(regex.matcher("CAT").find());
-        Assert.assertFalse(regex.matcher("dog").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("[a^bc]", regex.toString());
+        assertTrue(regex.matcher("jazz").find());
+        assertTrue(regex.matcher("_^_").find());
+        assertTrue(regex.matcher("oboe").find());
+        assertTrue(regex.matcher("cue").find());
+        assertFalse(regex.matcher("CAT").find());
+        assertFalse(regex.matcher("dog").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1088,35 +1181,38 @@ public class RegexBuilderTest {
                 .anyCharacterExcept("cat")
                 .buildRegex();
 
-        Assert.assertEquals("[^cat]", regex.toString());
-        Assert.assertFalse(regex.matcher("cat").find());
-        Assert.assertFalse(regex.matcher("tata").find());
-        Assert.assertTrue(regex.matcher("parrot").find());
-        Assert.assertTrue(regex.matcher("tiger").find());
-        Assert.assertTrue(regex.matcher("cow").find());
-        Assert.assertTrue(regex.matcher("CAT").find());
-        Assert.assertTrue(regex.matcher("dog").find());
-        Assert.assertTrue(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("[^cat]", regex.toString());
+        assertFalse(regex.matcher("cat").find());
+        assertFalse(regex.matcher("tata").find());
+        assertTrue(regex.matcher("parrot").find());
+        assertTrue(regex.matcher("tiger").find());
+        assertTrue(regex.matcher("cow").find());
+        assertTrue(regex.matcher("CAT").find());
+        assertTrue(regex.matcher("dog").find());
+        assertTrue(regex.matcher(" ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertTrue(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertTrue(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertTrue(regex.matcher(Strings.WhiteSpace).find());
+        assertTrue(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1126,30 +1222,33 @@ public class RegexBuilderTest {
                 .anyOf(strings)
                 .buildRegex();
 
-        Assert.assertEquals("(?:cat|dog|\\|)", regex.toString());
-        Assert.assertFalse(regex.matcher("ca do").find());
-        Assert.assertTrue(regex.matcher("cat").find());
-        Assert.assertTrue(regex.matcher("dog").find());
-        Assert.assertTrue(regex.matcher("|").find());
+        assertEquals("(?:cat|dog|\\|)", regex.toString());
+        assertFalse(regex.matcher("ca do").find());
+        assertTrue(regex.matcher("cat").find());
+        assertTrue(regex.matcher("dog").find());
+        assertTrue(regex.matcher("|").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1158,30 +1257,33 @@ public class RegexBuilderTest {
                 .anyOf("cat", "dog", "|")
                 .buildRegex();
 
-        Assert.assertEquals("(?:cat|dog|\\|)", regex.toString());
-        Assert.assertFalse(regex.matcher("ca do").find());
-        Assert.assertTrue(regex.matcher("cat").find());
-        Assert.assertTrue(regex.matcher("dog").find());
-        Assert.assertTrue(regex.matcher("|").find());
+        assertEquals("(?:cat|dog|\\|)", regex.toString());
+        assertFalse(regex.matcher("ca do").find());
+        assertTrue(regex.matcher("cat").find());
+        assertTrue(regex.matcher("dog").find());
+        assertTrue(regex.matcher("|").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1191,47 +1293,52 @@ public class RegexBuilderTest {
                 .anyOf(strings, RegexQuantifier.exactly(2))
                 .buildRegex();
 
-        Assert.assertEquals("(?:cat|dog|\\|){2}", regex.toString());
-        Assert.assertTrue(regex.matcher("catdog").find());
-        Assert.assertTrue(regex.matcher("cat|dog").find());
-        Assert.assertFalse(regex.matcher("cat").find());
-        Assert.assertTrue(regex.matcher("catcat").find());
-        Assert.assertTrue(regex.matcher("catcatcat").find());
-        Assert.assertFalse(regex.matcher("dog").find());
-        Assert.assertTrue(regex.matcher("dogdog").find());
-        Assert.assertTrue(regex.matcher("dogdogdog").find());
-        Assert.assertFalse(regex.matcher("|").find());
-        Assert.assertTrue(regex.matcher("||").find());
-        Assert.assertTrue(regex.matcher("|||").find());
+        assertEquals("(?:cat|dog|\\|){2}", regex.toString());
+        assertTrue(regex.matcher("catdog").find());
+        assertTrue(regex.matcher("cat|dog").find());
+        assertFalse(regex.matcher("cat").find());
+        assertTrue(regex.matcher("catcat").find());
+        assertTrue(regex.matcher("catcatcat").find());
+        assertFalse(regex.matcher("dog").find());
+        assertTrue(regex.matcher("dogdog").find());
+        assertTrue(regex.matcher("dogdogdog").find());
+        assertFalse(regex.matcher("|").find());
+        assertTrue(regex.matcher("||").find());
+        assertTrue(regex.matcher("|||").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
     public void testAnyOfNullEmptyOrSingle() throws RegexBuilderException {
         final String nullString = null;
+        //noinspection ConstantConditions
         final Pattern anyOfNullRegex = new RegexBuilder()
                 .anyOf(nullString)
                 .buildRegex();
 
         final String[] nullStringArray = null;
+        //noinspection ConstantConditions
         final Pattern anyOfNullArrayRegex = new RegexBuilder()
                 .anyOf(nullStringArray)
                 .buildRegex();
@@ -1246,10 +1353,10 @@ public class RegexBuilderTest {
                 .anyOf(singleItemStringArray)
                 .buildRegex();
 
-        Assert.assertEquals("", anyOfNullRegex.toString());
-        Assert.assertEquals("", anyOfNullArrayRegex.toString());
-        Assert.assertEquals("", anyOfEmptyRegex.toString());
-        Assert.assertEquals("cat", anyOfSingleRegex.toString());
+        assertEquals("", anyOfNullRegex.toString());
+        assertEquals("", anyOfNullArrayRegex.toString());
+        assertEquals("", anyOfEmptyRegex.toString());
+        assertEquals("cat", anyOfSingleRegex.toString());
     }
 
     @Test
@@ -1259,35 +1366,38 @@ public class RegexBuilderTest {
                 .text("a")
                 .buildRegex();
 
-        Assert.assertEquals("^a", regex.toString());
-        Assert.assertTrue(regex.matcher("a").find());
-        Assert.assertTrue(regex.matcher("aA").find());
-        Assert.assertTrue(regex.matcher("a_").find());
-        Assert.assertTrue(regex.matcher("a        big gap").find());
-        Assert.assertFalse(regex.matcher(" a space before").find());
-        Assert.assertFalse(regex.matcher("A capital letter").find());
-        Assert.assertFalse(regex.matcher("Aa").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("^a", regex.toString());
+        assertTrue(regex.matcher("a").find());
+        assertTrue(regex.matcher("aA").find());
+        assertTrue(regex.matcher("a_").find());
+        assertTrue(regex.matcher("a        big gap").find());
+        assertFalse(regex.matcher(" a space before").find());
+        assertFalse(regex.matcher("A capital letter").find());
+        assertFalse(regex.matcher("Aa").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1297,35 +1407,38 @@ public class RegexBuilderTest {
                 .endOfString()
                 .buildRegex();
 
-        Assert.assertEquals("z$", regex.toString());
-        Assert.assertTrue(regex.matcher("z").find());
-        Assert.assertTrue(regex.matcher("zzz").find());
-        Assert.assertTrue(regex.matcher("fizz buzz").find());
-        Assert.assertFalse(regex.matcher("buzz!").find());
-        Assert.assertFalse(regex.matcher("zzz ").find());
-        Assert.assertFalse(regex.matcher("zZ").find());
-        Assert.assertFalse(regex.matcher("z ").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("z$", regex.toString());
+        assertTrue(regex.matcher("z").find());
+        assertTrue(regex.matcher("zzz").find());
+        assertTrue(regex.matcher("fizz buzz").find());
+        assertFalse(regex.matcher("buzz!").find());
+        assertFalse(regex.matcher("zzz ").find());
+        assertFalse(regex.matcher("zZ").find());
+        assertFalse(regex.matcher("z ").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1335,37 +1448,40 @@ public class RegexBuilderTest {
                 .wordBoundary()
                 .buildRegex();
 
-        Assert.assertEquals("a\\b", regex.toString());
-        Assert.assertTrue(regex.matcher("a").find());
-        Assert.assertTrue(regex.matcher("spa").find());
-        Assert.assertTrue(regex.matcher("papa don't preach").find());
-        Assert.assertTrue(regex.matcher("a dog").find());
-        Assert.assertTrue(regex.matcher("a-dog").find());
-        Assert.assertFalse(regex.matcher("an apple").find());
-        Assert.assertFalse(regex.matcher("asp").find());
-        Assert.assertFalse(regex.matcher("a1b").find());
-        Assert.assertFalse(regex.matcher("a_b").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("a\\b", regex.toString());
+        assertTrue(regex.matcher("a").find());
+        assertTrue(regex.matcher("spa").find());
+        assertTrue(regex.matcher("papa don't preach").find());
+        assertTrue(regex.matcher("a dog").find());
+        assertTrue(regex.matcher("a-dog").find());
+        assertFalse(regex.matcher("an apple").find());
+        assertFalse(regex.matcher("asp").find());
+        assertFalse(regex.matcher("a1b").find());
+        assertFalse(regex.matcher("a_b").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1378,44 +1494,47 @@ public class RegexBuilderTest {
                 .endGroup()
                 .buildRegex();
 
-        Assert.assertEquals(".*([a-zA-Z]\\d)", regex.toString());
+        assertEquals(".*(\\p{L}\\d)", regex.toString());
 
         Matcher match = regex.matcher("Class A1");
-        Assert.assertTrue(match.find());
-        Assert.assertEquals("Class A1", match.group(0));
-        Assert.assertEquals("A1", match.group(1));
+        assertTrue(match.find());
+        assertEquals("Class A1", match.group(0));
+        assertEquals("A1", match.group(1));
 
         match = regex.matcher("he likes F1 racing");
-        Assert.assertTrue(match.find());
-        Assert.assertEquals("he likes F1", match.group(0));
-        Assert.assertEquals("F1", match.group(1));
+        assertTrue(match.find());
+        assertEquals("he likes F1", match.group(0));
+        assertEquals("F1", match.group(1));
 
         match = regex.matcher("A4 paper");
-        Assert.assertTrue(match.find());
-        Assert.assertEquals("A4", match.group(0));
-        Assert.assertEquals("A4", match.group(1));
+        assertTrue(match.find());
+        assertEquals("A4", match.group(0));
+        assertEquals("A4", match.group(1));
 
         match = regex.matcher("A 4-legged dog");
-        Assert.assertFalse(match.find());
+        assertFalse(match.find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1427,36 +1546,39 @@ public class RegexBuilderTest {
                 .endGroup()
                 .buildRegex();
 
-        Assert.assertEquals("([a-zA-Z]\\d)", regex.toString());
+        assertEquals("(\\p{L}\\d)", regex.toString());
 
         final Matcher matcher = regex.matcher("Class A1 f2 ZZ88");
         final List<String> matches = new ArrayList<>();
         while (matcher.find()) {
             matches.add(matcher.group());
         }
-        Assert.assertEquals(3, matches.size());
-        Assert.assertEquals("A1", matches.get(0));
-        Assert.assertEquals("f2", matches.get(1));
-        Assert.assertEquals("Z8", matches.get(2));
+        assertEquals(3, matches.size());
+        assertEquals("A1", matches.get(0));
+        assertEquals("f2", matches.get(1));
+        assertEquals("Z8", matches.get(2));
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1469,32 +1591,35 @@ public class RegexBuilderTest {
                 .lowercaseLetter(RegexQuantifier.oneOrMore())
                 .buildRegex();
 
-        Assert.assertEquals("[a-z]+(?<test123>\\d+)[a-z]+", regex.toString());
+        assertEquals("\\p{Ll}+(?<test123>\\d+)\\p{Ll}+", regex.toString());
 
         Matcher match = regex.matcher("a99z");
-        Assert.assertTrue(match.find());
-        Assert.assertEquals("a99z", match.group(0));
-        Assert.assertEquals("99", match.group(1));
-        Assert.assertEquals("99", match.group("test123"));
+        assertTrue(match.find());
+        assertEquals("a99z", match.group(0));
+        assertEquals("99", match.group(1));
+        assertEquals("99", match.group("test123"));
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1507,31 +1632,34 @@ public class RegexBuilderTest {
                 .lowercaseLetter(RegexQuantifier.oneOrMore())
                 .buildRegex();
 
-        Assert.assertEquals("[a-z]+(?:\\d+)[a-z]+", regex.toString());
+        assertEquals("\\p{Ll}+(?:\\d+)\\p{Ll}+", regex.toString());
 
         Matcher match = regex.matcher("a99z");
-        Assert.assertTrue(match.find());
-        Assert.assertEquals("a99z", match.group(0));
-        Assert.assertEquals(0, match.groupCount());
+        assertTrue(match.find());
+        assertEquals("a99z", match.group(0));
+        assertEquals(0, match.groupCount());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1546,47 +1674,50 @@ public class RegexBuilderTest {
                 .endGroup()
                 .buildRegex();
 
-        Assert.assertEquals("(.*)([a-zA-Z]\\d)", regex.toString());
+        assertEquals("(.*)(\\p{L}\\d)", regex.toString());
 
         Matcher match = regex.matcher("Class A1");
-        Assert.assertTrue(match.find());
-        Assert.assertEquals("Class A1", match.group(0));
-        Assert.assertEquals("Class ", match.group(1));
-        Assert.assertEquals("A1", match.group(2));
+        assertTrue(match.find());
+        assertEquals("Class A1", match.group(0));
+        assertEquals("Class ", match.group(1));
+        assertEquals("A1", match.group(2));
 
         match = regex.matcher("he likes F1 racing");
-        Assert.assertTrue(match.find());
-        Assert.assertEquals("he likes F1", match.group(0));
-        Assert.assertEquals("he likes ", match.group(1));
-        Assert.assertEquals("F1", match.group(2));
+        assertTrue(match.find());
+        assertEquals("he likes F1", match.group(0));
+        assertEquals("he likes ", match.group(1));
+        assertEquals("F1", match.group(2));
 
         match = regex.matcher("A4 paper");
-        Assert.assertTrue(match.find());
-        Assert.assertEquals("A4", match.group(0));
-        Assert.assertEquals("", match.group(1));
-        Assert.assertEquals("A4", match.group(2));
+        assertTrue(match.find());
+        assertEquals("A4", match.group(0));
+        assertEquals("", match.group(1));
+        assertEquals("A4", match.group(2));
 
         match = regex.matcher("A 4-legged dog");
-        Assert.assertFalse(match.find());
+        assertFalse(match.find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1602,47 +1733,50 @@ public class RegexBuilderTest {
                 .endGroup()
                 .buildRegex();
 
-        Assert.assertEquals(".(.*([a-zA-Z]\\d))", regex.toString());
+        assertEquals(".(.*(\\p{L}\\d))", regex.toString());
 
         Matcher match = regex.matcher("Class A1");
-        Assert.assertTrue(match.find());
-        Assert.assertEquals("Class A1", match.group(0));
-        Assert.assertEquals("lass A1", match.group(1));
-        Assert.assertEquals("A1", match.group(2));
+        assertTrue(match.find());
+        assertEquals("Class A1", match.group(0));
+        assertEquals("lass A1", match.group(1));
+        assertEquals("A1", match.group(2));
 
         match = regex.matcher("he likes F1 racing");
-        Assert.assertTrue(match.find());
-        Assert.assertEquals("he likes F1", match.group(0));
-        Assert.assertEquals("e likes F1", match.group(1));
-        Assert.assertEquals("F1", match.group(2));
+        assertTrue(match.find());
+        assertEquals("he likes F1", match.group(0));
+        assertEquals("e likes F1", match.group(1));
+        assertEquals("F1", match.group(2));
 
         match = regex.matcher(" A4 paper");
-        Assert.assertTrue(match.find());
-        Assert.assertEquals(" A4", match.group(0));
-        Assert.assertEquals("A4", match.group(1));
-        Assert.assertEquals("A4", match.group(2));
+        assertTrue(match.find());
+        assertEquals(" A4", match.group(0));
+        assertEquals("A4", match.group(1));
+        assertEquals("A4", match.group(2));
 
         match = regex.matcher("A 4-legged dog");
-        Assert.assertFalse(match.find());
+        assertFalse(match.find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1653,33 +1787,36 @@ public class RegexBuilderTest {
                 .letter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z]\\d*[a-zA-Z]", regex.toString());
-        Assert.assertTrue(regex.matcher("ab").find());
-        Assert.assertTrue(regex.matcher("a1b").find());
-        Assert.assertTrue(regex.matcher("a123b").find());
-        Assert.assertFalse(regex.matcher("a 1 b").find());
-        Assert.assertFalse(regex.matcher("a b").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("\\p{L}\\d*\\p{L}", regex.toString());
+        assertTrue(regex.matcher("ab").find());
+        assertTrue(regex.matcher("a1b").find());
+        assertTrue(regex.matcher("a123b").find());
+        assertFalse(regex.matcher("a 1 b").find());
+        assertFalse(regex.matcher("a b").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1690,33 +1827,36 @@ public class RegexBuilderTest {
                 .letter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z]\\d+[a-zA-Z]", regex.toString());
-        Assert.assertFalse(regex.matcher("ab").find());
-        Assert.assertTrue(regex.matcher("a1b").find());
-        Assert.assertTrue(regex.matcher("a123b").find());
-        Assert.assertFalse(regex.matcher("a 1 b").find());
-        Assert.assertFalse(regex.matcher("a b").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("\\p{L}\\d+\\p{L}", regex.toString());
+        assertFalse(regex.matcher("ab").find());
+        assertTrue(regex.matcher("a1b").find());
+        assertTrue(regex.matcher("a123b").find());
+        assertFalse(regex.matcher("a 1 b").find());
+        assertFalse(regex.matcher("a b").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1727,33 +1867,36 @@ public class RegexBuilderTest {
                 .letter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z]\\d?[a-zA-Z]", regex.toString());
-        Assert.assertTrue(regex.matcher("ab").find());
-        Assert.assertTrue(regex.matcher("a1b").find());
-        Assert.assertFalse(regex.matcher("a123b").find());
-        Assert.assertFalse(regex.matcher("a 1 b").find());
-        Assert.assertFalse(regex.matcher("a b").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("\\p{L}\\d?\\p{L}", regex.toString());
+        assertTrue(regex.matcher("ab").find());
+        assertTrue(regex.matcher("a1b").find());
+        assertFalse(regex.matcher("a123b").find());
+        assertFalse(regex.matcher("a 1 b").find());
+        assertFalse(regex.matcher("a b").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1764,36 +1907,39 @@ public class RegexBuilderTest {
                 .letter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z]\\d{3}[a-zA-Z]", regex.toString());
-        Assert.assertFalse(regex.matcher("ab").find());
-        Assert.assertFalse(regex.matcher("a1b").find());
-        Assert.assertFalse(regex.matcher("a12b").find());
-        Assert.assertTrue(regex.matcher("a123b").find());
-        Assert.assertFalse(regex.matcher("a1234b").find());
-        Assert.assertFalse(regex.matcher("a12345b").find());
-        Assert.assertFalse(regex.matcher("a 1 b").find());
-        Assert.assertFalse(regex.matcher("a b").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("\\p{L}\\d{3}\\p{L}", regex.toString());
+        assertFalse(regex.matcher("ab").find());
+        assertFalse(regex.matcher("a1b").find());
+        assertFalse(regex.matcher("a12b").find());
+        assertTrue(regex.matcher("a123b").find());
+        assertFalse(regex.matcher("a1234b").find());
+        assertFalse(regex.matcher("a12345b").find());
+        assertFalse(regex.matcher("a 1 b").find());
+        assertFalse(regex.matcher("a b").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1804,36 +1950,39 @@ public class RegexBuilderTest {
                 .letter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z]\\d{3,}[a-zA-Z]", regex.toString());
-        Assert.assertFalse(regex.matcher("ab").find());
-        Assert.assertFalse(regex.matcher("a1b").find());
-        Assert.assertFalse(regex.matcher("a12b").find());
-        Assert.assertTrue(regex.matcher("a123b").find());
-        Assert.assertTrue(regex.matcher("a1234b").find());
-        Assert.assertTrue(regex.matcher("a12345b").find());
-        Assert.assertFalse(regex.matcher("a 1 b").find());
-        Assert.assertFalse(regex.matcher("a b").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("\\p{L}\\d{3,}\\p{L}", regex.toString());
+        assertFalse(regex.matcher("ab").find());
+        assertFalse(regex.matcher("a1b").find());
+        assertFalse(regex.matcher("a12b").find());
+        assertTrue(regex.matcher("a123b").find());
+        assertTrue(regex.matcher("a1234b").find());
+        assertTrue(regex.matcher("a12345b").find());
+        assertFalse(regex.matcher("a 1 b").find());
+        assertFalse(regex.matcher("a b").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1844,36 +1993,39 @@ public class RegexBuilderTest {
                 .letter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z]\\d{0,3}[a-zA-Z]", regex.toString());
-        Assert.assertTrue(regex.matcher("ab").find());
-        Assert.assertTrue(regex.matcher("a1b").find());
-        Assert.assertTrue(regex.matcher("a12b").find());
-        Assert.assertTrue(regex.matcher("a123b").find());
-        Assert.assertFalse(regex.matcher("a1234b").find());
-        Assert.assertFalse(regex.matcher("a12345b").find());
-        Assert.assertFalse(regex.matcher("a 1 b").find());
-        Assert.assertFalse(regex.matcher("a b").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("\\p{L}\\d{0,3}\\p{L}", regex.toString());
+        assertTrue(regex.matcher("ab").find());
+        assertTrue(regex.matcher("a1b").find());
+        assertTrue(regex.matcher("a12b").find());
+        assertTrue(regex.matcher("a123b").find());
+        assertFalse(regex.matcher("a1234b").find());
+        assertFalse(regex.matcher("a12345b").find());
+        assertFalse(regex.matcher("a 1 b").find());
+        assertFalse(regex.matcher("a b").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1884,36 +2036,39 @@ public class RegexBuilderTest {
                 .letter()
                 .buildRegex();
 
-        Assert.assertEquals("[a-zA-Z]\\d{2,4}[a-zA-Z]", regex.toString());
-        Assert.assertFalse(regex.matcher("ab").find());
-        Assert.assertFalse(regex.matcher("a1b").find());
-        Assert.assertTrue(regex.matcher("a12b").find());
-        Assert.assertTrue(regex.matcher("a123b").find());
-        Assert.assertTrue(regex.matcher("a1234b").find());
-        Assert.assertFalse(regex.matcher("a12345b").find());
-        Assert.assertFalse(regex.matcher("a 1 b").find());
-        Assert.assertFalse(regex.matcher("a b").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("\\p{L}\\d{2,4}\\p{L}", regex.toString());
+        assertFalse(regex.matcher("ab").find());
+        assertFalse(regex.matcher("a1b").find());
+        assertTrue(regex.matcher("a12b").find());
+        assertTrue(regex.matcher("a123b").find());
+        assertTrue(regex.matcher("a1234b").find());
+        assertFalse(regex.matcher("a12345b").find());
+        assertFalse(regex.matcher("a 1 b").find());
+        assertFalse(regex.matcher("a b").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1924,35 +2079,38 @@ public class RegexBuilderTest {
                 .endOfString()
                 .buildRegex(RegexOptions.MULTILINE);
 
-        Assert.assertEquals("^find me!$", regex.toString());
-        Assert.assertEquals(Pattern.MULTILINE, (regex.flags() & Pattern.MULTILINE));
-        Assert.assertTrue(regex.matcher("find me!").find());
-        Assert.assertTrue(regex.matcher("find me!\nline 2").find());
-        Assert.assertTrue(regex.matcher("line 1\nfind me!").find());
-        Assert.assertTrue(regex.matcher("line 1\nfind me!\nline 3").find());
-        Assert.assertFalse(regex.matcher(" find me!").find());
-        Assert.assertFalse(regex.matcher("find me! ").find());
-        Assert.assertFalse(regex.matcher(" find me! ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("^find me!$", regex.toString());
+        assertEquals(Pattern.MULTILINE, (regex.flags() & Pattern.MULTILINE));
+        assertTrue(regex.matcher("find me!").find());
+        assertTrue(regex.matcher("find me!\nline 2").find());
+        assertTrue(regex.matcher("line 1\nfind me!").find());
+        assertTrue(regex.matcher("line 1\nfind me!\nline 3").find());
+        assertFalse(regex.matcher(" find me!").find());
+        assertFalse(regex.matcher("find me! ").find());
+        assertFalse(regex.matcher(" find me! ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -1961,35 +2119,38 @@ public class RegexBuilderTest {
                 .anyCharacterFrom("cat")
                 .buildRegex(RegexOptions.IGNORE_CASE);
 
-        Assert.assertEquals("[cat]", regex.toString());
-        Assert.assertEquals(Pattern.CASE_INSENSITIVE, (regex.flags() & Pattern.CASE_INSENSITIVE));
-        Assert.assertTrue(regex.matcher("cat").find());
-        Assert.assertTrue(regex.matcher("tiger").find());
-        Assert.assertTrue(regex.matcher("Ant").find());
-        Assert.assertTrue(regex.matcher("CAT").find());
-        Assert.assertTrue(regex.matcher("                A").find());
-        Assert.assertFalse(regex.matcher("dog").find());
-        Assert.assertFalse(regex.matcher(" ").find());
-        Assert.assertFalse(regex.matcher("").find());
+        assertEquals("[cat]", regex.toString());
+        assertEquals(Pattern.CASE_INSENSITIVE, (regex.flags() & Pattern.CASE_INSENSITIVE));
+        assertTrue(regex.matcher("cat").find());
+        assertTrue(regex.matcher("tiger").find());
+        assertTrue(regex.matcher("Ant").find());
+        assertTrue(regex.matcher("CAT").find());
+        assertTrue(regex.matcher("                A").find());
+        assertFalse(regex.matcher("dog").find());
+        assertFalse(regex.matcher(" ").find());
+        assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -2005,35 +2166,38 @@ public class RegexBuilderTest {
                 .endOfString()
                 .buildRegex();
 
-        Assert.assertEquals("^\\S{2,}@\\S{2,}\\.\\S{2,}$", regex.toString());
-        Assert.assertTrue(regex.matcher("test.user@mainwave.co.uk").find());
-        Assert.assertTrue(regex.matcher("aa@bb.cc").find());
-        Assert.assertTrue(regex.matcher("__@__.__").find());
-        Assert.assertTrue(regex.matcher("..@.....").find());
-        Assert.assertFalse(regex.matcher("aa@bb.c").find());
-        Assert.assertFalse(regex.matcher("aa@b.cc").find());
-        Assert.assertFalse(regex.matcher("a@bb.cc").find());
-        Assert.assertFalse(regex.matcher("a@b.c").find());
-        Assert.assertFalse(regex.matcher("  @  .  ").find());
+        assertEquals("^\\S{2,}@\\S{2,}\\.\\S{2,}$", regex.toString());
+        assertTrue(regex.matcher("test.user@mainwave.co.uk").find());
+        assertTrue(regex.matcher("aa@bb.cc").find());
+        assertTrue(regex.matcher("__@__.__").find());
+        assertTrue(regex.matcher("..@.....").find());
+        assertFalse(regex.matcher("aa@bb.c").find());
+        assertFalse(regex.matcher("aa@b.cc").find());
+        assertFalse(regex.matcher("a@bb.cc").find());
+        assertFalse(regex.matcher("a@b.c").find());
+        assertFalse(regex.matcher("  @  .  ").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -2047,46 +2211,49 @@ public class RegexBuilderTest {
                 .anyCharacterFrom("a-zA-Z0-9_/") // Valid last characters
                 .buildRegex();
 
-        Assert.assertEquals("http(?:s)?://\\S+[a-zA-Z0-9_/]", regex.toString());
-        Assert.assertTrue(regex.matcher("http://www.mainwave.co.uk").find());
-        Assert.assertTrue(regex.matcher("https://www.mainwave.co.uk").find());
-        Assert.assertFalse(regex.matcher("www.mainwave.co.uk").find());
-        Assert.assertFalse(regex.matcher("ftp://www.mainwave.co.uk").find());
+        assertEquals("http(?:s)?://\\S+[a-zA-Z0-9_/]", regex.toString());
+        assertTrue(regex.matcher("http://www.mainwave.co.uk").find());
+        assertTrue(regex.matcher("https://www.mainwave.co.uk").find());
+        assertFalse(regex.matcher("www.mainwave.co.uk").find());
+        assertFalse(regex.matcher("ftp://www.mainwave.co.uk").find());
 
         Matcher match = regex.matcher("Go to http://www.mainwave.co.uk. Then click the link.");
-        Assert.assertTrue(match.find());
-        Assert.assertEquals("http://www.mainwave.co.uk", match.group());
+        assertTrue(match.find());
+        assertEquals("http://www.mainwave.co.uk", match.group());
 
         match = regex.matcher("Go to https://www.mainwave.co.uk/test/, then click the link.");
-        Assert.assertTrue(match.find());
-        Assert.assertEquals("https://www.mainwave.co.uk/test/", match.group());
+        assertTrue(match.find());
+        assertEquals("https://www.mainwave.co.uk/test/", match.group());
 
         match = regex.matcher("Go to 'http://www.mainwave.co.uk' then click the link.");
-        Assert.assertTrue(match.find());
-        Assert.assertEquals("http://www.mainwave.co.uk", match.group());
+        assertTrue(match.find());
+        assertEquals("http://www.mainwave.co.uk", match.group());
 
         match = regex.matcher("Go to \"http://www.mainwave.co.uk\" then click the link.");
-        Assert.assertTrue(match.find());
-        Assert.assertEquals("http://www.mainwave.co.uk", match.group());
+        assertTrue(match.find());
+        assertEquals("http://www.mainwave.co.uk", match.group());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertFalse(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -2103,36 +2270,39 @@ public class RegexBuilderTest {
                 .endOfString()
                 .buildRegex();
 
-        Assert.assertEquals("^(\\d{1,3}\\.){3}\\d{1,3}$", regex.toString());
-        Assert.assertTrue(regex.matcher("10.1.1.100").find());
-        Assert.assertTrue(regex.matcher("1.1.1.1").find());
-        Assert.assertTrue(regex.matcher("0.0.0.0").find());
-        Assert.assertTrue(regex.matcher("255.255.255.255").find());
-        Assert.assertTrue(regex.matcher("999.999.999.999").find());
-        Assert.assertFalse(regex.matcher("1.1.1.").find());
-        Assert.assertFalse(regex.matcher("1.1.1.").find());
-        Assert.assertFalse(regex.matcher("1.1.1.1.").find());
-        Assert.assertFalse(regex.matcher("1.1.1.1.1").find());
-        Assert.assertFalse(regex.matcher("1.1.1.1000").find());
+        assertEquals("^(\\d{1,3}\\.){3}\\d{1,3}$", regex.toString());
+        assertTrue(regex.matcher("10.1.1.100").find());
+        assertTrue(regex.matcher("1.1.1.1").find());
+        assertTrue(regex.matcher("0.0.0.0").find());
+        assertTrue(regex.matcher("255.255.255.255").find());
+        assertTrue(regex.matcher("999.999.999.999").find());
+        assertFalse(regex.matcher("1.1.1.").find());
+        assertFalse(regex.matcher("1.1.1.").find());
+        assertFalse(regex.matcher("1.1.1.1.").find());
+        assertFalse(regex.matcher("1.1.1.1.1").find());
+        assertFalse(regex.matcher("1.1.1.1000").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertFalse(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertFalse(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.DecimalDigits).find());
+        assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertFalse(regex.matcher(Strings.Ipv6Address).find());
+        assertFalse(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -2146,8 +2316,8 @@ public class RegexBuilderTest {
         } catch (RegexBuilderException e) {
             exception = e;
         }
-        Assert.assertNotNull(exception);
-        Assert.assertEquals("", exception.getRegexString());
+        assertNotNull(exception);
+        assertEquals("", exception.getRegexString());
     }
 
     @Test
@@ -2161,8 +2331,8 @@ public class RegexBuilderTest {
         } catch (RegexBuilderException e) {
             exception = e;
         }
-        Assert.assertNotNull(exception);
-        Assert.assertEquals("(", exception.getRegexString());
+        assertNotNull(exception);
+        assertEquals("(", exception.getRegexString());
     }
 
     @Test
@@ -2178,8 +2348,8 @@ public class RegexBuilderTest {
         } catch (RegexBuilderException e) {
             exception = e;
         }
-        Assert.assertNotNull(exception);
-        Assert.assertEquals("(()", exception.getRegexString());
+        assertNotNull(exception);
+        assertEquals("(()", exception.getRegexString());
     }
 
     @Test
@@ -2188,29 +2358,32 @@ public class RegexBuilderTest {
                 .digit(RegexQuantifier.zeroOrMore().butAsFewAsPossible())
                 .buildRegex();
 
-        Assert.assertEquals("\\d*?", regex.toString());
+        assertEquals("\\d*?", regex.toString());
         final Matcher nonGreedyMatch = regex.matcher("999");
-        Assert.assertTrue(nonGreedyMatch.find());
-        Assert.assertEquals("", nonGreedyMatch.group());
+        assertTrue(nonGreedyMatch.find());
+        assertEquals("", nonGreedyMatch.group());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertTrue(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertTrue(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertTrue(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertTrue(regex.matcher(Strings.WhiteSpace).find());
+        assertTrue(regex.matcher(Strings.ControlCharacters).find());
+        assertTrue(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -2219,29 +2392,32 @@ public class RegexBuilderTest {
                 .digit(RegexQuantifier.oneOrMore().butAsFewAsPossible())
                 .buildRegex();
 
-        Assert.assertEquals("\\d+?", regex.toString());
+        assertEquals("\\d+?", regex.toString());
         final Matcher nonGreedyMatch = regex.matcher("999");
-        Assert.assertTrue(nonGreedyMatch.find());
-        Assert.assertEquals("9", nonGreedyMatch.group());
+        assertTrue(nonGreedyMatch.find());
+        assertEquals("9", nonGreedyMatch.group());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -2250,29 +2426,32 @@ public class RegexBuilderTest {
                 .digit(RegexQuantifier.atLeast(1).butAsFewAsPossible())
                 .buildRegex();
 
-        Assert.assertEquals("\\d{1,}?", regex.toString());
+        assertEquals("\\d{1,}?", regex.toString());
         final Matcher nonGreedyMatch = regex.matcher("999");
-        Assert.assertTrue(nonGreedyMatch.find());
-        Assert.assertEquals("9", nonGreedyMatch.toMatchResult().group());
+        assertTrue(nonGreedyMatch.find());
+        assertEquals("9", nonGreedyMatch.toMatchResult().group());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -2281,29 +2460,32 @@ public class RegexBuilderTest {
                 .digit(RegexQuantifier.between(2, 100).butAsFewAsPossible())
                 .buildRegex();
 
-        Assert.assertEquals("\\d{2,100}?", regex.toString());
+        assertEquals("\\d{2,100}?", regex.toString());
         final Matcher nonGreedyMatch = regex.matcher("999");
-        Assert.assertTrue(nonGreedyMatch.find());
-        Assert.assertEquals("99", nonGreedyMatch.group());
+        assertTrue(nonGreedyMatch.find());
+        assertEquals("99", nonGreedyMatch.group());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertFalse(regex.matcher(Strings.Symbols).find());
-        Assert.assertFalse(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertFalse(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertFalse(regex.matcher(Strings.Empty).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleName).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertFalse(regex.matcher(Strings.Symbols).find());
+        assertFalse(regex.matcher(Strings.WhiteSpace).find());
+        assertFalse(regex.matcher(Strings.ControlCharacters).find());
+        assertFalse(regex.matcher(Strings.Empty).find());
+        assertFalse(regex.matcher(Strings.SimpleName).find());
+        assertFalse(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertFalse(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -2312,29 +2494,32 @@ public class RegexBuilderTest {
                 .digit(RegexQuantifier.noMoreThan(2).butAsFewAsPossible())
                 .buildRegex();
 
-        Assert.assertEquals("\\d{0,2}?", regex.toString());
+        assertEquals("\\d{0,2}?", regex.toString());
         final Matcher nonGreedyMatch = regex.matcher("999");
-        Assert.assertTrue(nonGreedyMatch.find());
-        Assert.assertEquals("", nonGreedyMatch.group());
+        assertTrue(nonGreedyMatch.find());
+        assertEquals("", nonGreedyMatch.group());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertTrue(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertTrue(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertTrue(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertTrue(regex.matcher(Strings.WhiteSpace).find());
+        assertTrue(regex.matcher(Strings.ControlCharacters).find());
+        assertTrue(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 
     @Test
@@ -2343,28 +2528,31 @@ public class RegexBuilderTest {
                 .digit(RegexQuantifier.zeroOrOne().butAsFewAsPossible())
                 .buildRegex();
 
-        Assert.assertEquals("\\d??", regex.toString());
+        assertEquals("\\d??", regex.toString());
         final Matcher nonGreedyMatch = regex.matcher("999");
-        Assert.assertTrue(nonGreedyMatch.find());
-        Assert.assertEquals("", nonGreedyMatch.group());
+        assertTrue(nonGreedyMatch.find());
+        assertEquals("", nonGreedyMatch.group());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
-        Assert.assertTrue(regex.matcher(Strings.Symbols).find());
-        Assert.assertTrue(regex.matcher(Strings.WhiteSpace).find());
-        Assert.assertTrue(regex.matcher(Strings.ControlCharacters).find());
-        Assert.assertTrue(regex.matcher(Strings.Empty).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleName).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv4Address).find());
-        Assert.assertTrue(regex.matcher(Strings.Ipv6Address).find());
-        Assert.assertTrue(regex.matcher(Strings.MacAddress).find());
+        assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
+        assertTrue(regex.matcher(Strings.DecimalDigits).find());
+        assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.LowerCaseHexDigits).find());
+        assertTrue(regex.matcher(Strings.Symbols).find());
+        assertTrue(regex.matcher(Strings.WhiteSpace).find());
+        assertTrue(regex.matcher(Strings.ControlCharacters).find());
+        assertTrue(regex.matcher(Strings.Empty).find());
+        assertTrue(regex.matcher(Strings.SimpleName).find());
+        assertTrue(regex.matcher(Strings.SimpleEmailAddress).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpUrl).find());
+        assertTrue(regex.matcher(Strings.SimpleHttpsUrl).find());
+        assertTrue(regex.matcher(Strings.Ipv4Address).find());
+        assertTrue(regex.matcher(Strings.Ipv6Address).find());
+        assertTrue(regex.matcher(Strings.MacAddress).find());
     }
 }
