@@ -2,9 +2,12 @@ package uk.co.mainwave.regextoolbox;
 
 final class Strings {
     // Character classes
-    static final String BothCaseAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-    static final String UpperCaseAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    static final String LowerCaseAlphabet = "abcdefghijklmnopqrstuvwxyz";
+    static final String BothCaseLatinAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    static final String UpperCaseLatinAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    static final String LowerCaseLatinAlphabet = "abcdefghijklmnopqrstuvwxyz";
+    static final String BothCaseExtendedAlphabet = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞẞĀĂĄĆĈĊČĎĐĒĔĖĘĚĜĞĠĢĤĦĨĪĬĮİĴĶĹĻĽĿŁŃŅŇŊŌŎŐŒŔŖŘŚŜŞŠŢŤŦŨŪŬŮŰŲŴŶŸŹŻŽàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþßāăąćĉċčďđēĕėęěĝğġģĥħĩīĭįiĵķĺļľŀłńņňŋōŏőœŕŗřśŝşšţťŧũūŭůűųŵŷÿźżž";
+    static final String UpperCaseExtendedAlphabet = "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞẞĀĂĄĆĈĊČĎĐĒĔĖĘĚĜĞĠĢĤĦĨĪĬĮİĴĶĹĻĽĿŁŃŅŇŊŌŎŐŒŔŖŘŚŜŞŠŢŤŦŨŪŬŮŰŲŴŶŸŹŻŽ";
+    static final String LowerCaseExtendedAlphabet = "àáâãäåæçèéêëìíîïðñòóôõöøùúûüýþßāăąćĉċčďđēĕėęěĝğġģĥħĩīĭįiĵķĺļľŀłńņňŋōŏőœŕŗřśŝşšţťŧũūŭůűųŵŷÿźżž";
     static final String DecimalDigits = "0123456789";
     static final String BothCaseHexDigits = "0123456789ABCDEFabcdef";
     static final String UpperCaseHexDigits = "0123456789ABCDEF";

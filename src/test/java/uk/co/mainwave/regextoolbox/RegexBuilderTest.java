@@ -22,9 +22,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("Cat").find());
         Assert.assertFalse(regex.matcher("dog").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -57,9 +60,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("Cat").find());
         Assert.assertFalse(regex.matcher("dog").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -89,9 +95,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(regex.matcher("Cat").matches());
         Assert.assertFalse(regex.matcher("dog").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -118,9 +127,12 @@ public class RegexBuilderTest {
         Assert.assertEquals("\\\\\\.\\+\\*\\?\\[\\]\\{\\}\\(\\)\\|\\^\\$", regex.toString());
         Assert.assertTrue(regex.matcher("\\.+*?[]{}()|^$").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -153,9 +165,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("cat").find());
         Assert.assertFalse(regex.matcher(" catheter").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -187,9 +202,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("").find());
         Assert.assertFalse(regex.matcher("\n").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -223,9 +241,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(regex.matcher("                hi!").find());
         Assert.assertFalse(regex.matcher("cat").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -262,9 +283,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("\n").find());
         Assert.assertFalse(regex.matcher("\t\t\r\n   ").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -299,9 +323,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(regex.matcher("abc").find());
         Assert.assertTrue(regex.matcher("xFFF").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -335,9 +362,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(regex.matcher("                hi!").find());
         Assert.assertFalse(regex.matcher("cat").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -371,9 +401,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("                hi!").find());
         Assert.assertFalse(regex.matcher("cat").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -407,9 +440,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("                hi!").find());
         Assert.assertFalse(regex.matcher("cat").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -443,9 +479,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("                hi!").find());
         Assert.assertFalse(regex.matcher("cat").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -478,9 +517,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("abc").find());
         Assert.assertFalse(regex.matcher("xFFF").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -514,9 +556,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("0").find());
         Assert.assertFalse(regex.matcher("999").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -550,9 +595,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("%").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -586,9 +634,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("ZZZ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -622,9 +673,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("s").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -658,9 +712,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("S").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -695,9 +752,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(regex.matcher("s").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -732,9 +792,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("s").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -769,9 +832,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("s").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -806,9 +872,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("s").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -843,9 +912,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("s").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -880,9 +952,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(regex.matcher("s").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -917,9 +992,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(regex.matcher("s").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -954,9 +1032,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("s").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -990,9 +1071,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher(" ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1026,9 +1110,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher(" ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1062,9 +1149,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher(" ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1099,9 +1189,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(regex.matcher(" ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1132,9 +1225,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(regex.matcher("dog").find());
         Assert.assertTrue(regex.matcher("|").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1164,9 +1260,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(regex.matcher("dog").find());
         Assert.assertTrue(regex.matcher("|").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1204,9 +1303,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(regex.matcher("||").find());
         Assert.assertTrue(regex.matcher("|||").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1270,9 +1372,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher(" ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1308,9 +1413,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher(" ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1348,9 +1456,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher(" ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1398,9 +1509,12 @@ public class RegexBuilderTest {
         match = regex.matcher("A 4-legged dog");
         Assert.assertFalse(match.find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1439,9 +1553,12 @@ public class RegexBuilderTest {
         Assert.assertEquals("f2", matches.get(1));
         Assert.assertEquals("Z8", matches.get(2));
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1477,9 +1594,12 @@ public class RegexBuilderTest {
         Assert.assertEquals("99", match.group(1));
         Assert.assertEquals("99", match.group("test123"));
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1514,9 +1634,12 @@ public class RegexBuilderTest {
         Assert.assertEquals("a99z", match.group(0));
         Assert.assertEquals(0, match.groupCount());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1569,9 +1692,12 @@ public class RegexBuilderTest {
         match = regex.matcher("A 4-legged dog");
         Assert.assertFalse(match.find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1625,9 +1751,12 @@ public class RegexBuilderTest {
         match = regex.matcher("A 4-legged dog");
         Assert.assertFalse(match.find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1662,9 +1791,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher(" ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1699,9 +1831,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher(" ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1736,9 +1871,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher(" ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1776,9 +1914,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher(" ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1816,9 +1957,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher(" ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1856,9 +2000,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher(" ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1896,9 +2043,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher(" ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1935,9 +2085,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher(" find me! ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -1972,9 +2125,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher(" ").find());
         Assert.assertFalse(regex.matcher("").find());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -2016,9 +2172,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("a@b.c").find());
         Assert.assertFalse(regex.matcher("  @  .  ").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -2069,9 +2228,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(match.find());
         Assert.assertEquals("http://www.mainwave.co.uk", match.group());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -2115,9 +2277,12 @@ public class RegexBuilderTest {
         Assert.assertFalse(regex.matcher("1.1.1.1.1").find());
         Assert.assertFalse(regex.matcher("1.1.1.1000").find());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertFalse(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertFalse(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertFalse(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -2193,9 +2358,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(nonGreedyMatch.find());
         Assert.assertEquals("", nonGreedyMatch.group());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -2224,9 +2392,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(nonGreedyMatch.find());
         Assert.assertEquals("9", nonGreedyMatch.group());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -2255,9 +2426,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(nonGreedyMatch.find());
         Assert.assertEquals("9", nonGreedyMatch.toMatchResult().group());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -2286,9 +2460,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(nonGreedyMatch.find());
         Assert.assertEquals("99", nonGreedyMatch.group());
 
-        Assert.assertFalse(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertFalse(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertFalse(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -2317,9 +2494,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(nonGreedyMatch.find());
         Assert.assertEquals("", nonGreedyMatch.group());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
@@ -2348,9 +2528,12 @@ public class RegexBuilderTest {
         Assert.assertTrue(nonGreedyMatch.find());
         Assert.assertEquals("", nonGreedyMatch.group());
 
-        Assert.assertTrue(regex.matcher(Strings.BothCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.UpperCaseAlphabet).find());
-        Assert.assertTrue(regex.matcher(Strings.LowerCaseAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseLatinAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.BothCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.UpperCaseExtendedAlphabet).find());
+        Assert.assertTrue(regex.matcher(Strings.LowerCaseExtendedAlphabet).find());
         Assert.assertTrue(regex.matcher(Strings.DecimalDigits).find());
         Assert.assertTrue(regex.matcher(Strings.BothCaseHexDigits).find());
         Assert.assertTrue(regex.matcher(Strings.UpperCaseHexDigits).find());
