@@ -842,8 +842,11 @@ public final class RegexBuilder {
     }
 
     private String makeSafeForCharacterClass(final String s) {
-        // Replace ] with \]
-        String result = s.replace("]", "\\]");
+        String result = s
+                // Replace ] with \]
+                .replace("]", "\\]")
+                // Replace - with \-
+                .replace("-", "\\-");
 
         // replace ^ with \^ if it occurs at the start of the string
         if (result.startsWith("^")) {

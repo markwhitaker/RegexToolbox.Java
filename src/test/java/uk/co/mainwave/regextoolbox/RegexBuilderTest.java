@@ -1137,6 +1137,19 @@ public class RegexBuilderTest {
     }
 
     @Test
+    public void testAnyCharacterFromWithHyphen() throws RegexBuilderException {
+        final Pattern regex = new RegexBuilder()
+                .anyCharacterFrom("a-f")
+                .buildRegex();
+
+        assertEquals("[a\\-f]", regex.toString());
+        assertTrue(regex.matcher("a").find());
+        assertTrue(regex.matcher("-").find());
+        assertTrue(regex.matcher("f").find());
+        assertFalse(regex.matcher("c").find());
+    }
+
+    @Test
     public void testAnyCharacterFromWithCaretNotAtStart() throws RegexBuilderException {
         final Pattern regex = new RegexBuilder()
                 .anyCharacterFrom("a^bc")
@@ -2208,10 +2221,10 @@ public class RegexBuilderTest {
                 .text("s", RegexQuantifier.zeroOrOne())
                 .text("://")
                 .nonWhitespace(RegexQuantifier.oneOrMore())
-                .anyCharacterFrom("a-zA-Z0-9_/") // Valid last characters
+                .anyCharacterFrom("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_/") // Valid last characters
                 .buildRegex();
 
-        assertEquals("http(?:s)?://\\S+[a-zA-Z0-9_/]", regex.toString());
+        assertEquals("http(?:s)?://\\S+[abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_/]", regex.toString());
         assertTrue(regex.matcher("http://www.mainwave.co.uk").find());
         assertTrue(regex.matcher("https://www.mainwave.co.uk").find());
         assertFalse(regex.matcher("www.mainwave.co.uk").find());
