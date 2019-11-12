@@ -5,8 +5,10 @@ package uk.co.mainwave.regextoolbox;
  */
 public class RegexQuantifier {
     private String regexString;
+    private String name;
 
-    RegexQuantifier(final String regexString) {
+    RegexQuantifier(final String name, final String regexString) {
+        this.name = name;
         this.regexString = regexString;
     }
 
@@ -16,7 +18,7 @@ public class RegexQuantifier {
      * @return A greedy quantifier: use {@link RegexGreedyQuantifier#butAsFewAsPossible()} to make it non-greedy
      */
     public static RegexGreedyQuantifier zeroOrMore() {
-        return new RegexGreedyQuantifier("*");
+        return new RegexGreedyQuantifier("zeroOrMore()", "*");
     }
 
     /**
@@ -25,7 +27,7 @@ public class RegexQuantifier {
      * @return A greedy quantifier: use {@link RegexGreedyQuantifier#butAsFewAsPossible()} to make it non-greedy
      */
     public static RegexGreedyQuantifier oneOrMore() {
-        return new RegexGreedyQuantifier("+");
+        return new RegexGreedyQuantifier("oneOrMore()", "+");
     }
 
     /**
@@ -36,7 +38,7 @@ public class RegexQuantifier {
      */
     @Deprecated
     public static RegexGreedyQuantifier noneOrOne() {
-        return new RegexGreedyQuantifier("?");
+        return new RegexGreedyQuantifier("noneOrOne()", "?");
     }
 
     /**
@@ -45,7 +47,7 @@ public class RegexQuantifier {
      * @return A greedy quantifier: use {@link RegexGreedyQuantifier#butAsFewAsPossible()} to make it non-greedy
      */
     public static RegexGreedyQuantifier zeroOrOne() {
-        return new RegexGreedyQuantifier("?");
+        return new RegexGreedyQuantifier("zeroOrOne()", "?");
     }
 
     /**
@@ -55,7 +57,9 @@ public class RegexQuantifier {
      * @return A non-greedy quantifier
      */
     public static RegexQuantifier exactly(final int times) {
-        return new RegexQuantifier("{" + times + "}");
+        return new RegexQuantifier(
+                "exactly(" + times + ")",
+                "{" + times + "}");
     }
 
     /**
@@ -65,7 +69,9 @@ public class RegexQuantifier {
      * @return A greedy quantifier: use {@link RegexGreedyQuantifier#butAsFewAsPossible()} to make it non-greedy
      */
     public static RegexGreedyQuantifier atLeast(final int minimum) {
-        return new RegexGreedyQuantifier("{" + minimum + ",}");
+        return new RegexGreedyQuantifier(
+                "atLeast(" + minimum + ")",
+                "{" + minimum + ",}");
     }
 
     /**
@@ -75,7 +81,9 @@ public class RegexQuantifier {
      * @return A greedy quantifier: use {@link RegexGreedyQuantifier#butAsFewAsPossible()} to make it non-greedy
      */
     public static RegexGreedyQuantifier noMoreThan(final int maximum) {
-        return new RegexGreedyQuantifier("{0," + maximum + "}");
+        return new RegexGreedyQuantifier(
+                "noMoreThan(" + maximum + ")",
+                "{0," + maximum + "}");
     }
 
     /**
@@ -86,7 +94,16 @@ public class RegexQuantifier {
      * @return A greedy quantifier: use {@link RegexGreedyQuantifier#butAsFewAsPossible()} to make it non-greedy
      */
     public static RegexGreedyQuantifier between(final int minimum, final int maximum) {
-        return new RegexGreedyQuantifier("{" + minimum + "," + maximum + "}");
+        return new RegexGreedyQuantifier(
+                "between(" + minimum + ", " + maximum + ")",
+                "{" + minimum + "," + maximum + "}");
+    }
+
+    /**
+     * Get the name of this quantifier, for logging
+     */
+    String getName() {
+        return name;
     }
 
     @Override
@@ -95,6 +112,7 @@ public class RegexQuantifier {
     }
 
     final void makeNonGreedy() {
+        name += ".butAsFewAsPossible()";
         regexString += "?";
     }
 }

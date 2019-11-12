@@ -1,5 +1,6 @@
 buildscript {
     ext.junit_version = '4.12'
+    ext.mockito_version = '3.1.0'
 }
 
 plugins {
@@ -22,6 +23,8 @@ sourceCompatibility = 1.8
 
 dependencies {
     testImplementation "junit:junit:$junit_version"
+    testImplementation "org.mockito:mockito-core:$mockito_version"
+    testImplementation "org.mockito:mockito-inline:$mockito_version"
 }
 
 bintray {

@@ -16,11 +16,24 @@ import java.util.regex.Pattern;
  *     .buildRegex();
  * </pre>
  */
-@SuppressWarnings("WeakerAccess")
 public final class RegexBuilder {
-    private final StringBuilder stringBuilder;
+    /**
+     * Interface to a logger attached by the client code which will receive log messages as the regex is built.
+     */
+    public interface Logger
+    {
+        /**
+         * Log a message to a real logger (e.g. console or a logging framework).
+         * @param message Message to log
+         */
+        void log(final String message);
+    }
 
+    private static final String DEFAULT_PREFIX = "RegexBuilder";
+    private final StringBuilder stringBuilder;
     private int openGroupCount;
+    private Logger logger;
+    private String prefix = DEFAULT_PREFIX;
 
     /**
      * Default constructor
@@ -60,9 +73,39 @@ public final class RegexBuilder {
             }
         }
 
-        final Pattern pattern = Pattern.compile(stringBuilder.toString(), flags);
+        final String stringBuilt = stringBuilder.toString();
+        log("buildRegex()", stringBuilt);
+        final Pattern pattern = Pattern.compile(stringBuilt, flags);
         stringBuilder.setLength(0);
         return pattern;
+    }
+
+    /**
+     * Attach a logger to this builder using this {@link Logger} interface. The builder will emit logging messages to it
+     * as the regex is built. The log prefix will be "RegexBuilder". To set a different prefix, use
+     * {@link #addLogger(Logger, String)}.
+     *
+     * @param logger Logger to receive log messages from the builder
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder addLogger(final Logger logger) {
+        this.logger = logger;
+        return this;
+    }
+
+    /**
+     * Attach a logger to this builder using this {@link Logger} interface. The builder will emit logging messages to it
+     * as the regex is built, preceded by the supplied prefix. To use the default prefix of "RegexBuilder", use
+     * {@link #addLogger(Logger)}.
+     *
+     * @param logger Logger to receive log messages from the builder
+     * @param prefix A prefix to add at the start of each log message
+     * @return The current {@link RegexBuilder} object, for method chaining
+     */
+    public RegexBuilder addLogger(final Logger logger, final String prefix) {
+        this.logger = logger;
+        this.prefix = prefix;
+        return this;
     }
 
     /**
@@ -99,7 +142,11 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder text(final String text, final RegexQuantifier quantifier) {
-        return regexText(makeSafeForRegex(text), quantifier);
+        final String safeText = makeSafeForRegex(text);
+        return (quantifier == null)
+                ? addPart("text(\"" + text + "\")",                safeText)
+                : addPartInNonCapturingGroup(
+                        "text(\"" + text + "\", " + quantifier.getName() + ")", safeText, quantifier);
     }
 
     /**
@@ -138,21 +185,10 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder regexText(final String text, final RegexQuantifier quantifier) {
-        if (quantifier == null) {
-            stringBuilder.append(text);
-            return this;
-        }
-
-        RegexBuilder builder = null;
-        try {
-            builder = startNonCapturingGroup()
-                    .regexText(text, null)
-                    .endGroup(quantifier);
-        } catch (RegexBuilderException ignored) {
-            // We won't get an exception from endGroup() as we know we started the group properly
-        }
-
-        return builder;
+        return (quantifier == null)
+                ? addPart("regexText(\"" + text + "\")", text)
+                : addPartInNonCapturingGroup(
+                "regexText(\"" + text + "\", " + quantifier.getName() + ")", text, quantifier);
     }
 
     /**
@@ -171,9 +207,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder anyCharacter(final RegexQuantifier quantifier) {
-        stringBuilder.append(".");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("anyCharacter(" + (quantifier == null ? "" : quantifier.getName()) + ")", ".", quantifier);
     }
 
     /**
@@ -192,9 +226,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder whitespace(final RegexQuantifier quantifier) {
-        stringBuilder.append("\\s");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("whitespace(" + (quantifier == null ? "" : quantifier.getName()) + ")", "\\s", quantifier);
     }
 
     /**
@@ -213,9 +245,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonWhitespace(final RegexQuantifier quantifier) {
-        stringBuilder.append("\\S");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("nonWhitespace(" + (quantifier == null ? "" : quantifier.getName()) + ")", "\\S", quantifier);
     }
 
     /**
@@ -225,7 +255,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder possibleWhitespace() {
-        return whitespace(RegexQuantifier.zeroOrMore());
+        return addPart("possibleWhitespace()", "\\s*");
     }
 
     /**
@@ -246,9 +276,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder space(final RegexQuantifier quantifier) {
-        stringBuilder.append(" ");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("space(" + (quantifier == null ? "" : quantifier.getName()) + ")", " ", quantifier);
     }
 
     /**
@@ -267,9 +295,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder tab(final RegexQuantifier quantifier) {
-        stringBuilder.append("\\t");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("tab(" + (quantifier == null ? "" : quantifier.getName()) + ")", "\\t", quantifier);
     }
 
     /**
@@ -288,9 +314,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder lineFeed(final RegexQuantifier quantifier) {
-        stringBuilder.append("\\n");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("lineFeed(" + (quantifier == null ? "" : quantifier.getName()) + ")", "\\n", quantifier);
     }
 
     /**
@@ -309,9 +333,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder carriageReturn(final RegexQuantifier quantifier) {
-        stringBuilder.append("\\r");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("carriageReturn(" + (quantifier == null ? "" : quantifier.getName()) + ")", "\\r", quantifier);
     }
 
     /**
@@ -330,9 +352,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder digit(final RegexQuantifier quantifier) {
-        stringBuilder.append("\\d");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("digit(" + (quantifier == null ? "" : quantifier.getName()) + ")", "\\d", quantifier);
     }
 
     /**
@@ -351,9 +371,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonDigit(final RegexQuantifier quantifier) {
-        stringBuilder.append("\\D");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("nonDigit(" + (quantifier == null ? "" : quantifier.getName()) + ")", "\\D", quantifier);
     }
 
     /**
@@ -372,9 +390,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder letter(final RegexQuantifier quantifier) {
-        stringBuilder.append("\\p{L}");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("letter(" + (quantifier == null ? "" : quantifier.getName()) + ")", "\\p{L}", quantifier);
     }
 
     /**
@@ -393,9 +409,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonLetter(final RegexQuantifier quantifier) {
-        stringBuilder.append("\\P{L}");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("nonLetter(" + (quantifier == null ? "" : quantifier.getName()) + ")", "\\P{L}", quantifier);
     }
 
     /**
@@ -414,9 +428,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder uppercaseLetter(final RegexQuantifier quantifier) {
-        stringBuilder.append("\\p{Lu}");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("uppercaseLetter(" + (quantifier == null ? "" : quantifier.getName()) + ")", "\\p{Lu}", quantifier);
     }
 
     /**
@@ -435,9 +447,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder lowercaseLetter(final RegexQuantifier quantifier) {
-        stringBuilder.append("\\p{Ll}");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("lowercaseLetter(" + (quantifier == null ? "" : quantifier.getName()) + ")", "\\p{Ll}", quantifier);
     }
 
     /**
@@ -456,9 +466,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder letterOrDigit(final RegexQuantifier quantifier) {
-        stringBuilder.append("[\\p{L}0-9]");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("letterOrDigit(" + (quantifier == null ? "" : quantifier.getName()) + ")", "[\\p{L}0-9]", quantifier);
     }
 
     /**
@@ -477,9 +485,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonLetterOrDigit(final RegexQuantifier quantifier) {
-        stringBuilder.append("[^\\p{L}0-9]");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("nonLetterOrDigit(" + (quantifier == null ? "" : quantifier.getName()) + ")", "[^\\p{L}0-9]", quantifier);
     }
 
     /**
@@ -498,9 +504,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder hexDigit(final RegexQuantifier quantifier) {
-        stringBuilder.append("[0-9A-Fa-f]");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("hexDigit(" + (quantifier == null ? "" : quantifier.getName()) + ")", "[0-9A-Fa-f]", quantifier);
     }
 
     /**
@@ -519,9 +523,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder uppercaseHexDigit(final RegexQuantifier quantifier) {
-        stringBuilder.append("[0-9A-F]");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("uppercaseHexDigit(" + (quantifier == null ? "" : quantifier.getName()) + ")", "[0-9A-F]", quantifier);
     }
 
     /**
@@ -540,9 +542,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder lowercaseHexDigit(final RegexQuantifier quantifier) {
-        stringBuilder.append("[0-9a-f]");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("lowercaseHexDigit(" + (quantifier == null ? "" : quantifier.getName()) + ")", "[0-9a-f]", quantifier);
     }
 
     /**
@@ -561,9 +561,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonHexDigit(final RegexQuantifier quantifier) {
-        stringBuilder.append("[^0-9A-Fa-f]");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("nonHexDigit(" + (quantifier == null ? "" : quantifier.getName()) + ")", "[^0-9A-Fa-f]", quantifier);
     }
 
     /**
@@ -582,9 +580,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder wordCharacter(final RegexQuantifier quantifier) {
-        stringBuilder.append("[\\p{L}0-9_]");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("wordCharacter(" + (quantifier == null ? "" : quantifier.getName()) + ")", "[\\p{L}0-9_]", quantifier);
     }
 
     /**
@@ -603,9 +599,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder nonWordCharacter(final RegexQuantifier quantifier) {
-        stringBuilder.append("[^\\p{L}0-9_]");
-        addQuantifier(quantifier);
-        return this;
+        return addPart("nonWordCharacter(" + (quantifier == null ? "" : quantifier.getName()) + ")", "[^\\p{L}0-9_]", quantifier);
     }
 
     /**
@@ -626,13 +620,12 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder anyCharacterFrom(final String characters, final RegexQuantifier quantifier) {
+        final String method = (quantifier == null)
+                ? "anyCharacterFrom(\"" + characters + "\")"
+                : "anyCharacterFrom(\"" + characters + "\", " + quantifier.getName() + ")";
         // Build a character class, remembering to escape any ] character if passed in
-        stringBuilder
-                .append("[")
-                .append(makeSafeForCharacterClass(characters))
-                .append("]");
-        addQuantifier(quantifier);
-        return this;
+        final String safeCharacters = makeSafeForCharacterClass(characters);
+        return addPart(method, "[" + safeCharacters + "]", quantifier);
     }
 
     /**
@@ -653,13 +646,12 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder anyCharacterExcept(final String characters, final RegexQuantifier quantifier) {
+        final String method = (quantifier == null)
+                ? "anyCharacterExcept(\"" + characters + "\")"
+                : "anyCharacterExcept(\"" + characters + "\", " + quantifier.getName() + ")";
         // Build a character class, remembering to escape any ] character if passed in
-        stringBuilder
-                .append("[^")
-                .append(makeSafeForCharacterClass(characters))
-                .append("]");
-        addQuantifier(quantifier);
-        return this;
+        final String safeCharacters = makeSafeForCharacterClass(characters);
+        return addPart(method, "[^" + safeCharacters + "]", quantifier);
     }
 
     /**
@@ -681,30 +673,25 @@ public final class RegexBuilder {
      */
     public RegexBuilder anyOf(final String[] strings, final RegexQuantifier quantifier) {
         if (strings == null || strings.length == 0) {
+            log("anyOf()", "strings list is empty, so doing nothing");
             return this;
         }
 
-        if (strings.length == 1) {
-            stringBuilder.append(makeSafeForRegex(strings[0]));
-            addQuantifier(quantifier);
-            return this;
+        if (strings.length == 1 && quantifier == null) {
+            return addPart("anyOf(\"" + strings[0] + "\")", makeSafeForRegex(strings[0]));
         }
 
         final String[] safeStrings = new String[strings.length];
+        final String[] loggingStrings = new String[strings.length];
         for (int i = 0; i < strings.length; i++) {
             safeStrings[i] = makeSafeForRegex(strings[i]);
+            loggingStrings[i] = "\"" + strings[i] + "\"";
         }
+        final String method = (quantifier == null)
+                ? "anyOf(" + String.join(", ", loggingStrings) + ")"
+                : "anyOf(" + String.join(", ", loggingStrings) + ", " + quantifier.getName() + ")";
 
-        RegexBuilder builder = null;
-        try {
-            builder = startNonCapturingGroup()
-                    .regexText(String.join("|", safeStrings))
-                    .endGroup(quantifier);
-        } catch (RegexBuilderException ignored) {
-            // We won't get an exception from endGroup() as we know we started the group properly
-        }
-
-        return builder;
+        return addPartInNonCapturingGroup(method, String.join("|", safeStrings), quantifier);
     }
 
 
@@ -716,8 +703,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder startOfString() {
-        stringBuilder.append("^");
-        return this;
+        return addPart("startOfString()", "^");
     }
 
     /**
@@ -726,8 +712,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder endOfString() {
-        stringBuilder.append("$");
-        return this;
+        return addPart("endOfString()", "$");
     }
 
     /**
@@ -737,8 +722,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder wordBoundary() {
-        stringBuilder.append("\\b");
-        return this;
+        return addPart("wordBoundary()", "\\b");
     }
 
 
@@ -756,9 +740,8 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder startGroup() {
-        stringBuilder.append("(");
         openGroupCount++;
-        return this;
+        return addPart("startGroup()", "(");
     }
 
     /**
@@ -773,9 +756,8 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder startNonCapturingGroup() {
-        stringBuilder.append("(?:");
         openGroupCount++;
-        return this;
+        return addPart("startNonCapturingGroup()", "(?:");
     }
 
     /**
@@ -793,12 +775,8 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      */
     public RegexBuilder startNamedGroup(final String name) {
-        stringBuilder
-                .append("(?<")
-                .append(name)
-                .append(">");
         openGroupCount++;
-        return this;
+        return addPart("startNamedGroup(\"" + name + "\")", "(?<" + name + ">");
     }
 
     /**
@@ -826,18 +804,39 @@ public final class RegexBuilder {
                     stringBuilder);
         }
 
-        stringBuilder.append(")");
-        addQuantifier(quantifier);
+        final String method = (quantifier == null)
+                ? "endGroup()"
+                : "endGroup(" + quantifier.getName() + ")";
         openGroupCount--;
-        return this;
+        return addPart(method, ")", quantifier);
     }
 
 
     // PRIVATE
 
-    private void addQuantifier(final RegexQuantifier quantifier) {
+    private RegexBuilder addPart(final String method, final String part) {
+        return addPart(method, part, null);
+    }
+
+    private RegexBuilder addPart(final String method, final String part, final RegexQuantifier quantifier) {
+        log(method, part + (quantifier == null ? "" : quantifier));
+        stringBuilder.append(part);
         if (quantifier != null) {
             stringBuilder.append(quantifier);
+        }
+        return this;
+    }
+
+    private RegexBuilder addPartInNonCapturingGroup(
+            final String method,
+            final String part,
+            final RegexQuantifier quantifier) {
+        return addPart(method, "(?:" + part + ")", quantifier);
+    }
+
+    private void log(final String method, final String message) {
+        if (logger != null) {
+            logger.log(prefix + ": " + method + ": " + message);
         }
     }
 
