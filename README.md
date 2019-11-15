@@ -13,7 +13,41 @@ Regular expression tools for Java developers.
  - Code is easier to read, understand and maintain.
  - Code is safer and far less prone to regular expression syntax errors and programmer errors.
 
-It is fully documented in the [project wiki](https://github.com/markwhitaker/RegexToolbox.Java/wiki).
+Here's an example:
+
+```java
+Pattern regex = new RegexBuilder()
+    .text("Hello")
+    .whitespace(RegexQuantifier.oneOrMore())
+    .text("world!")
+    .buildRegex();
+```
+
+But that's just a taste of what `RegexBuilder` does: for full API documentation, head over to the [project wiki](https://github.com/markwhitaker/RegexToolbox.Java/wiki).
+
+## New in 1.3: Logging
+
+Use the new `addLogger()` method to connect a logger of your choice and see how your regex is built, step by step. For example:
+
+```java
+Pattern regex = new RegexBuilder()
+    .addLogger(s -> System.out.println(s))
+    .wordBoundary()
+    .text("Regex")
+    .anyOf("Builder", "Toolbox")
+    .wordBoundary()
+    .buildRegex();
+```
+
+will output this to your console:
+
+```text
+RegexBuilder: wordBoundary(): \b
+RegexBuilder: text("Regex"): Regex
+RegexBuilder: anyOf("Builder", "Toolbox"): (?:Builder|Toolbox)
+RegexBuilder: wordBoundary(): \b
+RegexBuilder: buildRegex(): \bRegex(?:Builder|Toolbox)\b
+```
 
 ## Usage (Gradle)
 
