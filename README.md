@@ -1,6 +1,6 @@
 ![icon](artwork/RegexToolbox-icon-100.png)
 
-# RegexToolbox.Java [![CircleCI](https://circleci.com/gh/markwhitaker/RegexToolbox.Java.svg?style=shield)](https://circleci.com/gh/markwhitaker/RegexToolbox.Java) [ ![Download](https://api.bintray.com/packages/markwhitaker/Maven/regextoolbox/images/download.svg) ](https://bintray.com/markwhitaker/Maven/regextoolbox/_latestVersion)
+# RegexToolbox.Java [![CircleCI](https://circleci.com/gh/markwhitaker/RegexToolbox.Java.svg?style=shield)](https://circleci.com/gh/markwhitaker/RegexToolbox.Java) [![Download from JitPack](https://jitpack.io/v/markwhitaker/RegexToolbox.Java.svg)](https://jitpack.io/#markwhitaker/RegexToolbox.Java)
 
 Regular expression tools for Java developers.
 
@@ -51,9 +51,17 @@ RegexBuilder: buildRegex(): \bRegex(?:Builder|Toolbox)\b
 
 ## Usage (Gradle)
 
-Replace `x.y.z` with the latest version.
+RegexToolbox.Java is [hosted on JitPack](https://jitpack.io/#markwhitaker/RegexToolbox.Java).
+Replace `x.y.z` with the latest version (shown in the JitPack badge at the top of this page).
 
-```implementation 'uk.co.mainwave.regextoolbox:regextoolbox:x.y.z'```
+```
+repositories {
+    ...
+    maven { url 'https://jitpack.io' }
+}
+
+implementation 'com.github.markwhitaker:RegexToolbox.Java:x.y.z'
+```
 
 ---
 ![icon](https://raw.githubusercontent.com/markwhitaker/RegexToolbox.kt/master/artwork/RegexToolbox-icon-32.png) **Kotlin developer?** Check out the Kotlin version of this library, [RegexToolbox.kt](https://github.com/markwhitaker/RegexToolbox.kt).
