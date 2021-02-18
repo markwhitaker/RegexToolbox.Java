@@ -5,8 +5,8 @@ package uk.co.mainwave.regextoolbox;
  * to match a variable number of elements it will match as many as possible.
  */
 public final class RegexGreedyQuantifier extends RegexQuantifier {
-    RegexGreedyQuantifier(final String name, final String regexString) {
-        super(name, regexString);
+    RegexGreedyQuantifier(final String regexString) {
+        super(regexString);
     }
 
     /**
