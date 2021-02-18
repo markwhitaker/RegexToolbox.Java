@@ -25,29 +25,9 @@ Pattern regex = new RegexBuilder()
 
 But that's just a taste of what `RegexBuilder` does: for full API documentation, head over to the [project wiki](https://github.com/markwhitaker/RegexToolbox.Java/wiki).
 
-## New in 1.3: Logging
+## Breaking change in 2.0: Logging removed
 
-Use the new `addLogger()` method to connect a logger of your choice and see how your regex is built, step by step. For example:
-
-```java
-Pattern regex = new RegexBuilder()
-    .addLogger(s -> System.out.println(s))
-    .wordBoundary()
-    .text("Regex")
-    .anyOf("Builder", "Toolbox")
-    .wordBoundary()
-    .buildRegex();
-```
-
-will output this to your console:
-
-```text
-RegexBuilder: wordBoundary(): \b
-RegexBuilder: text("Regex"): Regex
-RegexBuilder: anyOf("Builder", "Toolbox"): (?:Builder|Toolbox)
-RegexBuilder: wordBoundary(): \b
-RegexBuilder: buildRegex(): \bRegex(?:Builder|Toolbox)\b
-```
+The logging API added in version 1.3 wasn't adding as much value as intended and incurred an additional maintenance overhead. It is removed in version 2.0.
 
 ## Usage (Gradle)
 
