@@ -20,12 +20,14 @@ public final class RegexBuilder {
     /**
      * Interface to a logger attached by the client code which will receive log messages as the regex is built.
      */
+    @Deprecated
     public interface Logger
     {
         /**
          * Log a message to a real logger (e.g. console or a logging framework).
          * @param message Message to log
          */
+        @Deprecated
         void log(final String message);
     }
 
@@ -88,6 +90,7 @@ public final class RegexBuilder {
      * @param logger Logger to receive log messages from the builder
      * @return The current {@link RegexBuilder} object, for method chaining
      */
+    @Deprecated
     public RegexBuilder addLogger(final Logger logger) {
         this.logger = logger;
         return this;
@@ -102,6 +105,7 @@ public final class RegexBuilder {
      * @param prefix A prefix to add at the start of each log message
      * @return The current {@link RegexBuilder} object, for method chaining
      */
+    @Deprecated
     public RegexBuilder addLogger(final Logger logger, final String prefix) {
         this.logger = logger;
         this.prefix = prefix;
