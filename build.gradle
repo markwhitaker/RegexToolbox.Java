@@ -6,14 +6,10 @@ buildscript {
 plugins {
     id 'java-library'
     id 'com.palantir.git-version' version '0.11.0'
-    id 'com.jfrog.bintray' version '1.8.4'
-    id 'maven'
-    id 'maven-publish'
 }
 
 repositories {
     mavenCentral()
-    jcenter()
 }
 
 group 'uk.co.mainwave.regextoolbox'
@@ -25,35 +21,4 @@ dependencies {
     testImplementation "junit:junit:$junit_version"
     testImplementation "org.mockito:mockito-core:$mockito_version"
     testImplementation "org.mockito:mockito-inline:$mockito_version"
-}
-
-bintray {
-    user = project.hasProperty('bintray_user') ? project.property('bintray_user') : System.getenv('BINTRAY_USER')
-    key = project.hasProperty('bintray_api_key') ? project.property('bintray_api_key') : System.getenv('BINTRAY_API_KEY')
-    configurations = ['archives']
-    publish = true
-    pkg {
-        repo = 'Maven'
-        name = project.name
-        version {
-            name = gitVersion()
-            desc = 'Regular expression tools for Java developers'
-            vcsTag = gitVersion()
-        }
-    }
-}
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-    classifier = 'sources'
-    from sourceSets.main.allSource
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives sourcesJar
-    archives javadocJar
 }
