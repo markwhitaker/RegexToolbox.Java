@@ -1,9 +1,9 @@
 package uk.co.mainwave.regextoolbox;
 
 /**
- * Exception thrown by {@link RegexBuilder} methods
+ * Unchecked exception thrown by {@link RegexBuilder} methods
  */
-public final class RegexBuilderException extends Exception {
+public final class RegexBuilderException extends RuntimeException {
     /**
      * The regex string as it currently stands
      */
