@@ -35,7 +35,7 @@ public final class RegexBuilder {
      * @return {@link Pattern} as built
      * @throws RegexBuilderException An error occurred when building the regex
      */
-    public Pattern buildRegex(final RegexOptions... options) throws RegexBuilderException {
+    public Pattern buildRegex(final RegexOptions... options) {
         if (openGroupCount == 1) {
             throw new RegexBuilderException("A group has been started but not ended", stringBuilder);
         }
@@ -729,7 +729,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      * @throws RegexBuilderException A group has not been started
      */
-    public RegexBuilder endGroup() throws RegexBuilderException {
+    public RegexBuilder endGroup() {
         return endGroup(null);
     }
 
@@ -741,7 +741,7 @@ public final class RegexBuilder {
      * @return The current {@link RegexBuilder} object, for method chaining
      * @throws RegexBuilderException A group has not been started
      */
-    public RegexBuilder endGroup(final RegexQuantifier quantifier) throws RegexBuilderException {
+    public RegexBuilder endGroup(final RegexQuantifier quantifier) {
         if (openGroupCount == 0) {
             throw new RegexBuilderException("Cannot call endGroup() until a group has been started with startGroup()",
                     stringBuilder);
