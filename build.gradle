@@ -19,6 +19,4 @@ sourceCompatibility = 1.8
 
 dependencies {
     testImplementation "junit:junit:$junit_version"
-    testImplementation "org.mockito:mockito-core:$mockito_version"
-    testImplementation "org.mockito:mockito-inline:$mockito_version"
 }
