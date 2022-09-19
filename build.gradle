@@ -4,7 +4,7 @@ buildscript {
 
 plugins {
     id 'java-library'
-    id 'com.palantir.git-version' version '0.15.0'
+    id 'maven-publish'
 }
 
 repositories {
@@ -12,10 +12,41 @@ repositories {
 }
 
 group 'uk.co.mainwave.regextoolbox'
-version gitVersion()
+version getVersionFromGit()
 
-sourceCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_1_8
 
 dependencies {
     testImplementation "junit:junit:$junit_version"
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/markwhitaker/mimetypes.java")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+def getVersionFromGit() {
+    try {
+        def stdout = new ByteArrayOutputStream()
+        exec {
+            commandLine "git", "describe", "--always", "--dirty"
+            standardOutput = stdout
+        }
+        return stdout.toString().trim()
+    } catch (ignored) {
+        return "1.0.0"
+    }
 }
