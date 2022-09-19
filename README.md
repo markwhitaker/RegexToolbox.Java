@@ -1,6 +1,6 @@
 ![icon](artwork/RegexToolbox-icon-100.png)
 
-# RegexToolbox.Java [![CircleCI](https://circleci.com/gh/markwhitaker/RegexToolbox.Java.svg?style=shield)](https://circleci.com/gh/markwhitaker/RegexToolbox.Java) [![Download from JitPack](https://jitpack.io/v/markwhitaker/RegexToolbox.Java.svg)](https://jitpack.io/#markwhitaker/RegexToolbox.Java)
+# RegexToolbox.Java [![Build and test](https://github.com/markwhitaker/RegexToolbox.Java/actions/workflows/build-and-test.yml/badge.svg)](https://github.com/markwhitaker/RegexToolbox.Java/actions/workflows/build-and-test.yml) [![Download from JitPack](https://jitpack.io/v/markwhitaker/RegexToolbox.Java.svg)](https://jitpack.io/#markwhitaker/RegexToolbox.Java)
 
 Regular expression tools for Java developers.
 
